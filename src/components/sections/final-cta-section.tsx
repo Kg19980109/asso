@@ -59,7 +59,7 @@ export function FinalCtaSection({ onOpenQueue, onOpenPartner }: FinalCtaSectionP
                 <span className="block">Wait Less. <span className="gradient-text-hero">Explore More.</span></span>
               </h2>
               <p className="text-sm sm:text-base font-medium text-slate-200 mt-2">
-                Join millions who choose unforgettable festive experiences over queues.
+                Be among the first restaurants in Kolkata to offer queue-free festive dining.
               </p>
 
               {/* Dual Buttons matching screenshot */}

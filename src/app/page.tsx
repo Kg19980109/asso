@@ -9,12 +9,10 @@ import { HowItWorksSection } from "@/components/sections/how-it-works-section";
 import { BetterExperienceSection } from "@/components/sections/better-experience-section";
 import { PandalsAndPreorderSection } from "@/components/sections/pandals-and-preorder-section";
 import { ForRestaurantsSection } from "@/components/sections/for-restaurants-section";
-import { TestimonialsSection } from "@/components/sections/testimonials-section";
 import { FaqSection } from "@/components/sections/faq-section";
 import { FinalCtaSection } from "@/components/sections/final-cta-section";
 import { LiveQueueModal } from "@/components/ui/live-queue-modal";
 import { RestaurantPartnerModal } from "@/components/ui/restaurant-partner-modal";
-import { LiveActivityTicker } from "@/components/ui/live-activity-ticker";
 import { ScrollProgressBar } from "@/components/ui/scroll-progress-bar";
 
 export default function HomePage() {
@@ -33,10 +31,7 @@ export default function HomePage() {
 
       {/* Main Landing Sections */}
       <main className="flex-1">
-        <HeroSection
-          onOpenQueue={() => setQueueModalOpen(true)}
-          onOpenPartner={() => setPartnerModalOpen(true)}
-        />
+        <HeroSection />
         <PujaProblemSection onOpenQueue={() => setQueueModalOpen(true)} />
         <HowItWorksSection
           onOpenQueue={() => setQueueModalOpen(true)}
@@ -44,7 +39,6 @@ export default function HomePage() {
         <BetterExperienceSection />
         <PandalsAndPreorderSection onOpenQueue={() => setQueueModalOpen(true)} />
         <ForRestaurantsSection onOpenPartner={() => setPartnerModalOpen(true)} />
-        <TestimonialsSection />
         <FaqSection />
         <FinalCtaSection
           onOpenQueue={() => setQueueModalOpen(true)}
@@ -64,9 +58,6 @@ export default function HomePage() {
         isOpen={partnerModalOpen}
         onClose={() => setPartnerModalOpen(false)}
       />
-
-      {/* Live Activity Pop-up Ticker */}
-      <LiveActivityTicker onOpenQueue={() => setQueueModalOpen(true)} />
     </div>
   );
 }

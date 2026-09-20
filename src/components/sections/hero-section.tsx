@@ -2,27 +2,29 @@
 
 import * as React from "react";
 import Image from "next/image";
-import Link from "next/link";
 import {
   Hourglass,
   Landmark,
   UtensilsCrossed,
   Smile,
   ArrowRight,
-  Sparkles,
-  Flame,
-  ShieldCheck,
-  TrendingUp,
+  CheckCircle2,
+  Store,
 } from "lucide-react";
 import { FestiveParticles } from "@/components/ui/festive-particles";
 import { ScrollReveal } from "@/components/animations/scroll-reveal";
 
-interface HeroSectionProps {
-  onOpenQueue?: () => void;
-  onOpenPartner?: () => void;
-}
+export function HeroSection() {
+  const [restaurantName, setRestaurantName] = React.useState("");
+  const [ownerName, setOwnerName] = React.useState("");
+  const [phone, setPhone] = React.useState("");
+  const [submitted, setSubmitted] = React.useState(false);
 
-export function HeroSection({ onOpenQueue, onOpenPartner }: HeroSectionProps) {
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setSubmitted(true);
+  };
+
   return (
     <section
       id="for-diners"
@@ -55,17 +57,17 @@ export function HeroSection({ onOpenQueue, onOpenPartner }: HeroSectionProps) {
 
           {/* Left Column Content */}
           <div className="lg:col-span-7 space-y-6 max-w-2xl">
-            
-            {/* Festive Live Tag */}
+
+            {/* Honest launch tag — no fake partner counts */}
             <ScrollReveal direction="down" delay={50}>
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.08] hover:bg-white/[0.12] border border-white/20 backdrop-blur-md text-slate-200 text-xs font-semibold shadow-inner transition-colors">
                 <span className="flex h-2 w-2 relative">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-rose-400 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-rose-500"></span>
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-300 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-amber-400"></span>
                 </span>
                 <span className="text-amber-300 font-bold">Kolkata Durga Puja 2026</span>
                 <span className="text-slate-400">•</span>
-                <span>140+ Partner Restaurants Active</span>
+                <span>Now onboarding partner restaurants</span>
               </div>
             </ScrollReveal>
 
@@ -83,30 +85,74 @@ export function HeroSection({ onOpenQueue, onOpenPartner }: HeroSectionProps) {
             {/* Subheading */}
             <ScrollReveal direction="up" delay={150}>
               <p className="text-sm sm:text-base text-slate-200/90 leading-relaxed font-normal max-w-xl">
-                Join the queue from your phone, pre-order your favorite food, and visit 1, 2 or more pandals while we hold your table and keep your food ready!
+                ASSO lets diners join your queue from their phone and pre-order food while they visit pandals nearby — you get calmer entrances and fuller tables.
               </p>
             </ScrollReveal>
 
-            {/* Dual CTA Buttons */}
+            {/* Restaurant early-access form */}
             <ScrollReveal direction="up" delay={200}>
-              <div className="flex flex-wrap items-center gap-3 pt-2">
-                <button
-                  onClick={onOpenQueue}
-                  className="relative group inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-white hover:bg-slate-100 text-slate-950 font-black text-xs shadow-xl shadow-white/15 transition-all duration-200 hover:scale-105 active:scale-95 cursor-pointer overflow-hidden"
-                >
-                  <div className="absolute inset-0 w-1/2 h-full bg-white/40 transform -skew-x-12 -translate-x-full group-hover:translate-x-[300%] transition-transform duration-700 pointer-events-none" />
-                  <Sparkles className="w-4 h-4 text-purple-600" />
-                  <span>Join the Queue</span>
-                  <ArrowRight className="w-3.5 h-3.5 text-slate-950 group-hover:translate-x-0.5 transition-transform" />
-                </button>
-
-                <button
-                  onClick={onOpenPartner}
-                  className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-white/10 hover:bg-white/15 border border-white/25 text-white font-bold text-xs backdrop-blur-md transition-all duration-200 hover:scale-105 active:scale-95 cursor-pointer"
-                >
-                  <span>For Restaurants</span>
-                  <ArrowRight className="w-3.5 h-3.5" />
-                </button>
+              <div className="max-w-xl rounded-3xl bg-white/[0.06] border border-white/15 backdrop-blur-md p-5 sm:p-6 shadow-2xl">
+                {!submitted ? (
+                  <form onSubmit={handleSubmit} className="space-y-3">
+                    <div className="flex items-center gap-2">
+                      <Store className="w-4 h-4 text-amber-300" />
+                      <p className="text-sm font-bold text-white">
+                        Own a restaurant? Get free early access
+                      </p>
+                    </div>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                      <input
+                        type="text"
+                        required
+                        value={restaurantName}
+                        onChange={(e) => setRestaurantName(e.target.value)}
+                        placeholder="Restaurant name & area"
+                        aria-label="Restaurant name and area"
+                        className="h-11 px-3.5 rounded-xl bg-white/10 border border-white/15 text-sm text-white placeholder-slate-400 focus:outline-none focus:border-purple-400"
+                      />
+                      <input
+                        type="text"
+                        required
+                        value={ownerName}
+                        onChange={(e) => setOwnerName(e.target.value)}
+                        placeholder="Your name"
+                        aria-label="Your name"
+                        className="h-11 px-3.5 rounded-xl bg-white/10 border border-white/15 text-sm text-white placeholder-slate-400 focus:outline-none focus:border-purple-400"
+                      />
+                    </div>
+                    <div className="flex flex-col sm:flex-row gap-3">
+                      <input
+                        type="tel"
+                        required
+                        value={phone}
+                        onChange={(e) => setPhone(e.target.value)}
+                        placeholder="Phone number"
+                        aria-label="Phone number"
+                        className="flex-1 h-11 px-3.5 rounded-xl bg-white/10 border border-white/15 text-sm text-white placeholder-slate-400 focus:outline-none focus:border-purple-400"
+                      />
+                      <button
+                        type="submit"
+                        className="inline-flex items-center justify-center gap-2 px-7 h-11 rounded-xl bg-white hover:bg-slate-100 text-slate-950 font-black text-xs shadow-xl shadow-white/15 transition-all duration-200 hover:scale-[1.02] active:scale-95 cursor-pointer whitespace-nowrap"
+                      >
+                        <span>Request Free Demo</span>
+                        <ArrowRight className="w-3.5 h-3.5" />
+                      </button>
+                    </div>
+                    <p className="text-[11px] text-slate-400">
+                      Currently onboarding in Kolkata • No hardware needed • Free pilot for early partners
+                    </p>
+                  </form>
+                ) : (
+                  <div className="text-center py-4">
+                    <div className="w-11 h-11 rounded-full bg-emerald-500/20 border border-emerald-400/40 text-emerald-400 flex items-center justify-center mx-auto mb-3">
+                      <CheckCircle2 className="w-5 h-5" />
+                    </div>
+                    <p className="text-base font-black text-white">Thanks{restaurantName ? `, ${restaurantName}` : ""}!</p>
+                    <p className="text-xs text-slate-300 mt-1">
+                      We&apos;ll contact you shortly to schedule your free demo.
+                    </p>
+                  </div>
+                )}
               </div>
             </ScrollReveal>
 
@@ -151,21 +197,6 @@ export function HeroSection({ onOpenQueue, onOpenPartner }: HeroSectionProps) {
                   <span className="text-[11px] font-bold text-white leading-tight">
                     Happier<br />Dining Experience
                   </span>
-                </div>
-              </div>
-            </ScrollReveal>
-
-            {/* Quick Live Stats Ticker */}
-            <ScrollReveal direction="up" delay={300}>
-              <div className="pt-2 flex items-center gap-4 text-xs text-slate-400">
-                <div className="flex items-center gap-1.5">
-                  <TrendingUp className="w-3.5 h-3.5 text-emerald-400" />
-                  <span className="text-slate-200 font-bold">55 Mins</span> Avg Time Saved
-                </div>
-                <span className="text-slate-600">•</span>
-                <div className="flex items-center gap-1.5">
-                  <ShieldCheck className="w-3.5 h-3.5 text-blue-400" />
-                  <span className="text-slate-200 font-bold">100% Free</span> For Diners
                 </div>
               </div>
             </ScrollReveal>

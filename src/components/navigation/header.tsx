@@ -39,7 +39,7 @@ export function Header({ onOpenDownload, onOpenQueue }: HeaderProps) {
             <AssoLogo variant="light" size="sm" className="group-hover:opacity-90 transition-opacity" />
             <span className="hidden sm:inline-flex items-center gap-1 text-[9px] font-bold px-2 py-0.5 rounded-full bg-rose-500/20 text-rose-300 border border-rose-500/30">
               <Flame className="w-2.5 h-2.5 text-rose-400 fill-rose-400" />
-              Puja 2026 Live
+              Early Access
             </span>
           </div>
           <span className="text-[10px] text-slate-300 font-medium tracking-tight -mt-0.5">
@@ -72,12 +72,6 @@ export function Header({ onOpenDownload, onOpenQueue }: HeaderProps) {
             className="text-xs font-semibold text-slate-200 hover:text-amber-300 transition-colors"
           >
             For Restaurants
-          </Link>
-          <Link
-            href="#testimonials"
-            className="text-xs font-semibold text-slate-200 hover:text-amber-300 transition-colors"
-          >
-            Diner Stories
           </Link>
           <Link
             href="#faq"
@@ -140,13 +134,6 @@ export function Header({ onOpenDownload, onOpenQueue }: HeaderProps) {
             className="block text-sm font-semibold text-slate-200 hover:text-amber-300 py-1"
           >
             For Restaurants
-          </Link>
-          <Link
-            href="#testimonials"
-            onClick={() => setMobileMenuOpen(false)}
-            className="block text-sm font-semibold text-slate-200 hover:text-amber-300 py-1"
-          >
-            Diner Stories
           </Link>
           <Link
             href="#faq"

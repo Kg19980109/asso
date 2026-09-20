@@ -74,7 +74,7 @@ export function RestaurantPartnerModal({ isOpen, onClose }: RestaurantPartnerMod
                   Estimated Puja Revenue Gain
                 </span>
                 <span className="text-xs font-mono font-bold text-emerald-400">
-                  +35% Table Turn
+                  Illustrative estimate
                 </span>
               </div>
 
@@ -109,7 +109,7 @@ export function RestaurantPartnerModal({ isOpen, onClose }: RestaurantPartnerMod
               </div>
 
               <div className="mt-3 pt-3 border-t border-white/10 flex items-center justify-between">
-                <span className="text-xs text-slate-300">Projected Extra Earnings:</span>
+                <span className="text-xs text-slate-300">Illustrative extra earnings (not a guarantee):</span>
                 <span className="text-xl font-black text-emerald-400 font-mono">
                   +₹{extraPujaRevenue.toLocaleString("en-IN")}
                 </span>

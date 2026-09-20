@@ -129,14 +129,14 @@ export function LiveQueueModal({ isOpen, onClose, defaultRestaurant }: LiveQueue
             <div className="flex items-center gap-2 mb-2">
               <span className="text-xl font-black text-[#38BDF8]">ASSO</span>
               <span className="text-xs px-2.5 py-0.5 rounded-full bg-rose-500/20 text-rose-300 border border-rose-500/30 font-bold">
-                Live Queue Access
+                Demo Preview
               </span>
             </div>
             <h3 className="text-2xl font-black text-white tracking-tight">
               Join Digital Queue
             </h3>
             <p className="text-xs text-slate-300 mt-1">
-              Skip waiting outside. Go pandal hopping while we hold your spot.
+              Sample preview of the diner experience. Restaurant names shown for illustration.
             </p>
 
             {/* Restaurant Selector */}

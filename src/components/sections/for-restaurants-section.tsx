@@ -47,7 +47,7 @@ const RESTAURANT_FEATURES = [
   {
     icon: RotateCw,
     title: "Better Table Turnover",
-    desc: "Serve 35% more diners every night during Puja rush",
+    desc: "Seat more covers by calling the next party the moment a table frees up",
     iconColor: "text-indigo-600",
     bg: "bg-indigo-50",
   },
