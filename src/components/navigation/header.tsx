@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import Link from "next/link";
-import { Download, Menu, X, Sparkles, Flame } from "lucide-react";
+import { Menu, X, Sparkles, Flame } from "lucide-react";
 
 interface HeaderProps {
   onOpenDownload?: () => void;
@@ -96,25 +96,17 @@ export function Header({ onOpenDownload, onOpenQueue }: HeaderProps) {
           </Link>
         </nav>
 
-        {/* Right CTA Button - Purple Pill & Quick Queue */}
-        <div className="hidden md:flex items-center gap-3">
+        {/* Right CTA Button - Primary Join Queue */}
+        <div className="hidden md:flex items-center">
           {onOpenQueue && (
             <button
               onClick={onOpenQueue}
-              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-white/10 hover:bg-white/15 border border-white/20 text-white font-bold text-xs backdrop-blur-sm transition-all hover:scale-105 active:scale-95"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-[#7C3AED] to-[#8B5CF6] hover:from-[#6D28D9] hover:to-[#7C3AED] text-white font-bold text-xs shadow-lg shadow-purple-500/30 transition-all hover:scale-105 active:scale-95 cursor-pointer"
             >
               <Sparkles className="w-3.5 h-3.5 text-amber-300" />
-              <span>Live Queue</span>
+              <span>Join Queue</span>
             </button>
           )}
-
-          <button
-            onClick={onOpenDownload}
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-[#7C3AED] to-[#8B5CF6] hover:from-[#6D28D9] hover:to-[#7C3AED] text-white font-bold text-xs shadow-lg shadow-purple-500/30 transition-all hover:scale-105 active:scale-95 cursor-pointer"
-          >
-            <Download className="w-3.5 h-3.5 text-white" />
-            <span>Download App</span>
-          </button>
         </div>
 
         {/* Mobile Menu Button */}
@@ -173,29 +165,19 @@ export function Header({ onOpenDownload, onOpenQueue }: HeaderProps) {
             FAQ
           </Link>
 
-          <div className="pt-2 flex flex-col gap-2">
+          <div className="pt-2">
             {onOpenQueue && (
               <button
                 onClick={() => {
                   setMobileMenuOpen(false);
                   onOpenQueue();
                 }}
-                className="flex items-center justify-center gap-2 w-full py-2.5 rounded-full bg-white/10 border border-white/20 text-white font-bold text-xs"
+                className="flex items-center justify-center gap-2 w-full py-2.5 rounded-full bg-gradient-to-r from-[#7C3AED] to-[#8B5CF6] text-white font-bold text-xs shadow-lg shadow-purple-500/30 cursor-pointer"
               >
                 <Sparkles className="w-4 h-4 text-amber-300" />
                 <span>Join Live Queue</span>
               </button>
             )}
-            <button
-              onClick={() => {
-                setMobileMenuOpen(false);
-                onOpenDownload?.();
-              }}
-              className="flex items-center justify-center gap-2 w-full py-2.5 rounded-full bg-[#7C3AED] text-white font-bold text-xs shadow-lg shadow-purple-500/30"
-            >
-              <Download className="w-4 h-4" />
-              <span>Download App</span>
-            </button>
           </div>
         </div>
       )}

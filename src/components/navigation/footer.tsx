@@ -42,7 +42,7 @@ export function Footer() {
               <li><Link href="#features" className="hover:text-white transition-colors">Features</Link></li>
               <li><Link href="#for-diners" className="hover:text-white transition-colors">For Diners</Link></li>
               <li><Link href="#for-restaurants" className="hover:text-white transition-colors">For Restaurants</Link></li>
-              <li><Link href="#download" className="hover:text-white transition-colors">Download App</Link></li>
+              <li><Link href="#how-it-works" className="hover:text-white transition-colors">How It Works</Link></li>
             </ul>
           </div>
 

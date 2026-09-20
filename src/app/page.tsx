@@ -13,14 +13,12 @@ import { TestimonialsSection } from "@/components/sections/testimonials-section"
 import { FaqSection } from "@/components/sections/faq-section";
 import { FinalCtaSection } from "@/components/sections/final-cta-section";
 import { LiveQueueModal } from "@/components/ui/live-queue-modal";
-import { DownloadModal } from "@/components/ui/download-modal";
 import { RestaurantPartnerModal } from "@/components/ui/restaurant-partner-modal";
 import { LiveActivityTicker } from "@/components/ui/live-activity-ticker";
 import { ScrollProgressBar } from "@/components/ui/scroll-progress-bar";
 
 export default function HomePage() {
   const [queueModalOpen, setQueueModalOpen] = React.useState(false);
-  const [downloadModalOpen, setDownloadModalOpen] = React.useState(false);
   const [partnerModalOpen, setPartnerModalOpen] = React.useState(false);
 
   return (
@@ -30,7 +28,6 @@ export default function HomePage() {
 
       {/* Navigation Header */}
       <Header
-        onOpenDownload={() => setDownloadModalOpen(true)}
         onOpenQueue={() => setQueueModalOpen(true)}
       />
 
@@ -43,7 +40,6 @@ export default function HomePage() {
         <PujaProblemSection onOpenQueue={() => setQueueModalOpen(true)} />
         <HowItWorksSection
           onOpenQueue={() => setQueueModalOpen(true)}
-          onOpenDownload={() => setDownloadModalOpen(true)}
         />
         <BetterExperienceSection />
         <PandalsAndPreorderSection onOpenQueue={() => setQueueModalOpen(true)} />
@@ -63,10 +59,6 @@ export default function HomePage() {
       <LiveQueueModal
         isOpen={queueModalOpen}
         onClose={() => setQueueModalOpen(false)}
-      />
-      <DownloadModal
-        isOpen={downloadModalOpen}
-        onClose={() => setDownloadModalOpen(false)}
       />
       <RestaurantPartnerModal
         isOpen={partnerModalOpen}
