@@ -3,7 +3,7 @@
 import * as React from "react";
 import Link from "next/link";
 import { Menu, X, Sparkles, Flame } from "lucide-react";
-import { AssoLogoImage } from "@/components/brand/asso-logo";
+import { AssoLogo } from "@/components/brand/asso-logo";
 
 interface HeaderProps {
   onOpenDownload?: () => void;
@@ -36,7 +36,7 @@ export function Header({ onOpenDownload, onOpenQueue }: HeaderProps) {
             and swap <AssoLogo> for <Image src="/images/asso-logo.png" ... className="brightness-0 invert" /> */}
         <Link href="/" className="flex flex-col group" aria-label="ASSO home">
           <div className="flex items-center gap-2">
-            <AssoLogoImage size="sm" className="group-hover:opacity-90 transition-opacity" />
+            <AssoLogo variant="light" size="sm" className="group-hover:opacity-90 transition-opacity" />
             <span className="hidden sm:inline-flex items-center gap-1 text-[9px] font-bold px-2 py-0.5 rounded-full bg-rose-500/20 text-rose-300 border border-rose-500/30">
               <Flame className="w-2.5 h-2.5 text-rose-400 fill-rose-400" />
               Puja 2026 Live

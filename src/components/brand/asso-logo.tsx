@@ -1,10 +1,7 @@
 "use client";
 
 import * as React from "react";
-import Image from "next/image";
 import { cn } from "@/lib/utils";
-
-export const ASSO_LOGO_WHITE_SRC = "/images/asso-logo-white.png";
 
 interface AssoLogoProps {
   variant?: "light" | "dark"; // light = for dark backgrounds, dark = for light backgrounds
@@ -128,42 +125,5 @@ export function AssoLogo({
         </span>
       )}
     </span>
-  );
-}
-
-/**
- * Production logo — uses your exact white PNG with vector fallback
- * while the file is missing. Save your image as:
- *   public/images/asso-logo-white.png
- */
-export function AssoLogoImage({
-  size = "md",
-  className,
-  alt = "ASSO — Business Management & Q",
-}: {
-  size?: "sm" | "md" | "lg";
-  className?: string;
-  alt?: string;
-}) {
-  const [failed, setFailed] = React.useState(false);
-  if (failed) {
-    return <AssoLogo variant="light" size={size} className={className} />;
-  }
-  const dims =
-    size === "sm"
-      ? { width: 132, height: 36, cls: "h-8" }
-      : size === "lg"
-        ? { width: 200, height: 56, cls: "h-12" }
-        : { width: 164, height: 44, cls: "h-10" };
-  return (
-    <Image
-      src={ASSO_LOGO_WHITE_SRC}
-      alt={alt}
-      width={dims.width}
-      height={dims.height}
-      priority
-      onError={() => setFailed(true)}
-      className={cn(dims.cls, "w-auto object-contain", className)}
-    />
   );
 }
