@@ -10,8 +10,6 @@ interface ScrollRevealProps {
   delay?: number; // ms
   direction?: "up" | "down" | "left" | "right" | "none";
   duration?: number; // ms
-  y?: number; // override distance, px
-  blur?: boolean; // premium blur-in, desktop only
   once?: boolean;
 }
 
@@ -33,8 +31,6 @@ export function ScrollReveal({
   delay = 0,
   direction = "up",
   duration = 700,
-  y,
-  blur = true,
   once = true,
 }: ScrollRevealProps) {
   const shouldReduceMotion = useReducedMotion();
@@ -44,9 +40,11 @@ export function ScrollReveal({
     return <div className={className}>{children}</div>;
   }
 
-  // Premium: shorter travel on mobile so it feels snappy, not laggy.
-  // Desktop gets a slightly larger, blur-assisted rise.
-  const distance = y ?? (isMobile ? 18 : 32);
+  // Transform + opacity only — both composited, 60fps.
+  // (Filter/blur animations were removed: they force software painting
+  // on every frame across ~90 instances and caused scroll jank.)
+  // Shorter travel on mobile so it feels snappy, not laggy.
+  const distance = isMobile ? 18 : 28;
   // Horizontal reveals become vertical on mobile to avoid x-jank / overflow.
   const dir = isMobile && (direction === "left" || direction === "right") ? "up" : direction;
 
@@ -58,8 +56,6 @@ export function ScrollReveal({
     none: { x: 0, y: 0 },
   }[dir];
 
-  const useBlur = blur && !isMobile;
-
   return (
     <motion.div
       className={cn(className)}
@@ -67,15 +63,11 @@ export function ScrollReveal({
         opacity: 0,
         x: offsets.x,
         y: offsets.y,
-        scale: dir === "none" ? 0.96 : 0.98,
-        filter: useBlur ? "blur(8px)" : "blur(0px)",
       }}
       whileInView={{
         opacity: 1,
         x: 0,
         y: 0,
-        scale: 1,
-        filter: "blur(0px)",
       }}
       viewport={{ once, margin: isMobile ? "0px 0px -8% 0px" : "0px 0px -12% 0px", amount: 0.15 }}
       transition={{
@@ -83,7 +75,6 @@ export function ScrollReveal({
         delay: Math.min(delay, isMobile ? 120 : 250) / 1000,
         ease: [0.16, 1, 0.3, 1], // expo-out — premium feel
       }}
-      style={{ willChange: "opacity, transform, filter" }}
     >
       {children}
     </motion.div>

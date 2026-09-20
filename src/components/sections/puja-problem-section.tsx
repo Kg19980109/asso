@@ -90,7 +90,7 @@ export function PujaProblemSection({ onOpenQueue }: PujaProblemSectionProps) {
   const [activeStep, setActiveStep] = React.useState(2);
 
   return (
-    <section className="py-20 sm:py-28 bg-white text-stone-900 border-b border-stone-200 overflow-hidden relative">
+    <section className="py-20 sm:py-28 bg-white text-stone-900 border-b border-stone-200 overflow-hidden relative content-auto">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
         {/* Section Header & Top Right Note */}
@@ -128,6 +128,7 @@ export function PujaProblemSection({ onOpenQueue }: PujaProblemSectionProps) {
                   src="/images/restaurant-queue.jpg"
                   alt="Crowded restaurant queue during Puja"
                   fill
+                  sizes="(max-width: 1024px) 100vw, 42vw"
                   className="object-cover object-center opacity-90 group-hover:scale-105 transition-transform duration-700 select-none"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/35 to-black/30" />

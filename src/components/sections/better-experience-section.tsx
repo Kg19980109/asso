@@ -63,11 +63,11 @@ const FIVE_FEATURES = [
 
 export function BetterExperienceSection() {
   return (
-    <section id="our-story" className="py-20 sm:py-28 bg-[#080E21] text-white overflow-hidden border-b border-white/10 relative">
+    <section id="our-story" className="py-20 sm:py-28 bg-[#080E21] text-white overflow-hidden border-b border-white/10 relative content-auto">
       {/* Floating particles & spotlight */}
       <FestiveParticles />
-      <div className="absolute top-1/2 -left-20 w-80 h-80 bg-purple-600/20 rounded-full blur-[100px] pointer-events-none" />
-      <div className="absolute top-1/2 -right-20 w-80 h-80 bg-amber-500/15 rounded-full blur-[100px] pointer-events-none" />
+      <div className="absolute top-1/2 -left-20 w-80 h-80 bg-[radial-gradient(closest-side,rgba(124,58,237,0.20),transparent)] pointer-events-none" />
+      <div className="absolute top-1/2 -right-20 w-80 h-80 bg-[radial-gradient(closest-side,rgba(245,158,11,0.15),transparent)] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
@@ -121,6 +121,7 @@ export function BetterExperienceSection() {
                   src="/images/bengali-girl.jpg"
                   alt="Joyful Bengali Girl enjoying Puja"
                   fill
+                  sizes="(max-width: 1024px) 100vw, 448px"
                   className="object-cover object-center group-hover:scale-105 transition-transform duration-700 select-none"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-black/30" />

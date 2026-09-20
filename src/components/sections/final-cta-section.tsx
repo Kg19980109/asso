@@ -24,7 +24,7 @@ export function FinalCtaSection({ onOpenQueue, onOpenPartner }: FinalCtaSectionP
     <section id="download" className="relative py-24 sm:py-32 overflow-hidden text-white bg-[#060B18] content-auto">
       {/* Floating particles & ambiance */}
       <FestiveParticles />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-purple-600/20 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[radial-gradient(closest-side,rgba(124,58,237,0.20),transparent)] pointer-events-none" />
 
       {/* Background panoramic image of Kolkata */}
       <div className="absolute inset-0 z-0">
@@ -32,6 +32,7 @@ export function FinalCtaSection({ onOpenQueue, onOpenPartner }: FinalCtaSectionP
           src="/images/kolkata-skyline.jpg"
           alt="Kolkata Howrah Bridge Night Panorama during Durga Puja"
           fill
+          sizes="100vw"
           className="object-cover object-center opacity-70 scale-105 transition-transform duration-1000 select-none"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-[#060B18] via-[#060B18]/60 to-[#060B18]/75" />

@@ -27,9 +27,9 @@ export function HeroSection({ onOpenConnect }: HeroSectionProps) {
       {/* Floating Golden Festive Bokeh Particles */}
       <FestiveParticles />
 
-      {/* Radial festive ambient spotlights */}
-      <div className="absolute top-10 left-1/4 w-[500px] h-[500px] bg-purple-600/20 rounded-full blur-[140px] pointer-events-none" />
-      <div className="absolute bottom-10 right-1/4 w-[500px] h-[500px] bg-amber-500/15 rounded-full blur-[140px] pointer-events-none" />
+      {/* Radial festive ambient spotlights (gradient-only, no blur filter — cheap to paint) */}
+      <div className="absolute top-10 left-1/4 w-[500px] h-[500px] bg-[radial-gradient(closest-side,rgba(124,58,237,0.20),transparent)] pointer-events-none" />
+      <div className="absolute bottom-10 right-1/4 w-[500px] h-[500px] bg-[radial-gradient(closest-side,rgba(245,158,11,0.15),transparent)] pointer-events-none" />
 
       {/* Background illustration with smooth subtle blend */}
       <div className="absolute inset-0 z-0 opacity-40 lg:opacity-100 lg:left-1/3 transition-opacity duration-700">

@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import dynamic from "next/dynamic";
 import { Header } from "@/components/navigation/header";
 import { Footer } from "@/components/navigation/footer";
 import { HeroSection } from "@/components/sections/hero-section";
@@ -13,9 +14,17 @@ import { ForRestaurantsSection } from "@/components/sections/for-restaurants-sec
 import { HassleFreeSetupSection } from "@/components/sections/hasslefree-setup-section";
 import { FaqSection } from "@/components/sections/faq-section";
 import { FinalCtaSection } from "@/components/sections/final-cta-section";
-import { LiveQueueModal } from "@/components/ui/live-queue-modal";
-import { RestaurantPartnerModal } from "@/components/ui/restaurant-partner-modal";
 import { ScrollProgressBar } from "@/components/ui/scroll-progress-bar";
+
+// Modals load on demand so they don't weigh down the initial bundle.
+const LiveQueueModal = dynamic(
+  () => import("@/components/ui/live-queue-modal").then((m) => m.LiveQueueModal),
+  { ssr: false }
+);
+const RestaurantPartnerModal = dynamic(
+  () => import("@/components/ui/restaurant-partner-modal").then((m) => m.RestaurantPartnerModal),
+  { ssr: false }
+);
 
 export default function HomePage() {
   const [queueModalOpen, setQueueModalOpen] = React.useState(false);

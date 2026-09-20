@@ -73,7 +73,7 @@ export function HassleFreeSetupSection({ onOpenPartner }: HassleFreeSetupSection
   return (
     <section
       id="easy-setup"
-      className="py-20 sm:py-28 bg-white text-stone-900 border-b border-stone-200 relative overflow-hidden"
+      className="py-20 sm:py-28 bg-white text-stone-900 border-b border-stone-200 relative overflow-hidden content-auto"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}

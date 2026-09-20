@@ -122,7 +122,7 @@ export function PandalsAndPreorderSection({ onOpenQueue }: PandalsAndPreorderSec
   };
 
   return (
-    <section id="pandals" className="py-20 sm:py-24 bg-white text-stone-900 border-b border-stone-200 relative overflow-hidden">
+    <section id="pandals" className="py-20 sm:py-24 bg-white text-stone-900 border-b border-stone-200 relative overflow-hidden content-auto">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
@@ -202,6 +202,7 @@ export function PandalsAndPreorderSection({ onOpenQueue }: PandalsAndPreorderSec
                             src={p.image}
                             alt={p.name}
                             fill
+                            sizes="(max-width: 640px) 50vw, 200px"
                             className="object-cover group-hover:scale-110 transition-transform duration-300"
                           />
                           <div className="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors" />
@@ -276,7 +277,7 @@ export function PandalsAndPreorderSection({ onOpenQueue }: PandalsAndPreorderSec
                         >
                           <div className="flex items-center gap-2">
                             <div className="w-8 h-8 rounded-lg overflow-hidden relative bg-white/20 flex-shrink-0">
-                              <Image src={item.image} alt={item.name} fill className="object-cover" />
+                              <Image src={item.image} alt={item.name} fill sizes="64px" className="object-cover" />
                             </div>
                             <div>
                               <p className="text-xs font-bold text-white leading-none">{item.name}</p>
@@ -330,6 +331,7 @@ export function PandalsAndPreorderSection({ onOpenQueue }: PandalsAndPreorderSec
                       src="/images/biryani-plate.jpg"
                       alt="Kolkata Biryani Plate"
                       fill
+                      sizes="(max-width: 640px) 100vw, 50vw"
                       className="object-cover object-center group-hover:scale-105 transition-transform duration-500"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />

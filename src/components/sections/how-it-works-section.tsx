@@ -40,11 +40,11 @@ export function HowItWorksSection({ onOpenQueue, onOpenDownload }: HowItWorksSec
     step4Items.kosha * 450;
 
   return (
-    <section id="how-it-works" className="py-20 sm:py-28 bg-[#080E21] text-white border-y border-white/10 relative overflow-hidden">
+    <section id="how-it-works" className="py-20 sm:py-28 bg-[#080E21] text-white border-y border-white/10 relative overflow-hidden content-auto">
       {/* Floating particles & ambient glow */}
       <FestiveParticles />
-      <div className="absolute top-1/4 left-10 w-96 h-96 bg-purple-600/15 rounded-full blur-[140px] pointer-events-none" />
-      <div className="absolute bottom-1/4 right-10 w-96 h-96 bg-blue-600/15 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute top-1/4 left-10 w-96 h-96 bg-[radial-gradient(closest-side,rgba(124,58,237,0.15),transparent)] pointer-events-none" />
+      <div className="absolute bottom-1/4 right-10 w-96 h-96 bg-[radial-gradient(closest-side,rgba(37,99,235,0.15),transparent)] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
@@ -535,6 +535,7 @@ export function HowItWorksSection({ onOpenQueue, onOpenDownload }: HowItWorksSec
                       src="/images/hero-puja.jpg"
                       alt="Exploring Pandals"
                       fill
+                      sizes="300px"
                       className="object-cover group-hover:scale-105 transition-transform duration-700"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-black/30" />
@@ -665,6 +666,7 @@ export function HowItWorksSection({ onOpenQueue, onOpenDownload }: HowItWorksSec
                       src="/images/bengali-food.jpg"
                       alt="Bengali Feast Spread"
                       fill
+                      sizes="300px"
                       className="object-cover group-hover:scale-105 transition-transform duration-700"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-black/40" />

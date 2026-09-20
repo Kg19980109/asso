@@ -104,7 +104,7 @@ export function ForRestaurantsSection({ onOpenPartner }: ForRestaurantsSectionPr
   };
 
   return (
-    <section id="for-restaurants" className="py-20 sm:py-28 bg-[#F8FAFF] text-stone-900 border-b border-stone-200 relative overflow-hidden">
+    <section id="for-restaurants" className="py-20 sm:py-28 bg-[#F8FAFF] text-stone-900 border-b border-stone-200 relative overflow-hidden content-auto">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
         {/* Top Header & Right Cursive Tag */}

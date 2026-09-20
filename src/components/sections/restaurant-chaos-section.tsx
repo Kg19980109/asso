@@ -76,11 +76,11 @@ export function RestaurantChaosSection() {
   return (
     <section
       id="restaurant-chaos"
-      className="py-20 sm:py-28 bg-[#080E21] text-white border-b border-white/10 relative overflow-hidden"
+      className="py-20 sm:py-28 bg-[#080E21] text-white border-b border-white/10 relative overflow-hidden content-auto"
     >
       <FestiveParticles />
-      <div className="absolute top-1/4 left-10 w-96 h-96 bg-rose-600/10 rounded-full blur-[140px] pointer-events-none" />
-      <div className="absolute bottom-1/4 right-10 w-96 h-96 bg-emerald-600/10 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute top-1/4 left-10 w-96 h-96 bg-[radial-gradient(closest-side,rgba(225,29,72,0.10),transparent)] pointer-events-none" />
+      <div className="absolute bottom-1/4 right-10 w-96 h-96 bg-[radial-gradient(closest-side,rgba(5,150,105,0.10),transparent)] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
