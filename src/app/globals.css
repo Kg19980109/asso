@@ -15,6 +15,19 @@
 html {
   scroll-behavior: smooth;
   text-rendering: optimizeLegibility;
+  scrollbar-gutter: stable;
+  -webkit-text-size-adjust: 100%;
+}
+
+@media (max-width: 640px) {
+  html {
+    /* iOS anchor-jump jank fix — smooth is handled by the browser compositor */
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  overscroll-behavior-y: none;
 }
 
 body {
@@ -63,13 +76,19 @@ body {
 }
 
 @keyframes float-slow {
-  0%, 100% { transform: translateY(0px) rotate(0deg); }
-  50% { transform: translateY(-7px) rotate(1deg); }
+  0%, 100% { transform: translate3d(0, 0, 0) rotate(0deg); }
+  50% { transform: translate3d(0, -7px, 0) rotate(1deg); }
 }
 
 @keyframes float-reverse {
-  0%, 100% { transform: translateY(0px) rotate(0deg); }
-  50% { transform: translateY(5px) rotate(-1deg); }
+  0%, 100% { transform: translate3d(0, 0, 0) rotate(0deg); }
+  50% { transform: translate3d(0, 5px, 0) rotate(-1deg); }
+}
+
+/* Lightweight transform-only drift for particles (no blur/shadow repaint) */
+@keyframes scroll-float-y {
+  0%, 100% { transform: translate3d(0, 0, 0); opacity: 0.25; }
+  50% { transform: translate3d(8px, calc(var(--drift, 28px) * -1), 0); opacity: 0.85; }
 }
 
 @keyframes firefly {
@@ -178,7 +197,35 @@ body {
 /* Fast Rendering for offscreen sections */
 .content-auto {
   content-visibility: auto;
-  contain-intrinsic-size: 0 600px;
+  contain-intrinsic-size: auto 600px;
+}
+
+/* Premium scroll image treatment */
+.scroll-img-zoom {
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+/* Global reduced-motion safety — kills all premium animation in one place */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Mobile: calm the ambient motion so scroll stays 60fps */
+@media (max-width: 640px) {
+  .animate-float-slow,
+  .animate-float-reverse {
+    animation-duration: 7s;
+  }
 }
 
 /* Native CSS Scroll-Driven Animation where available (Progressive Enhancement) */
