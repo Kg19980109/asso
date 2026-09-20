@@ -355,8 +355,8 @@ export function ForRestaurantsSection({ onOpenPartner }: ForRestaurantsSectionPr
               Illustrative targets — measure your own numbers in the free pilot.
             </p>
 
-            {/* Owner photo + invite bubble */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4 items-stretch">
+            {/* Owner photo + invite bubble — photo overlaps upward like the flyer */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4 items-start">
               <ScrollReveal direction="left" delay={80}>
                 <div className="relative h-full min-h-[180px] bg-white rounded-2xl border border-stone-200/80 shadow-xs p-5 flex flex-col justify-center">
                   <span className="font-script text-4xl text-stone-300 leading-none">&ldquo;</span>
@@ -374,7 +374,7 @@ export function ForRestaurantsSection({ onOpenPartner }: ForRestaurantsSectionPr
                 </div>
               </ScrollReveal>
               <ScrollReveal direction="right" delay={120}>
-                <div className="relative h-full min-h-[220px] rounded-2xl overflow-hidden border border-stone-200/80 shadow-md">
+                <div className="relative h-full min-h-[260px] md:min-h-[300px] md:-mt-24 lg:-mt-28 rounded-2xl overflow-hidden border border-stone-200/80 shadow-xl z-10">
                   <Image
                     src="/images/restaurant-owner.jpg"
                     alt="Smiling restaurant owner in his outlet"
