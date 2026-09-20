@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import Link from "next/link";
+import { AssoLogo } from "@/components/brand/asso-logo";
 
 export function Footer() {
   return (
@@ -11,23 +12,9 @@ export function Footer() {
 
           {/* Column 1: Brand */}
           <div className="col-span-2 md:col-span-1 space-y-3">
-            <Link href="/" className="inline-flex flex-col group">
-              <div className="flex items-center gap-1">
-                <span className="text-2xl font-black tracking-tight text-white font-sans">
-                  ASSO
-                </span>
-                <svg
-                  className="w-4 h-2.5 text-[#38BDF8]"
-                  viewBox="0 0 24 12"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="3"
-                  strokeLinecap="round"
-                >
-                  <path d="M2 2C8 9 16 9 22 2" />
-                </svg>
-              </div>
-              <span className="text-[10px] text-slate-300 font-medium tracking-tight -mt-1">
+            <Link href="/" className="inline-flex flex-col group" aria-label="ASSO home">
+              <AssoLogo variant="light" size="sm" className="group-hover:opacity-90 transition-opacity" />
+              <span className="text-[10px] text-slate-300 font-medium tracking-tight mt-1">
                 Skip the queue. Enjoy more.
               </span>
             </Link>

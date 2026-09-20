@@ -22,10 +22,14 @@ const caveat = Caveat({
 });
 
 export const metadata: Metadata = {
-  title: "ASSO — Skip the Queue. Enjoy More.",
+  title: "ASSO — Business Management & Q | Skip the Queue. Enjoy More.",
   description:
     "This Puja, Don't Just Wait. Explore More. Join the queue, pre-order your food and explore pandals while we get your table and food ready!",
-  applicationName: "ASSO",
+  applicationName: "ASSO — Business Management & Q",
+  icons: {
+    icon: "/asso-icon.svg",
+    apple: "/asso-icon.svg",
+  },
   keywords: [
     "ASSO",
     "restaurant queue",

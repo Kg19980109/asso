@@ -3,6 +3,7 @@
 import * as React from "react";
 import Link from "next/link";
 import { Menu, X, Sparkles, Flame } from "lucide-react";
+import { AssoLogo } from "@/components/brand/asso-logo";
 
 interface HeaderProps {
   onOpenDownload?: () => void;
@@ -30,22 +31,12 @@ export function Header({ onOpenDownload, onOpenQueue }: HeaderProps) {
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
-        {/* Logo */}
-        <Link href="/" className="flex flex-col group">
-          <div className="flex items-center gap-1.5">
-            <span className="text-3xl font-black tracking-tight text-white font-sans group-hover:text-amber-300 transition-colors">
-              ASSO
-            </span>
-            <svg
-              className="w-5 h-3 text-[#38BDF8] group-hover:translate-x-0.5 transition-transform"
-              viewBox="0 0 24 12"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="3"
-              strokeLinecap="round"
-            >
-              <path d="M2 2C8 9 16 9 22 2" />
-            </svg>
+        {/* Logo — official ASSO brand mark (white variant for dark header).
+            To use the exact PNG you shared, save it as public/images/asso-logo.png
+            and swap <AssoLogo> for <Image src="/images/asso-logo.png" ... className="brightness-0 invert" /> */}
+        <Link href="/" className="flex flex-col group" aria-label="ASSO home">
+          <div className="flex items-center gap-2">
+            <AssoLogo variant="light" size="sm" className="group-hover:opacity-90 transition-opacity" />
             <span className="hidden sm:inline-flex items-center gap-1 text-[9px] font-bold px-2 py-0.5 rounded-full bg-rose-500/20 text-rose-300 border border-rose-500/30">
               <Flame className="w-2.5 h-2.5 text-rose-400 fill-rose-400" />
               Puja 2026 Live
