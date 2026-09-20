@@ -110,15 +110,78 @@ export function HowItWorksSection({ onOpenQueue, onOpenDownload }: HowItWorksSec
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-7">
 
           {/* =========================================================================
-              STEP 1: Enter Your Details
+              STEP 1: Scan QR & Join
              ========================================================================= */}
           {(filter === "all" || filter === "join") && (
             <ScrollReveal direction="up" delay={50}>
+              <div className="flex flex-col bg-white/[0.04] hover:bg-white/[0.08] rounded-[28px] p-4 sm:p-5 border border-white/10 hover:border-blue-400/50 backdrop-blur-md shadow-2xl transition-all duration-300 group hover:-translate-y-1.5">
+                {/* Step Header */}
+                <div className="flex items-start gap-3 mb-2">
+                  <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-[#2563EB] to-[#3B82F6] text-white flex items-center justify-center font-black text-sm shadow-md shadow-blue-500/30 flex-shrink-0 group-hover:scale-110 transition-transform">
+                    1
+                  </div>
+                  <div>
+                    <h3 className="text-sm font-bold text-white leading-snug">
+                      Scan the QR and Join
+                    </h3>
+                    <p className="text-[11px] text-slate-400 mt-0.5 leading-snug">
+                      Takes just a few seconds! No app download needed.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Smartphone Frame */}
+                <div className="mt-4 relative rounded-[26px] border-[3px] border-slate-700 bg-slate-950 p-1.5 shadow-2xl overflow-hidden group-hover:border-slate-500 transition-colors">
+                  <div className="absolute top-2 left-1/2 -translate-x-1/2 w-16 h-3 bg-black rounded-full z-20" />
+
+                  {/* Screen Canvas */}
+                  <div className="bg-[#0D152E] rounded-[20px] p-3 pt-5 text-white flex flex-col justify-between min-h-[300px] border border-white/10 phone-glass-reflection">
+                    <div className="flex items-center justify-between text-[9px] font-bold text-slate-400 pb-2 border-b border-white/10 px-1">
+                      <span>9:41</span>
+                      <div className="flex items-center gap-1">
+                        <Wifi className="w-2.5 h-2.5" />
+                        <Battery className="w-3 h-3" />
+                      </div>
+                    </div>
+
+                    {/* App Screen Content */}
+                    <div className="flex flex-col items-center text-center py-2">
+                      <span className="text-xs font-black text-[#38BDF8]">ASSO</span>
+                      <div className="w-28 h-28 bg-white rounded-2xl flex flex-col items-center justify-center p-2 my-2 shadow-lg relative overflow-hidden border-2 border-blue-400">
+                        <QrCode className="w-18 h-18 text-slate-900" />
+                        {/* Animated Scanning Laser Line */}
+                        <div className="absolute inset-x-2 h-0.5 bg-blue-600 shadow-[0_0_12px_rgba(37,99,235,1)] animate-[laser-scan_2.5s_infinite_ease-in-out]" />
+                      </div>
+                      <span className="text-[10px] font-bold text-slate-300 leading-tight">
+                        Point camera at restaurant QR
+                      </span>
+                    </div>
+
+                    {/* Join Button */}
+                    <button
+                      onClick={onOpenQueue}
+                      className="w-full h-8 rounded-xl bg-gradient-to-r from-[#2563EB] to-[#3B82F6] hover:from-[#1D4ED8] hover:to-[#2563EB] text-white font-bold text-[11px] shadow-lg shadow-blue-500/30 transition-all flex items-center justify-center gap-1 cursor-pointer active:scale-95"
+                    >
+                      <span>Join Queue</span>
+                      <ArrowRight className="w-3 h-3" />
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </ScrollReveal>
+          )}
+
+
+          {/* =========================================================================
+              STEP 2: Enter Your Details
+             ========================================================================= */}
+          {(filter === "all" || filter === "join") && (
+            <ScrollReveal direction="up" delay={100}>
               <div className="flex flex-col bg-white/[0.04] hover:bg-white/[0.08] rounded-[28px] p-4 sm:p-5 border border-white/10 hover:border-rose-400/50 backdrop-blur-md shadow-2xl transition-all duration-300 group hover:-translate-y-1.5">
                 {/* Step Header */}
                 <div className="flex items-start gap-3 mb-2">
                   <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-[#E11D48] to-[#F43F5E] text-white flex items-center justify-center font-black text-sm shadow-md shadow-rose-500/30 flex-shrink-0 group-hover:scale-110 transition-transform">
-                    1
+                    2
                   </div>
                   <div>
                     <h3 className="text-sm font-bold text-white leading-snug">
@@ -191,69 +254,6 @@ export function HowItWorksSection({ onOpenQueue, onOpenDownload }: HowItWorksSec
                       className="w-full h-8 rounded-xl bg-gradient-to-r from-[#4F46E5] to-[#6366F1] hover:from-[#4338CA] hover:to-[#4F46E5] text-white font-bold text-[11px] shadow-lg shadow-indigo-500/30 transition-all flex items-center justify-center gap-1 cursor-pointer active:scale-95"
                     >
                       <span>Submit</span>
-                      <ArrowRight className="w-3 h-3" />
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </ScrollReveal>
-          )}
-
-
-          {/* =========================================================================
-              STEP 2: Scan QR & Join
-             ========================================================================= */}
-          {(filter === "all" || filter === "join") && (
-            <ScrollReveal direction="up" delay={100}>
-              <div className="flex flex-col bg-white/[0.04] hover:bg-white/[0.08] rounded-[28px] p-4 sm:p-5 border border-white/10 hover:border-blue-400/50 backdrop-blur-md shadow-2xl transition-all duration-300 group hover:-translate-y-1.5">
-                {/* Step Header */}
-                <div className="flex items-start gap-3 mb-2">
-                  <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-[#2563EB] to-[#3B82F6] text-white flex items-center justify-center font-black text-sm shadow-md shadow-blue-500/30 flex-shrink-0 group-hover:scale-110 transition-transform">
-                    2
-                  </div>
-                  <div>
-                    <h3 className="text-sm font-bold text-white leading-snug">
-                      Scan the QR and Join
-                    </h3>
-                    <p className="text-[11px] text-slate-400 mt-0.5 leading-snug">
-                      Takes just a few seconds!
-                    </p>
-                  </div>
-                </div>
-
-                {/* Smartphone Frame */}
-                <div className="mt-4 relative rounded-[26px] border-[3px] border-slate-700 bg-slate-950 p-1.5 shadow-2xl overflow-hidden group-hover:border-slate-500 transition-colors">
-                  <div className="absolute top-2 left-1/2 -translate-x-1/2 w-16 h-3 bg-black rounded-full z-20" />
-
-                  {/* Screen Canvas */}
-                  <div className="bg-[#0D152E] rounded-[20px] p-3 pt-5 text-white flex flex-col justify-between min-h-[300px] border border-white/10 phone-glass-reflection">
-                    <div className="flex items-center justify-between text-[9px] font-bold text-slate-400 pb-2 border-b border-white/10 px-1">
-                      <span>9:41</span>
-                      <div className="flex items-center gap-1">
-                        <Wifi className="w-2.5 h-2.5" />
-                        <Battery className="w-3 h-3" />
-                      </div>
-                    </div>
-
-                    {/* App Screen Content */}
-                    <div className="flex flex-col items-center text-center py-2">
-                      <span className="text-xs font-black text-[#38BDF8]">ASSO</span>
-                      <div className="w-28 h-28 bg-white rounded-2xl flex flex-col items-center justify-center p-2 my-2 shadow-lg relative overflow-hidden border-2 border-blue-400">
-                        <QrCode className="w-18 h-18 text-slate-900" />
-                        {/* Animated Scanning Laser Line */}
-                        <div className="absolute inset-x-2 h-0.5 bg-blue-600 shadow-[0_0_12px_rgba(37,99,235,1)] animate-[laser-scan_2.5s_infinite_ease-in-out]" />
-                      </div>
-                      <span className="text-[10px] font-bold text-slate-300 leading-tight">
-                        Point camera at restaurant QR
-                      </span>
-                    </div>
-
-                    {/* Join Button */}
-                    <button
-                      onClick={onOpenQueue}
-                      className="w-full h-8 rounded-xl bg-gradient-to-r from-[#2563EB] to-[#3B82F6] hover:from-[#1D4ED8] hover:to-[#2563EB] text-white font-bold text-[11px] shadow-lg shadow-blue-500/30 transition-all flex items-center justify-center gap-1 cursor-pointer active:scale-95"
-                    >
-                      <span>Join Queue</span>
                       <ArrowRight className="w-3 h-3" />
                     </button>
                   </div>
