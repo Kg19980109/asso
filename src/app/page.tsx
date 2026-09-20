@@ -8,7 +8,9 @@ import { PujaProblemSection } from "@/components/sections/puja-problem-section";
 import { HowItWorksSection } from "@/components/sections/how-it-works-section";
 import { BetterExperienceSection } from "@/components/sections/better-experience-section";
 import { PandalsAndPreorderSection } from "@/components/sections/pandals-and-preorder-section";
+import { RestaurantChaosSection } from "@/components/sections/restaurant-chaos-section";
 import { ForRestaurantsSection } from "@/components/sections/for-restaurants-section";
+import { HassleFreeSetupSection } from "@/components/sections/hasslefree-setup-section";
 import { FaqSection } from "@/components/sections/faq-section";
 import { FinalCtaSection } from "@/components/sections/final-cta-section";
 import { LiveQueueModal } from "@/components/ui/live-queue-modal";
@@ -31,14 +33,16 @@ export default function HomePage() {
 
       {/* Main Landing Sections */}
       <main className="flex-1">
-        <HeroSection />
+        <HeroSection onOpenConnect={() => setPartnerModalOpen(true)} />
         <PujaProblemSection onOpenQueue={() => setQueueModalOpen(true)} />
         <HowItWorksSection
           onOpenQueue={() => setQueueModalOpen(true)}
         />
         <BetterExperienceSection />
         <PandalsAndPreorderSection onOpenQueue={() => setQueueModalOpen(true)} />
+        <RestaurantChaosSection />
         <ForRestaurantsSection onOpenPartner={() => setPartnerModalOpen(true)} />
+        <HassleFreeSetupSection onOpenPartner={() => setPartnerModalOpen(true)} />
         <FaqSection />
         <FinalCtaSection
           onOpenQueue={() => setQueueModalOpen(true)}
