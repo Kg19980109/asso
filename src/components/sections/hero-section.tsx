@@ -11,8 +11,11 @@ import {
   ArrowRight,
   Sparkles,
   Flame,
+  ShieldCheck,
+  TrendingUp,
 } from "lucide-react";
 import { FestiveParticles } from "@/components/ui/festive-particles";
+import { ScrollReveal } from "@/components/animations/scroll-reveal";
 
 interface HeroSectionProps {
   onOpenQueue?: () => void;
@@ -23,16 +26,16 @@ export function HeroSection({ onOpenQueue, onOpenPartner }: HeroSectionProps) {
   return (
     <section
       id="for-diners"
-      className="relative min-h-[92vh] pt-28 lg:pt-32 pb-16 bg-[#060B18] overflow-hidden flex items-center"
+      className="relative min-h-[94vh] pt-28 lg:pt-32 pb-16 bg-[#060B18] overflow-hidden flex items-center"
     >
       {/* Floating Golden Festive Bokeh Particles */}
       <FestiveParticles />
 
-      {/* Radial festive ambient spotlight */}
-      <div className="absolute top-10 left-1/4 w-96 h-96 bg-purple-600/20 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-10 right-1/4 w-96 h-96 bg-amber-500/15 rounded-full blur-[120px] pointer-events-none" />
+      {/* Radial festive ambient spotlights */}
+      <div className="absolute top-10 left-1/4 w-[500px] h-[500px] bg-purple-600/20 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute bottom-10 right-1/4 w-[500px] h-[500px] bg-amber-500/15 rounded-full blur-[140px] pointer-events-none" />
 
-      {/* Background illustration on desktop */}
+      {/* Background illustration with smooth subtle blend */}
       <div className="absolute inset-0 z-0 opacity-40 lg:opacity-100 lg:left-1/3 transition-opacity duration-700">
         <div className="relative w-full h-full">
           <Image
@@ -40,10 +43,9 @@ export function HeroSection({ onOpenQueue, onOpenPartner }: HeroSectionProps) {
             alt="Durga Puja Kolkata Couple Exploring with ASSO App"
             fill
             priority
-            className="object-cover object-center lg:object-right"
+            className="object-cover object-center lg:object-right select-none pointer-events-none"
           />
-          {/* Subtle gradient vignette to blend seamlessly into dark navy background */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#060B18] via-[#060B18]/85 to-transparent lg:via-[#060B18]/30" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#060B18] via-[#060B18]/90 to-transparent lg:via-[#060B18]/30" />
           <div className="absolute inset-0 bg-gradient-to-t from-[#060B18] via-transparent to-[#060B18]/50" />
         </div>
       </div>
@@ -53,91 +55,121 @@ export function HeroSection({ onOpenQueue, onOpenPartner }: HeroSectionProps) {
 
           {/* Left Column Content */}
           <div className="lg:col-span-7 space-y-6 max-w-2xl">
+            
             {/* Festive Live Tag */}
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.08] border border-white/20 backdrop-blur-md text-slate-200 text-xs font-semibold shadow-inner">
-              <span className="flex h-2 w-2 relative">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-rose-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-rose-500"></span>
-              </span>
-              <span className="text-amber-300 font-bold">Kolkata Durga Puja 2026</span>
-              <span className="text-slate-400">•</span>
-              <span>140+ Partner Restaurants</span>
-            </div>
+            <ScrollReveal direction="down" delay={50}>
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.08] hover:bg-white/[0.12] border border-white/20 backdrop-blur-md text-slate-200 text-xs font-semibold shadow-inner transition-colors">
+                <span className="flex h-2 w-2 relative">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-rose-400 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-rose-500"></span>
+                </span>
+                <span className="text-amber-300 font-bold">Kolkata Durga Puja 2026</span>
+                <span className="text-slate-400">•</span>
+                <span>140+ Partner Restaurants Active</span>
+              </div>
+            </ScrollReveal>
 
             {/* Main Headline */}
-            <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight text-white leading-[1.06]">
-              <span className="block">This Puja,</span>
-              <span className="block">Don&apos;t Just Wait.</span>
-              <span className="block gradient-text-hero">Explore More.</span>
-            </h1>
+            <ScrollReveal direction="up" delay={100}>
+              <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight text-white leading-[1.06]">
+                <span className="block">This Puja,</span>
+                <span className="block">Don&apos;t Just Wait.</span>
+                <span className="block gradient-text-hero drop-shadow-[0_4px_24px_rgba(232,121,249,0.3)]">
+                  Explore More.
+                </span>
+              </h1>
+            </ScrollReveal>
 
             {/* Subheading */}
-            <p className="text-sm sm:text-base text-slate-200/90 leading-relaxed font-normal max-w-xl">
-              Join the queue from your phone, pre-order your favorite food, and visit 1, 2 or more pandals while we hold your table and keep your food ready!
-            </p>
+            <ScrollReveal direction="up" delay={150}>
+              <p className="text-sm sm:text-base text-slate-200/90 leading-relaxed font-normal max-w-xl">
+                Join the queue from your phone, pre-order your favorite food, and visit 1, 2 or more pandals while we hold your table and keep your food ready!
+              </p>
+            </ScrollReveal>
 
             {/* Dual CTA Buttons */}
-            <div className="flex flex-wrap items-center gap-3 pt-2">
-              <button
-                onClick={onOpenQueue}
-                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-white hover:bg-slate-100 text-slate-950 font-black text-xs shadow-xl shadow-white/10 transition-all hover:scale-105 active:scale-95 cursor-pointer"
-              >
-                <Sparkles className="w-4 h-4 text-purple-600" />
-                <span>Join the Queue</span>
-                <ArrowRight className="w-3.5 h-3.5 text-slate-950" />
-              </button>
+            <ScrollReveal direction="up" delay={200}>
+              <div className="flex flex-wrap items-center gap-3 pt-2">
+                <button
+                  onClick={onOpenQueue}
+                  className="relative group inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-white hover:bg-slate-100 text-slate-950 font-black text-xs shadow-xl shadow-white/15 transition-all duration-200 hover:scale-105 active:scale-95 cursor-pointer overflow-hidden"
+                >
+                  <div className="absolute inset-0 w-1/2 h-full bg-white/40 transform -skew-x-12 -translate-x-full group-hover:translate-x-[300%] transition-transform duration-700 pointer-events-none" />
+                  <Sparkles className="w-4 h-4 text-purple-600" />
+                  <span>Join the Queue</span>
+                  <ArrowRight className="w-3.5 h-3.5 text-slate-950 group-hover:translate-x-0.5 transition-transform" />
+                </button>
 
-              <button
-                onClick={onOpenPartner}
-                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-white/10 hover:bg-white/15 border border-white/25 text-white font-bold text-xs backdrop-blur-md transition-all hover:scale-105 active:scale-95 cursor-pointer"
-              >
-                <span>For Restaurants</span>
-                <ArrowRight className="w-3.5 h-3.5" />
-              </button>
-            </div>
-
-            {/* 4 Feature Badges */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 pt-4">
-              {/* 1. Shorter Waiting Time */}
-              <div className="flex flex-col items-center text-center p-3 rounded-2xl bg-white/[0.06] hover:bg-white/[0.12] border border-white/10 hover:border-blue-400/40 backdrop-blur-md transition-all duration-300 group hover:-translate-y-1">
-                <div className="w-10 h-10 rounded-full bg-[#1E3A8A]/90 border border-blue-400/50 flex items-center justify-center text-blue-300 mb-2 shadow-md group-hover:scale-110 transition-transform">
-                  <Hourglass className="w-4 h-4" />
-                </div>
-                <span className="text-[11px] font-bold text-white leading-tight">
-                  Shorter<br />Waiting Time
-                </span>
+                <button
+                  onClick={onOpenPartner}
+                  className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-white/10 hover:bg-white/15 border border-white/25 text-white font-bold text-xs backdrop-blur-md transition-all duration-200 hover:scale-105 active:scale-95 cursor-pointer"
+                >
+                  <span>For Restaurants</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </button>
               </div>
+            </ScrollReveal>
 
-              {/* 2. Explore More Pandals */}
-              <div className="flex flex-col items-center text-center p-3 rounded-2xl bg-white/[0.06] hover:bg-white/[0.12] border border-white/10 hover:border-purple-400/40 backdrop-blur-md transition-all duration-300 group hover:-translate-y-1">
-                <div className="w-10 h-10 rounded-full bg-[#581C87]/90 border border-purple-400/50 flex items-center justify-center text-purple-300 mb-2 shadow-md group-hover:scale-110 transition-transform">
-                  <Landmark className="w-4 h-4" />
+            {/* 4 Feature Badges with staggered reveals */}
+            <ScrollReveal direction="up" delay={250}>
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 pt-4">
+                {/* 1. Shorter Waiting Time */}
+                <div className="flex flex-col items-center text-center p-3 rounded-2xl bg-white/[0.06] hover:bg-white/[0.12] border border-white/10 hover:border-blue-400/50 backdrop-blur-md transition-all duration-300 group hover:-translate-y-1 cursor-default shadow-sm">
+                  <div className="w-10 h-10 rounded-full bg-[#1E3A8A]/90 border border-blue-400/50 flex items-center justify-center text-blue-300 mb-2 shadow-md group-hover:scale-110 transition-transform">
+                    <Hourglass className="w-4 h-4" />
+                  </div>
+                  <span className="text-[11px] font-bold text-white leading-tight">
+                    Shorter<br />Waiting Time
+                  </span>
                 </div>
-                <span className="text-[11px] font-bold text-white leading-tight">
-                  Explore<br />More Pandals
-                </span>
-              </div>
 
-              {/* 3. Food Ready When You Arrive */}
-              <div className="flex flex-col items-center text-center p-3 rounded-2xl bg-white/[0.06] hover:bg-white/[0.12] border border-white/10 hover:border-orange-400/40 backdrop-blur-md transition-all duration-300 group hover:-translate-y-1">
-                <div className="w-10 h-10 rounded-full bg-[#C2410C]/90 border border-orange-400/50 flex items-center justify-center text-orange-300 mb-2 shadow-md group-hover:scale-110 transition-transform">
-                  <UtensilsCrossed className="w-4 h-4" />
+                {/* 2. Explore More Pandals */}
+                <div className="flex flex-col items-center text-center p-3 rounded-2xl bg-white/[0.06] hover:bg-white/[0.12] border border-white/10 hover:border-purple-400/50 backdrop-blur-md transition-all duration-300 group hover:-translate-y-1 cursor-default shadow-sm">
+                  <div className="w-10 h-10 rounded-full bg-[#581C87]/90 border border-purple-400/50 flex items-center justify-center text-purple-300 mb-2 shadow-md group-hover:scale-110 transition-transform">
+                    <Landmark className="w-4 h-4" />
+                  </div>
+                  <span className="text-[11px] font-bold text-white leading-tight">
+                    Explore<br />More Pandals
+                  </span>
                 </div>
-                <span className="text-[11px] font-bold text-white leading-tight">
-                  Food Ready<br />When You Arrive
-                </span>
-              </div>
 
-              {/* 4. Happier Dining Experience */}
-              <div className="flex flex-col items-center text-center p-3 rounded-2xl bg-white/[0.06] hover:bg-white/[0.12] border border-white/10 hover:border-teal-400/40 backdrop-blur-md transition-all duration-300 group hover:-translate-y-1">
-                <div className="w-10 h-10 rounded-full bg-[#0F766E]/90 border border-teal-400/50 flex items-center justify-center text-teal-300 mb-2 shadow-md group-hover:scale-110 transition-transform">
-                  <Smile className="w-4 h-4" />
+                {/* 3. Food Ready When You Arrive */}
+                <div className="flex flex-col items-center text-center p-3 rounded-2xl bg-white/[0.06] hover:bg-white/[0.12] border border-white/10 hover:border-orange-400/50 backdrop-blur-md transition-all duration-300 group hover:-translate-y-1 cursor-default shadow-sm">
+                  <div className="w-10 h-10 rounded-full bg-[#C2410C]/90 border border-orange-400/50 flex items-center justify-center text-orange-300 mb-2 shadow-md group-hover:scale-110 transition-transform">
+                    <UtensilsCrossed className="w-4 h-4" />
+                  </div>
+                  <span className="text-[11px] font-bold text-white leading-tight">
+                    Food Ready<br />When You Arrive
+                  </span>
                 </div>
-                <span className="text-[11px] font-bold text-white leading-tight">
-                  Happier<br />Dining Experience
-                </span>
+
+                {/* 4. Happier Dining Experience */}
+                <div className="flex flex-col items-center text-center p-3 rounded-2xl bg-white/[0.06] hover:bg-white/[0.12] border border-white/10 hover:border-teal-400/50 backdrop-blur-md transition-all duration-300 group hover:-translate-y-1 cursor-default shadow-sm">
+                  <div className="w-10 h-10 rounded-full bg-[#0F766E]/90 border border-teal-400/50 flex items-center justify-center text-teal-300 mb-2 shadow-md group-hover:scale-110 transition-transform">
+                    <Smile className="w-4 h-4" />
+                  </div>
+                  <span className="text-[11px] font-bold text-white leading-tight">
+                    Happier<br />Dining Experience
+                  </span>
+                </div>
               </div>
-            </div>
+            </ScrollReveal>
+
+            {/* Quick Live Stats Ticker */}
+            <ScrollReveal direction="up" delay={300}>
+              <div className="pt-2 flex items-center gap-4 text-xs text-slate-400">
+                <div className="flex items-center gap-1.5">
+                  <TrendingUp className="w-3.5 h-3.5 text-emerald-400" />
+                  <span className="text-slate-200 font-bold">55 Mins</span> Avg Time Saved
+                </div>
+                <span className="text-slate-600">•</span>
+                <div className="flex items-center gap-1.5">
+                  <ShieldCheck className="w-3.5 h-3.5 text-blue-400" />
+                  <span className="text-slate-200 font-bold">100% Free</span> For Diners
+                </div>
+              </div>
+            </ScrollReveal>
+
           </div>
 
           {/* Right Column Floating Stickers & Graphic Elements */}

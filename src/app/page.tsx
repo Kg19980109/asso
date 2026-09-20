@@ -16,6 +16,7 @@ import { LiveQueueModal } from "@/components/ui/live-queue-modal";
 import { DownloadModal } from "@/components/ui/download-modal";
 import { RestaurantPartnerModal } from "@/components/ui/restaurant-partner-modal";
 import { LiveActivityTicker } from "@/components/ui/live-activity-ticker";
+import { ScrollProgressBar } from "@/components/ui/scroll-progress-bar";
 
 export default function HomePage() {
   const [queueModalOpen, setQueueModalOpen] = React.useState(false);
@@ -23,14 +24,17 @@ export default function HomePage() {
   const [partnerModalOpen, setPartnerModalOpen] = React.useState(false);
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#060B18]">
+    <div className="min-h-screen flex flex-col bg-[#060B18] selection:bg-purple-500 selection:text-white">
+      {/* 60fps Glowing Scroll Progress Bar */}
+      <ScrollProgressBar />
+
       {/* Navigation Header */}
       <Header
         onOpenDownload={() => setDownloadModalOpen(true)}
         onOpenQueue={() => setQueueModalOpen(true)}
       />
 
-      {/* Main Landing Sections matching 1:1 Reference */}
+      {/* Main Landing Sections */}
       <main className="flex-1">
         <HeroSection
           onOpenQueue={() => setQueueModalOpen(true)}
