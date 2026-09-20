@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import Link from "next/link";
-import { AssoLogo } from "@/components/brand/asso-logo";
+import { AssoLogoImage } from "@/components/brand/asso-logo";
 
 export function Footer() {
   return (
@@ -13,7 +13,7 @@ export function Footer() {
           {/* Column 1: Brand */}
           <div className="col-span-2 md:col-span-1 space-y-3">
             <Link href="/" className="inline-flex flex-col group" aria-label="ASSO home">
-              <AssoLogo variant="light" size="sm" className="group-hover:opacity-90 transition-opacity" />
+              <AssoLogoImage size="sm" className="group-hover:opacity-90 transition-opacity" />
               <span className="text-[10px] text-slate-300 font-medium tracking-tight mt-1">
                 Skip the queue. Enjoy more.
               </span>
