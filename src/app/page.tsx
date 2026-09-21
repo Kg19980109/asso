@@ -8,7 +8,7 @@ import { HeroSection } from "@/components/sections/hero-section";
 import { FestiveStatsBanner } from "@/components/sections/festive-stats-banner";
 import { RestaurantChaosSection } from "@/components/sections/restaurant-chaos-section";
 import { ForRestaurantsSection } from "@/components/sections/for-restaurants-section";
-import { QueueSimulatorSection } from "@/components/sections/queue-simulator-section";
+
 import { HowItWorksSection } from "@/components/sections/how-it-works-section";
 import { PujaProblemSection } from "@/components/sections/puja-problem-section";
 import { BetterExperienceSection } from "@/components/sections/better-experience-section";
@@ -24,6 +24,10 @@ const LiveQueueModal = dynamic(
 );
 const RestaurantPartnerModal = dynamic(
   () => import("@/components/ui/restaurant-partner-modal").then((m) => m.RestaurantPartnerModal),
+  { ssr: false }
+);
+const WhatsAppFloatingToggle = dynamic(
+  () => import("@/components/ui/whatsapp-floating-toggle").then((m) => m.WhatsAppFloatingToggle),
   { ssr: false }
 );
 
@@ -65,10 +69,7 @@ export default function HomePage() {
         {/* 4. RESTAURANT SOLUTION */}
         <ForRestaurantsSection onOpenPartner={() => setPartnerModalOpen(true)} />
 
-        {/* 5. ASSO IN 10 SECONDS — interactive simulator */}
-        <QueueSimulatorSection onOpenPartner={() => setPartnerModalOpen(true)} />
 
-        {/* 6. HOW ASSO WORKS — step-by-step diner journey */}
         <HowItWorksSection
           onOpenQueue={() => setQueueModalOpen(true)}
         />
@@ -100,6 +101,9 @@ export default function HomePage() {
         isOpen={partnerModalOpen}
         onClose={() => setPartnerModalOpen(false)}
       />
+
+      {/* Floating WhatsApp Support Toggle */}
+      <WhatsAppFloatingToggle />
     </div>
   );
 }
