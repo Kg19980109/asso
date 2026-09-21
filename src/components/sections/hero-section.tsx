@@ -22,9 +22,9 @@ const offerings = [
     gradient: "from-purple-500 to-violet-600",
     glow: "shadow-purple-500/40",
     glowColor: "rgba(139,92,246,0.5)",
-    badge: "Instant",
-    title: "Skip the Queue",
-    desc: "Scan a QR code, join virtually and explore while we hold your spot.",
+    badge: "No Token Needed",
+    title: "Join Queue via QR",
+    desc: "Walk up to any partner restaurant, scan the QR, and your spot is held digitally. No token, no waiting in line.",
   },
   {
     icon: (
@@ -37,9 +37,9 @@ const offerings = [
     gradient: "from-cyan-500 to-teal-500",
     glow: "shadow-cyan-500/40",
     glowColor: "rgba(6,182,212,0.5)",
-    badge: "Pre-Order",
-    title: "Order Food Ahead",
-    desc: "Choose your meal before arriving — it hits the table the moment you sit.",
+    badge: "Before You Arrive",
+    title: "Pre-Order Your Meal",
+    desc: "Pick your biryani, your mishti, your everything — before you even sit down. Food's hot and ready when you walk in.",
   },
   {
     icon: (
@@ -51,9 +51,9 @@ const offerings = [
     gradient: "from-pink-500 to-rose-500",
     glow: "shadow-pink-500/40",
     glowColor: "rgba(236,72,153,0.5)",
-    badge: "Nearby",
-    title: "Explore Pandals",
-    desc: "Discover illuminated Durga Puja pandals around you while you wait.",
+    badge: "Puja Time",
+    title: "Hop More Pandals",
+    desc: "Your wait time is now Puja time. Discover the most iconic Durga Puja installations within walking distance.",
   },
   {
     icon: (
@@ -65,9 +65,9 @@ const offerings = [
     gradient: "from-amber-400 to-orange-500",
     glow: "shadow-amber-500/40",
     glowColor: "rgba(245,158,11,0.5)",
-    badge: "Real-Time",
-    title: "Get Notified",
-    desc: "We ping you the instant your table is ready. Zero waiting, maximum Puja.",
+    badge: "Never Miss It",
+    title: "Table Ready Alert",
+    desc: "We send you a real-time alert the moment your table is confirmed. Walk back in, sit down, and feast.",
   },
 ];
 
@@ -128,29 +128,34 @@ export function HeroSection({ onOpenConnect, onOpenQueue }: HeroSectionProps) {
 
             {/* Eyebrow */}
             <div className="inline-flex items-center gap-2 mb-4 sm:mb-5">
-              <span className="w-5 h-px bg-cyan-400" />
-              <p className="text-[10px] sm:text-[11px] font-bold tracking-[0.22em] text-cyan-400 uppercase">
-                Kolkata&apos;s Smart Dining Companion
+              <span className="text-base">🪔</span>
+              <p className="text-[10px] sm:text-[11px] font-bold tracking-[0.18em] text-amber-400 uppercase">
+                Kolkata Durga Puja 2025
+              </p>
+              <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
+              <p className="text-[10px] sm:text-[11px] font-semibold text-white/40 uppercase tracking-wide">
+                Now Live
               </p>
             </div>
 
             {/* H1 */}
             <h1 className="font-extrabold leading-[1.05] mb-5 sm:mb-6">
-              <span className="block text-[2.6rem] sm:text-[3.2rem] xl:text-[3.8rem] text-white [text-shadow:0_0_40px_rgba(139,92,246,0.4),0_4px_40px_rgba(0,0,0,0.6)]">
-                Dine Without
+              <span className="block text-[2.5rem] sm:text-[3.1rem] xl:text-[3.7rem] text-white [text-shadow:0_0_40px_rgba(139,92,246,0.4),0_4px_40px_rgba(0,0,0,0.6)]">
+                This Puja,
               </span>
-              <span className="block text-[2.6rem] sm:text-[3.2rem] xl:text-[3.8rem] text-white [text-shadow:0_0_40px_rgba(139,92,246,0.4),0_4px_40px_rgba(0,0,0,0.6)]">
-                The Wait.
+              <span className="block text-[2.5rem] sm:text-[3.1rem] xl:text-[3.7rem] text-white [text-shadow:0_0_40px_rgba(139,92,246,0.4),0_4px_40px_rgba(0,0,0,0.6)]">
+                Don&apos;t Just Wait —
               </span>
-              <span className="block text-[2.6rem] sm:text-[3.2rem] xl:text-[3.8rem] bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent [filter:drop-shadow(0_0_20px_rgba(139,92,246,0.5))]">
+              <span className="block text-[2.5rem] sm:text-[3.1rem] xl:text-[3.7rem] bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent [filter:drop-shadow(0_0_20px_rgba(139,92,246,0.5))]">
                 Explore More.
               </span>
             </h1>
 
             {/* Subtitle */}
-            <p className="text-[15px] sm:text-base text-white/70 leading-relaxed mb-8 max-w-[400px]">
-              Join restaurant queues from your phone, pre-order your food, and
-              explore nearby pandals — we&apos;ll notify you the moment your table is ready.
+            <p className="text-[15px] sm:text-base text-white/72 leading-relaxed mb-8 max-w-[420px]">
+              ASSO turns restaurant queues into pandal-hopping time. Scan a QR at any
+              partner restaurant, grab a digital token, explore Puja nearby — and walk
+              back in when your table is hot and your food is ready.
             </p>
 
             {/* CTA buttons */}
@@ -163,7 +168,7 @@ export function HeroSection({ onOpenConnect, onOpenQueue }: HeroSectionProps) {
                   <rect x="3" y="3" width="7" height="7" rx="1" /><rect x="14" y="3" width="7" height="7" rx="1" />
                   <rect x="3" y="14" width="7" height="7" rx="1" /><rect x="14" y="14" width="7" height="7" rx="1" />
                 </svg>
-                Join Live Queue Demo →
+                Skip the Queue — Try Demo
               </button>
               <button
                 onClick={() => scrollTo("pandals")}
@@ -172,13 +177,13 @@ export function HeroSection({ onOpenConnect, onOpenQueue }: HeroSectionProps) {
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} className="w-4 h-4 flex-shrink-0">
                   <circle cx="11" cy="11" r="8" /><path d="m21 21-4.35-4.35" strokeLinecap="round" />
                 </svg>
-                Find Restaurants Near You
+                Explore Partner Restaurants
               </button>
             </div>
 
             {/* Trust marks */}
             <div className="flex flex-wrap gap-4 sm:gap-6">
-              {["No App Download", "100% Free for Diners", "Quick & Easy"].map((t) => (
+              {["No app, no install", "Free forever for diners", "Works via WhatsApp"].map((t) => (
                 <span key={t} className="flex items-center gap-1.5 text-[11px] text-white/50">
                   <svg viewBox="0 0 16 16" fill="none" className="w-3.5 h-3.5 text-green-400 flex-shrink-0">
                     <circle cx="8" cy="8" r="7" stroke="currentColor" strokeWidth="1.5" />
@@ -204,8 +209,8 @@ export function HeroSection({ onOpenConnect, onOpenQueue }: HeroSectionProps) {
           {/* Section label */}
           <div className="flex items-center gap-4 mb-7">
             <div className="h-px flex-1 bg-gradient-to-r from-transparent to-white/10" />
-            <p className="text-[10px] sm:text-[11px] font-bold tracking-[0.22em] text-white/35 uppercase">
-              What ASSO Offers
+            <p className="text-[10px] sm:text-[11px] font-bold tracking-[0.22em] text-white/40 uppercase">
+              🪔 &nbsp;How ASSO Works This Puja
             </p>
             <div className="h-px flex-1 bg-gradient-to-l from-transparent to-white/10" />
           </div>
