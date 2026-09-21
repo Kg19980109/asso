@@ -1,19 +1,17 @@
 "use client";
 
 import * as React from "react";
+import Image from "next/image";
 import {
-  Sparkles,
-  ArrowRight,
-  Clock,
-  Users,
-  CheckCircle2,
-  Bell,
-  UtensilsCrossed,
-  Landmark,
   QrCode,
-  Store,
-  ChevronRight,
-  TrendingUp,
+  UtensilsCrossed,
+  Footprints,
+  Bell,
+  MapPin,
+  CheckCircle2,
+  ArrowRight,
+  Landmark,
+  Check,
 } from "lucide-react";
 import { FestiveParticles } from "@/components/ui/festive-particles";
 import { ScrollReveal } from "@/components/animations/scroll-reveal";
@@ -23,507 +21,436 @@ interface HeroSectionProps {
   onOpenQueue?: () => void;
 }
 
+const POPULAR_PANDALS = [
+  {
+    name: "Santosh Mitra Square",
+    distance: "500 m away",
+    image: "/images/hero-crops/pandal-santosh-mitra.png",
+  },
+  {
+    name: "College Square",
+    distance: "1.2 km away",
+    image: "/images/hero-crops/pandal-college-sq.png",
+  },
+  {
+    name: "Hatibagan",
+    distance: "1.5 km away",
+    image: "/images/hero-crops/pandal-hatibagan.png",
+  },
+  {
+    name: "Sreebhumi",
+    distance: "2.1 km away",
+    image: "/images/hero-crops/pandal-sreebhumi.png",
+  },
+];
+
 export function HeroSection({ onOpenConnect, onOpenQueue }: HeroSectionProps) {
-  const [activePersona, setActivePersona] = React.useState<"diner" | "restaurant">("diner");
-  const [selectedRestIdx, setSelectedRestIdx] = React.useState(0);
-
-  const RESTAURANT_PREVIEWS = [
-    {
-      name: "Ballygunge Heritage Kitchen",
-      area: "Ballygunge, Kolkata",
-      ticket: "#27",
-      ofTotal: "of 34",
-      wait: "~35m",
-      progress: 78,
-      party: "Party of 4 • Table 8",
-      alert: "Table ready in ~5 min • Head back now",
-      dish: "2x Mutton Kosha, 1x Daab Chingri",
-    },
-    {
-      name: "The Heritage Pavilion",
-      area: "Park Street, Kolkata",
-      ticket: "#42",
-      ofTotal: "of 50",
-      wait: "~45m",
-      progress: 65,
-      party: "Party of 2 • AC Hall",
-      alert: "Order being fired • 15 min remaining",
-      dish: "2x Chelo Kebab Platter",
-    },
-    {
-      name: "Royal Kolkata Biryani House",
-      area: "Park Circus, Kolkata",
-      ticket: "#18",
-      ofTotal: "of 28",
-      wait: "~20m",
-      progress: 90,
-      party: "Party of 5 • Family Room",
-      alert: "Your table is ready! Host waiting at door",
-      dish: "3x Special Mutton Biryani",
-    },
-  ];
-
-  const currentPreview = RESTAURANT_PREVIEWS[selectedRestIdx];
-
   return (
     <section
       id="for-diners"
-      className="relative min-h-[92vh] pt-28 sm:pt-32 pb-16 sm:pb-24 bg-[#060B18] overflow-hidden flex items-center justify-center"
+      className="relative min-h-screen pt-28 lg:pt-32 pb-16 bg-[#060B18] text-white overflow-hidden"
     >
-      {/* Background Floating Festive Bokeh Particles */}
+      {/* Golden Festive Bokeh Particles */}
       <FestiveParticles />
 
-      {/* Modern Grid Background Texture */}
-      <div
-        className="absolute inset-0 opacity-[0.07] pointer-events-none"
-        style={{
-          backgroundImage: `radial-gradient(rgba(255, 255, 255, 0.25) 1px, transparent 1px)`,
-          backgroundSize: "28px 28px",
-        }}
-      />
+      {/* Ambient background glows */}
+      <div className="absolute top-10 left-1/4 w-[500px] h-[500px] bg-[radial-gradient(closest-side,rgba(168,85,247,0.18),transparent)] pointer-events-none" />
+      <div className="absolute top-1/3 right-10 w-[600px] h-[600px] bg-[radial-gradient(closest-side,rgba(245,158,11,0.16),transparent)] pointer-events-none" />
+      <div className="absolute bottom-1/4 left-10 w-[500px] h-[500px] bg-[radial-gradient(closest-side,rgba(56,189,248,0.12),transparent)] pointer-events-none" />
 
-      {/* Atmospheric High-End Radial Lighting */}
-      <div className="absolute top-12 left-1/2 -translate-x-1/2 sm:left-1/4 w-[450px] sm:w-[600px] h-[450px] sm:h-[600px] bg-[radial-gradient(closest-side,rgba(124,58,237,0.22),transparent)] pointer-events-none blur-3xl" />
-      <div className="absolute bottom-10 right-1/4 w-[400px] sm:w-[500px] h-[400px] sm:h-[500px] bg-[radial-gradient(closest-side,rgba(245,158,11,0.18),transparent)] pointer-events-none blur-3xl" />
-      <div className="absolute top-1/3 right-10 w-[350px] h-[350px] bg-[radial-gradient(closest-side,rgba(56,189,248,0.15),transparent)] pointer-events-none blur-3xl" />
+      {/* Top Right Couple & Illuminated Pandal Background Visual */}
+      <div className="absolute top-0 right-0 w-full lg:w-3/5 h-[650px] sm:h-[750px] lg:h-[820px] pointer-events-none opacity-40 lg:opacity-90 select-none overflow-hidden z-0">
+        <div className="relative w-full h-full">
+          <Image
+            src="/images/hero-puja.jpg"
+            alt="Durga Puja Kolkata Couple Exploring with ASSO"
+            fill
+            priority
+            className="object-cover object-center lg:object-right"
+          />
+          {/* Subtle multi-layer gradient vignette to blend seamlessly into dark navy theme */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#060B18] via-[#060B18]/85 to-transparent lg:via-[#060B18]/45" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#060B18] via-transparent to-[#060B18]/70" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#060B18]/90 via-transparent to-[#060B18]" />
+        </div>
+      </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pt-4">
 
-          {/* Left Column Content */}
-          <div className="lg:col-span-7 space-y-6 text-center lg:text-left max-w-2xl mx-auto lg:mx-0">
+        {/* ── Top Hero Grid: Left Content + Right Floating Mockup ── */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-start">
 
-            {/* Top Row: Event Announcement Tag & Audience Switcher */}
+          {/* ── Left Column: Headline, Flow Circles, CTAs, Trust Points ── */}
+          <div className="lg:col-span-7 space-y-6 lg:space-y-7 max-w-2xl">
+
+            {/* Eyebrow Label */}
             <ScrollReveal direction="down" delay={50}>
-              <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3">
-                {/* Event Pill */}
-                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.07] border border-amber-400/30 backdrop-blur-md text-slate-200 text-xs font-semibold shadow-sm">
-                  <span className="flex h-2 w-2 relative">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                    <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400"></span>
-                  </span>
-                  <span className="text-amber-300 font-bold">Durga Puja 2026</span>
-                  <span className="text-slate-500">•</span>
-                  <span className="text-slate-300">Kolkata Virtual Dining Network</span>
-                </div>
-
-                {/* Persona Switcher Pill */}
-                <div className="inline-flex p-1 rounded-full bg-white/[0.08] border border-white/15 backdrop-blur-md text-xs">
-                  <button
-                    onClick={() => setActivePersona("diner")}
-                    className={`px-3 py-1 rounded-full text-xs font-bold transition-all cursor-pointer ${
-                      activePersona === "diner"
-                        ? "bg-purple-600 text-white shadow-md shadow-purple-600/30"
-                        : "text-slate-300 hover:text-white"
-                    }`}
-                  >
-                    🍽️ For Diners
-                  </button>
-                  <button
-                    onClick={() => setActivePersona("restaurant")}
-                    className={`px-3 py-1 rounded-full text-xs font-bold transition-all cursor-pointer ${
-                      activePersona === "restaurant"
-                        ? "bg-amber-500 text-slate-950 font-black shadow-md shadow-amber-500/30"
-                        : "text-slate-300 hover:text-white"
-                    }`}
-                  >
-                    🏪 For Restaurants
-                  </button>
-                </div>
-              </div>
+              <p className="text-xs sm:text-[13px] font-black tracking-widest text-cyan-400 uppercase drop-shadow-[0_0_12px_rgba(56,189,248,0.6)]">
+                KOLKATA&apos;S SMART DINING COMPANION
+              </p>
             </ScrollReveal>
 
             {/* Main Headline */}
             <ScrollReveal direction="up" delay={100}>
-              {activePersona === "diner" ? (
-                <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight text-white leading-[1.05]">
-                  <span className="block">This Puja,</span>
-                  <span className="block text-slate-100">Don&apos;t Just Wait.</span>
-                  <span className="block gradient-text-hero drop-shadow-[0_4px_30px_rgba(232,121,249,0.35)]">
-                    Explore More.
-                  </span>
-                </h1>
-              ) : (
-                <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight text-white leading-[1.05]">
-                  <span className="block">Control The Rush.</span>
-                  <span className="block text-slate-100">Zero Door Chaos.</span>
-                  <span className="block bg-gradient-to-r from-amber-300 via-orange-400 to-rose-400 bg-clip-text text-transparent drop-shadow-[0_4px_30px_rgba(245,158,11,0.3)]">
-                    35% More Table Turns.
-                  </span>
-                </h1>
-              )}
+              <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight text-white leading-[1.04]">
+                <span className="block">Dine Without</span>
+                <span className="block">The Wait.</span>
+                <span className="block bg-gradient-to-r from-[#38BDF8] via-[#818CF8] to-[#C084FC] bg-clip-text text-transparent drop-shadow-[0_4px_24px_rgba(192,132,252,0.35)]">
+                  Explore More.
+                </span>
+              </h1>
             </ScrollReveal>
 
-            {/* Subheading */}
+            {/* Subtitle */}
             <ScrollReveal direction="up" delay={150}>
-              {activePersona === "diner" ? (
-                <p className="text-sm sm:text-base lg:text-lg text-slate-300 leading-relaxed max-w-xl mx-auto lg:mx-0 font-normal">
-                  Join restaurant queues from your phone, pre-order signature food, and visit nearby pandals. Walk in right when your table is hot and ready.
-                </p>
-              ) : (
-                <>
-                  <p className="text-sm sm:text-base lg:text-lg text-slate-300 leading-relaxed max-w-xl mx-auto lg:mx-0 font-normal">
-                    Turn packed Kolkata pavements into smooth virtual queues and faster table turns. Zero hardware to buy, zero POS integration needed. Live in 15 minutes.
-                  </p>
-                  <p className="text-[11px] text-slate-500 mt-1">*Target metric from pilot projections — measure your own results in the free pilot.</p>
-                </>
-              )}
+              <p className="text-sm sm:text-base text-slate-300 leading-relaxed font-normal max-w-xl">
+                Join restaurant queues from your phone, pre-order your food, and explore nearby pandals while we notify you when your table is ready.
+              </p>
             </ScrollReveal>
 
-            {/* Action CTA Buttons */}
+            {/* 4 Circular Steps / Feature Flow */}
             <ScrollReveal direction="up" delay={200}>
-              <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3 pt-2">
-                {activePersona === "diner" ? (
-                  <>
-                    <button
-                      onClick={onOpenQueue}
-                      className="relative group inline-flex items-center gap-2.5 px-8 py-4 rounded-full bg-gradient-to-r from-purple-600 via-indigo-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white font-black text-sm shadow-xl shadow-purple-600/30 transition-all duration-200 hover:scale-105 active:scale-95 cursor-pointer overflow-hidden"
-                    >
-                      <Sparkles className="w-4 h-4 text-amber-300 animate-pulse" />
-                      <span>Join Live Queue Demo</span>
-                      <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                    </button>
-
-                    <button
-                      onClick={onOpenConnect}
-                      className="inline-flex items-center gap-2 px-6 py-4 rounded-full bg-white/[0.08] hover:bg-white/[0.14] border border-white/20 text-white font-bold text-sm backdrop-blur-md transition-all duration-200 hover:scale-105 active:scale-95 cursor-pointer"
-                    >
-                      <Store className="w-4 h-4 text-amber-300" />
-                      <span>For Restaurants</span>
-                    </button>
-                  </>
-                ) : (
-                  <>
-                    <div className="w-full sm:w-auto">
-                      <button
-                        onClick={onOpenConnect}
-                        className="w-full sm:w-auto relative group inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-full bg-gradient-to-r from-amber-400 via-orange-500 to-rose-500 text-slate-950 font-black text-sm shadow-xl shadow-amber-500/25 transition-all duration-200 hover:scale-105 active:scale-95 cursor-pointer overflow-hidden"
-                      >
-                        <Sparkles className="w-4 h-4 text-slate-950" />
-                        <span>Get Started for Your Restaurant</span>
-                        <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                      </button>
-                      <p className="text-[11px] text-slate-400 mt-2 text-center lg:text-left">
-                        No hardware required • Set up in minutes • Free pilot
-                      </p>
-                    </div>
-
-                    <a
-                      href="#for-restaurants"
-                      className="inline-flex items-center gap-2 px-6 py-4 rounded-full bg-white/[0.08] hover:bg-white/[0.14] border border-white/20 text-white font-bold text-sm backdrop-blur-md transition-all duration-200 hover:scale-105 active:scale-95 cursor-pointer"
-                    >
-                      <span>Explore Host Console</span>
-                      <ArrowRight className="w-4 h-4" />
-                    </a>
-                  </>
-                )}
-              </div>
-            </ScrollReveal>
-
-            {/* Quick Value Metrics Ribbon */}
-            <ScrollReveal direction="up" delay={250}>
-              <div className="pt-3">
-                {activePersona === "diner" ? (
-                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-2.5 max-w-xl mx-auto lg:mx-0">
-                    {/* Metric 1 */}
-                    <div className="flex items-center gap-2.5 px-3 py-2.5 rounded-xl bg-white/[0.04] border border-white/10 backdrop-blur-md shadow-sm">
-                      <div className="w-8 h-8 rounded-lg bg-blue-500/20 border border-blue-400/40 flex items-center justify-center text-blue-400 flex-shrink-0">
-                        <Clock className="w-4 h-4" />
-                      </div>
-                      <div className="text-left">
-                        <p className="text-xs font-bold text-white leading-tight">0 min</p>
-                        <p className="text-[10px] text-slate-400">At Doorstep</p>
-                      </div>
-                    </div>
-
-                    {/* Metric 2 */}
-                    <div className="flex items-center gap-2.5 px-3 py-2.5 rounded-xl bg-white/[0.04] border border-white/10 backdrop-blur-md shadow-sm">
-                      <div className="w-8 h-8 rounded-lg bg-purple-500/20 border border-purple-400/40 flex items-center justify-center text-purple-300 flex-shrink-0">
-                        <Landmark className="w-4 h-4" />
-                      </div>
-                      <div className="text-left">
-                        <p className="text-xs font-bold text-white leading-tight">Hop More</p>
-                        <p className="text-[10px] text-slate-400">Pandals Nearby</p>
-                      </div>
-                    </div>
-
-                    {/* Metric 3 */}
-                    <div className="flex items-center gap-2.5 px-3 py-2.5 rounded-xl bg-white/[0.04] border border-white/10 backdrop-blur-md shadow-sm">
-                      <div className="w-8 h-8 rounded-lg bg-orange-500/20 border border-orange-400/40 flex items-center justify-center text-orange-400 flex-shrink-0">
-                        <UtensilsCrossed className="w-4 h-4" />
-                      </div>
-                      <div className="text-left">
-                        <p className="text-xs font-bold text-white leading-tight">Pre-Order</p>
-                        <p className="text-[10px] text-slate-400">Food Ready</p>
-                      </div>
-                    </div>
-
-                    {/* Metric 4 */}
-                    <div className="flex items-center gap-2.5 px-3 py-2.5 rounded-xl bg-white/[0.04] border border-white/10 backdrop-blur-md shadow-sm">
-                      <div className="w-8 h-8 rounded-lg bg-emerald-500/20 border border-emerald-400/40 flex items-center justify-center text-emerald-400 flex-shrink-0">
-                        <QrCode className="w-4 h-4" />
-                      </div>
-                      <div className="text-left">
-                        <p className="text-xs font-bold text-white leading-tight">No App</p>
-                        <p className="text-[10px] text-slate-400">Scan &amp; Go</p>
-                      </div>
-                    </div>
+              <div className="grid grid-cols-4 gap-2 sm:gap-3 max-w-lg pt-1">
+                {/* 1. Scan & Join Queue */}
+                <div className="flex flex-col items-center text-center group">
+                  <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full border border-pink-500/50 bg-pink-500/15 text-pink-400 flex items-center justify-center shadow-lg shadow-pink-500/20 group-hover:scale-110 transition-transform">
+                    <QrCode className="w-5 h-5 sm:w-6 sm:h-6" />
                   </div>
-                ) : (
-                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-2.5 max-w-xl mx-auto lg:mx-0">
-                    {/* Metric 1 - Restaurant */}
-                    <div className="flex items-center gap-2.5 px-3 py-2.5 rounded-xl bg-white/[0.04] border border-white/10 backdrop-blur-md shadow-sm">
-                      <div className="w-8 h-8 rounded-lg bg-blue-500/20 border border-blue-400/40 flex items-center justify-center text-blue-400 flex-shrink-0">
-                        <Users className="w-4 h-4" />
-                      </div>
-                      <div className="text-left">
-                        <p className="text-xs font-bold text-white leading-tight">Virtual Queue</p>
-                        <p className="text-[10px] text-slate-400">Zero Door Chaos</p>
-                      </div>
-                    </div>
+                  <span className="text-[10px] sm:text-[11px] font-bold text-slate-200 mt-2 leading-tight">
+                    Scan &amp;<br />Join Queue
+                  </span>
+                </div>
 
-                    {/* Metric 2 - Restaurant */}
-                    <div className="flex items-center gap-2.5 px-3 py-2.5 rounded-xl bg-white/[0.04] border border-white/10 backdrop-blur-md shadow-sm">
-                      <div className="w-8 h-8 rounded-lg bg-amber-500/20 border border-amber-400/40 flex items-center justify-center text-amber-300 flex-shrink-0">
-                        <TrendingUp className="w-4 h-4" />
-                      </div>
-                      <div className="text-left">
-                        <p className="text-xs font-bold text-white leading-tight">Fast Turns</p>
-                        <p className="text-[10px] text-slate-400">+35% Table Turns*</p>
-                      </div>
-                    </div>
-
-                    {/* Metric 3 - Restaurant */}
-                    <div className="flex items-center gap-2.5 px-3 py-2.5 rounded-xl bg-white/[0.04] border border-white/10 backdrop-blur-md shadow-sm">
-                      <div className="w-8 h-8 rounded-lg bg-purple-500/20 border border-purple-400/40 flex items-center justify-center text-purple-300 flex-shrink-0">
-                        <Bell className="w-4 h-4" />
-                      </div>
-                      <div className="text-left">
-                        <p className="text-xs font-bold text-white leading-tight">Ready Alerts</p>
-                        <p className="text-[10px] text-slate-400">SMS &amp; Live Web</p>
-                      </div>
-                    </div>
-
-                    {/* Metric 4 - Restaurant */}
-                    <div className="flex items-center gap-2.5 px-3 py-2.5 rounded-xl bg-white/[0.04] border border-white/10 backdrop-blur-md shadow-sm">
-                      <div className="w-8 h-8 rounded-lg bg-emerald-500/20 border border-emerald-400/40 flex items-center justify-center text-emerald-400 flex-shrink-0">
-                        <Clock className="w-4 h-4" />
-                      </div>
-                      <div className="text-left">
-                        <p className="text-xs font-bold text-white leading-tight">15-Min Setup</p>
-                        <p className="text-[10px] text-slate-400">Zero Hardware</p>
-                      </div>
-                    </div>
+                {/* 2. Pre-Order Your Food */}
+                <div className="flex flex-col items-center text-center group">
+                  <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full border border-rose-500/50 bg-rose-500/15 text-rose-400 flex items-center justify-center shadow-lg shadow-rose-500/20 group-hover:scale-110 transition-transform">
+                    <UtensilsCrossed className="w-5 h-5 sm:w-6 sm:h-6" />
                   </div>
-                )}
+                  <span className="text-[10px] sm:text-[11px] font-bold text-slate-200 mt-2 leading-tight">
+                    Pre-Order<br />Your Food
+                  </span>
+                </div>
 
-                {/* Trust Guarantee / Script Note */}
-                <div className="mt-4 flex items-center justify-center lg:justify-start gap-4 text-xs text-slate-400">
-                  {activePersona === "diner" ? (
-                    <>
-                      <span className="flex items-center gap-1.5 text-emerald-400 font-semibold">
-                        <CheckCircle2 className="w-3.5 h-3.5" />
-                        100% Free for Diners
-                      </span>
-                      <span className="text-slate-600">•</span>
-                      <span className="font-script text-lg text-amber-200/90 hidden sm:inline">
-                        &ldquo;Cholo ro kota pandal ghure asi... ♡&rdquo;
-                      </span>
-                    </>
-                  ) : (
-                    <>
-                      <span className="flex items-center gap-1.5 text-emerald-400 font-semibold">
-                        <CheckCircle2 className="w-3.5 h-3.5" />
-                        Free Pilot for Kolkata Restaurants
-                      </span>
-                      <span className="text-slate-600">•</span>
-                      <span className="text-slate-400 hidden sm:inline">
-                        Zero POS changes needed • Run on existing devices
-                      </span>
-                    </>
-                  )}
+                {/* 3. Explore Nearby Pandals */}
+                <div className="flex flex-col items-center text-center group">
+                  <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full border border-cyan-500/50 bg-cyan-500/15 text-cyan-400 flex items-center justify-center shadow-lg shadow-cyan-500/20 group-hover:scale-110 transition-transform">
+                    <Footprints className="w-5 h-5 sm:w-6 sm:h-6" />
+                  </div>
+                  <span className="text-[10px] sm:text-[11px] font-bold text-slate-200 mt-2 leading-tight">
+                    Explore<br />Nearby Pandals
+                  </span>
+                </div>
+
+                {/* 4. Get Notified When Your Table is Ready */}
+                <div className="flex flex-col items-center text-center group">
+                  <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full border border-indigo-500/50 bg-indigo-500/15 text-indigo-400 flex items-center justify-center shadow-lg shadow-indigo-500/20 group-hover:scale-110 transition-transform">
+                    <Bell className="w-5 h-5 sm:w-6 sm:h-6" />
+                  </div>
+                  <span className="text-[10px] sm:text-[11px] font-bold text-slate-200 mt-2 leading-tight">
+                    Get Notified<br />When Your Table<br />is Ready
+                  </span>
                 </div>
               </div>
             </ScrollReveal>
+
+            {/* CTA Buttons */}
+            <ScrollReveal direction="up" delay={250}>
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-2">
+                <button
+                  onClick={onOpenQueue}
+                  className="relative group inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-full bg-gradient-to-r from-[#D946EF] via-[#8B5CF6] to-[#3B82F6] hover:opacity-95 text-white font-bold text-sm sm:text-base shadow-xl shadow-purple-600/35 transition-all hover:scale-105 active:scale-95 cursor-pointer overflow-hidden"
+                >
+                  <div className="absolute inset-0 w-1/2 h-full bg-white/30 transform -skew-x-12 -translate-x-full group-hover:translate-x-[300%] transition-transform duration-700 pointer-events-none" />
+                  <QrCode className="w-5 h-5" />
+                  <span>Join Live Queue Demo</span>
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+                </button>
+
+                <button
+                  onClick={() => {
+                    const el = document.getElementById("pandals");
+                    if (el) el.scrollIntoView({ behavior: "smooth" });
+                    else if (onOpenConnect) onOpenConnect();
+                  }}
+                  className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full bg-[#0B1426]/90 hover:bg-[#111F38] border border-cyan-500/40 hover:border-cyan-400 text-white font-semibold text-sm sm:text-base shadow-lg shadow-cyan-500/10 transition-all hover:scale-105 active:scale-95 cursor-pointer"
+                >
+                  <MapPin className="w-4 h-4 text-amber-400" />
+                  <span>Find Restaurants Near You</span>
+                </button>
+              </div>
+            </ScrollReveal>
+
+            {/* 3 Trust Checkmarks */}
+            <ScrollReveal direction="up" delay={300}>
+              <div className="flex flex-wrap items-center gap-4 sm:gap-6 pt-1 text-xs sm:text-sm font-medium text-slate-300">
+                <div className="flex items-center gap-1.5">
+                  <CheckCircle2 className="w-4 h-4 text-cyan-400 flex-shrink-0" />
+                  <span>No App Download</span>
+                </div>
+                <div className="flex items-center gap-1.5">
+                  <CheckCircle2 className="w-4 h-4 text-cyan-400 flex-shrink-0" />
+                  <span>100% Free for Diners</span>
+                </div>
+                <div className="flex items-center gap-1.5">
+                  <CheckCircle2 className="w-4 h-4 text-cyan-400 flex-shrink-0" />
+                  <span>Quick &amp; Easy</span>
+                </div>
+              </div>
+            </ScrollReveal>
+
+            {/* Illuminated Marquee Sign + Handwritten Callout */}
+            <div className="pt-6 hidden sm:flex items-center gap-6">
+              {/* Retro Lightbox Sign */}
+              <div className="relative rounded-2xl bg-[#0F0C08] border-2 border-amber-800/80 p-3.5 shadow-[0_0_25px_rgba(245,158,11,0.25)] text-center w-36 select-none flex-shrink-0">
+                <div className="space-y-0.5 font-black tracking-widest text-amber-100 text-xs drop-shadow-[0_0_6px_rgba(251,191,36,0.9)] font-mono">
+                  <p>SKIP</p>
+                  <p>DINE</p>
+                  <p>EXPLORE</p>
+                  <p>REPEAT</p>
+                  <p className="text-rose-500 text-sm pt-0.5">❤️</p>
+                </div>
+              </div>
+
+              {/* Handwritten Brush Note with Pink Underline */}
+              <div className="relative">
+                <p className="font-script text-2xl sm:text-3xl font-bold text-white leading-tight drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)] -rotate-3">
+                  Pandal Hopping<br />Tastes Better<br />With ASSO
+                </p>
+                <svg className="w-24 h-4 text-pink-500 mt-0.5 -rotate-3" viewBox="0 0 100 20" fill="none">
+                  <path d="M5 12 Q 50 18, 95 6" stroke="currentColor" strokeWidth="4" strokeLinecap="round" />
+                </svg>
+              </div>
+            </div>
 
           </div>
 
-          {/* Right Column: Sleek Interactive Phone / Live Pass Preview */}
-          <div className="lg:col-span-5 relative w-full max-w-md mx-auto lg:max-w-none">
-            <ScrollReveal direction="right" delay={180}>
-              {/* Outer Glow Halo */}
-              <div className="absolute -inset-4 bg-gradient-to-tr from-purple-600/30 via-pink-600/20 to-amber-400/30 rounded-[3rem] blur-2xl pointer-events-none" />
+          {/* ── Right Column: Handwritten Note + Smartphone Mockup ── */}
+          <div className="lg:col-span-5 relative mt-4 lg:mt-0">
 
-              {/* Smartphone Frame Wrapper */}
-              <div className="relative rounded-[2.6rem] bg-gradient-to-b from-slate-700 via-slate-800 to-slate-950 p-2.5 shadow-2xl shadow-purple-950/50 border border-white/20">
+            {/* Top Right Handwritten Tag */}
+            <div className="hidden lg:block absolute -top-8 right-4 text-right z-20 animate-float-slow">
+              <p className="font-script text-2xl sm:text-3xl font-bold text-white leading-tight drop-shadow-[0_2px_14px_rgba(0,0,0,0.95)] -rotate-6">
+                Same Waiting Time.<br />More Puja.
+              </p>
+              <svg className="w-28 h-4 text-pink-500 ml-auto mt-0.5 -rotate-6" viewBox="0 0 100 20" fill="none">
+                <path d="M5 8 Q 50 18, 95 6" stroke="currentColor" strokeWidth="4" strokeLinecap="round" />
+              </svg>
+            </div>
 
-                {/* Speaker notch & camera */}
-                <div className="absolute top-5 left-1/2 -translate-x-1/2 w-28 h-4 bg-slate-900 rounded-full flex items-center justify-center gap-2 z-30 border border-white/10">
-                  <div className="w-2 h-2 rounded-full bg-slate-700" />
-                  <div className="w-8 h-1 rounded-full bg-slate-800" />
-                </div>
+            {/* ── Realistic Smartphone Frame ── */}
+            <div className="relative mx-auto max-w-[340px] sm:max-w-[370px] rounded-[42px] border-[4px] border-slate-700/80 bg-slate-950 p-2 shadow-2xl shadow-purple-950/50 backdrop-blur-xl group hover:border-slate-500/80 transition-colors">
+              {/* Phone Speaker Notch */}
+              <div className="absolute top-3.5 left-1/2 -translate-x-1/2 w-16 h-3 bg-black rounded-full z-30" />
 
-                {/* Inner Screen */}
-                <div className="relative rounded-[2.1rem] bg-[#0A1024] overflow-hidden border border-white/10 text-white">
+              {/* Inside Phone Screen */}
+              <div className="relative rounded-[34px] overflow-hidden bg-[#0A0F1D] border border-white/10 p-4 pt-7 space-y-4 text-white">
 
-                  {/* Top Status Bar */}
-                  <div className="flex items-center justify-between px-6 pt-5 pb-3 bg-black/40 text-[11px] font-mono text-slate-300">
-                    <span>9:41</span>
+                {/* Floating Push Notification Banner */}
+                <div className="relative rounded-2xl bg-white/95 text-slate-900 shadow-xl border border-white/50 p-3 backdrop-blur-md transition-all hover:scale-[1.02]">
+                  <div className="flex items-center justify-between mb-1">
                     <div className="flex items-center gap-1.5">
-                      <span className="text-[10px] font-black tracking-widest text-purple-300 bg-purple-500/20 border border-purple-500/30 px-2 py-0.5 rounded-full">
-                        ASSO LIVE
-                      </span>
+                      <div className="w-5 h-5 rounded-md bg-gradient-to-tr from-cyan-500 to-purple-600 flex items-center justify-center text-[9px] font-black text-white">
+                        A
+                      </div>
+                      <span className="text-xs font-black tracking-tight">ASSO</span>
                     </div>
+                    <span className="text-[10px] text-slate-500 font-medium">now</span>
                   </div>
-
-                  {/* Restaurant Quick Tabs */}
-                  <div className="px-4 pt-3 pb-2 bg-white/[0.02] border-b border-white/10">
-                    <p className="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-2">
-                      Kolkata Partner Outlets
-                    </p>
-                    <div className="flex items-center gap-1.5 overflow-x-auto pb-1">
-                      {RESTAURANT_PREVIEWS.map((r, idx) => (
-                        <button
-                          key={r.name}
-                          onClick={() => setSelectedRestIdx(idx)}
-                          className={`px-3 py-1 rounded-full text-[11px] font-bold whitespace-nowrap transition-all cursor-pointer ${
-                            selectedRestIdx === idx
-                              ? "bg-purple-600 text-white shadow-sm"
-                              : "bg-white/5 text-slate-400 hover:bg-white/10"
-                          }`}
-                        >
-                          {r.name.split(" ")[0]}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Live Ticket Card */}
-                  <div className="p-4 space-y-3">
-                    {/* Header */}
-                    <div className="flex items-start justify-between">
-                      <div>
-                        <h3 className="text-base font-black text-white">{currentPreview.name}</h3>
-                        <p className="text-[11px] text-slate-400">{currentPreview.area}</p>
-                      </div>
-                      <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-emerald-300 text-[10px] font-bold">
-                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                        Queue Active
-                      </span>
-                    </div>
-
-                    {/* Big Ticket Spot Box */}
-                    <div className="p-4 rounded-2xl bg-gradient-to-br from-purple-900/30 via-indigo-900/20 to-black/40 border border-purple-500/30 relative overflow-hidden shadow-inner">
-                      <div className="flex items-baseline justify-between mb-2">
-                        <div>
-                          <p className="text-[10px] font-bold uppercase tracking-wider text-purple-300">
-                            Your Queue Spot
-                          </p>
-                          <div className="flex items-baseline gap-2 mt-0.5">
-                            <span className="text-4xl font-black text-white font-mono tracking-tight">
-                              {currentPreview.ticket}
-                            </span>
-                            <span className="text-xs text-slate-400 font-bold">{currentPreview.ofTotal}</span>
-                          </div>
-                        </div>
-
-                        <div className="text-right">
-                          <p className="text-[10px] font-bold uppercase tracking-wider text-amber-300">
-                            Est. Wait Time
-                          </p>
-                          <div className="flex items-center justify-end gap-1 mt-0.5">
-                            <Clock className="w-3.5 h-3.5 text-amber-400" />
-                            <span className="text-2xl font-black text-amber-400 font-mono">
-                              {currentPreview.wait}
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-
-                      {/* Moving Progress Bar */}
-                      <div className="space-y-1 pt-1">
-                        <div className="flex justify-between text-[10px] font-bold text-slate-300">
-                          <span>Queue Progress</span>
-                          <span className="text-emerald-400">{currentPreview.progress}% Complete</span>
-                        </div>
-                        <div className="h-2 w-full bg-white/10 rounded-full overflow-hidden">
-                          <div
-                            className="h-full bg-gradient-to-r from-purple-500 via-pink-500 to-amber-400 rounded-full transition-all duration-500"
-                            style={{ width: `${currentPreview.progress}%` }}
-                          />
-                        </div>
-                      </div>
-
-                      <div className="mt-3 pt-2.5 border-t border-white/10 flex items-center justify-between text-[11px] text-slate-300 font-medium">
-                        <span className="flex items-center gap-1">
-                          <Users className="w-3 h-3 text-purple-400" />
-                          {currentPreview.party}
-                        </span>
-                        <span className="text-emerald-300 font-bold flex items-center gap-1">
-                          <CheckCircle2 className="w-3 h-3 text-emerald-400" />
-                          Spot Verified
-                        </span>
-                      </div>
-                    </div>
-
-                    {/* Live Smart Alert */}
-                    <div className="p-3 rounded-xl bg-amber-500/15 border border-amber-500/30 flex items-start gap-2.5">
-                      <div className="w-7 h-7 rounded-lg bg-amber-500/20 flex items-center justify-center text-amber-300 flex-shrink-0">
-                        <Bell className="w-3.5 h-3.5" />
-                      </div>
-                      <div className="text-left">
-                        <p className="text-xs font-bold text-amber-200">Table Almost Ready!</p>
-                        <p className="text-[10px] text-slate-300 mt-0.5 leading-tight">
-                          {currentPreview.alert}
-                        </p>
-                      </div>
-                    </div>
-
-                    {/* Pre-ordered Dish Preview */}
-                    <div className="p-3 rounded-xl bg-white/[0.04] border border-white/10 flex items-center justify-between text-left">
-                      <div className="flex items-center gap-2">
-                        <UtensilsCrossed className="w-3.5 h-3.5 text-orange-400 flex-shrink-0" />
-                        <div>
-                          <p className="text-[10px] text-slate-400">Pre-ordered Food</p>
-                          <p className="text-xs font-bold text-slate-200 truncate max-w-[180px]">
-                            {currentPreview.dish}
-                          </p>
-                        </div>
-                      </div>
-                      <span className="text-[10px] font-bold text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-md border border-emerald-500/20">
-                        Fired 🔥
-                      </span>
-                    </div>
-
-                    {/* Interactive Action on Screen */}
-                    <button
-                      onClick={onOpenQueue}
-                      className="w-full py-2.5 rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white font-bold text-xs shadow-md transition-all flex items-center justify-center gap-1.5 cursor-pointer"
-                    >
-                      <span>Simulate Your Live Queue Ticket</span>
-                      <ChevronRight className="w-3.5 h-3.5" />
-                    </button>
-                  </div>
-
+                  <p className="text-[11px] font-bold text-slate-900 leading-snug">
+                    Good news!
+                  </p>
+                  <p className="text-[10px] text-slate-600 leading-tight">
+                    Your table is almost ready. Please come in 10 minutes.
+                  </p>
                 </div>
-              </div>
 
-              {/* Decorative handwritten note floating beside the phone (Desktop only) */}
-              <div className="hidden xl:block absolute -bottom-6 -left-10 -rotate-6 bg-white/95 text-stone-900 p-3.5 rounded-2xl shadow-xl border border-stone-200 max-w-[170px] text-center pointer-events-none animate-float-slow">
-                <p className="font-script text-lg font-bold leading-tight">
-                  No queue outside.<br />
-                  Full tables inside! ♡
-                </p>
-              </div>
+                {/* In-App Restaurant Header */}
+                <div className="flex items-center justify-between pt-1">
+                  <div className="flex items-center gap-2">
+                    <div className="w-8 h-8 rounded-full bg-amber-500/20 border border-amber-500/40 flex items-center justify-center text-amber-300 font-bold text-xs">
+                      🏛️
+                    </div>
+                    <div>
+                      <p className="text-xs font-black text-white leading-tight">
+                        Calcutta Grand Dining
+                      </p>
+                      <p className="text-[9px] text-slate-400">Authentic Bengali Feast</p>
+                    </div>
+                  </div>
+                  <span className="inline-flex items-center gap-1 text-[9px] font-bold text-emerald-300 bg-emerald-500/15 border border-emerald-500/30 px-2 py-0.5 rounded-full">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                    LIVE
+                  </span>
+                </div>
 
-              {/* Decorative top right badge */}
-              <div className="hidden xl:block absolute -top-4 -right-4 rotate-3 bg-amber-400 text-slate-950 px-3.5 py-1.5 rounded-full font-black text-xs shadow-lg pointer-events-none">
-                ⚡ 100% Web App
+                {/* Queue Spot Box */}
+                <div className="rounded-2xl bg-gradient-to-br from-white/[0.08] to-white/[0.02] border border-white/10 p-4 text-center">
+                  <p className="text-[10px] font-bold uppercase tracking-widest text-slate-400">
+                    Your Queue Number
+                  </p>
+                  <div className="text-5xl font-black text-white tracking-tighter my-1 drop-shadow-md">
+                    #27
+                  </div>
+                  <p className="text-[11px] text-slate-300 font-medium">
+                    <span className="text-cyan-400 font-bold">4 Guests</span> • Est. Wait: <span className="text-amber-300 font-bold">1 hr</span>
+                  </p>
+
+                  {/* Stepper Timeline */}
+                  <div className="mt-4 pt-3 border-t border-white/10">
+                    <div className="relative flex items-center justify-between">
+                      <div className="absolute top-1/2 left-4 right-4 h-0.5 bg-slate-700 -translate-y-1/2 z-0" />
+                      <div className="absolute top-1/2 left-4 w-1/3 h-0.5 bg-emerald-500 -translate-y-1/2 z-0" />
+
+                      {/* Step 1: Joined */}
+                      <div className="relative z-10 flex flex-col items-center">
+                        <div className="w-5 h-5 rounded-full bg-emerald-500 text-slate-950 flex items-center justify-center shadow-md">
+                          <Check className="w-3 h-3 stroke-[3]" />
+                        </div>
+                        <span className="text-[8px] font-bold text-emerald-400 mt-1">Joined</span>
+                      </div>
+
+                      {/* Step 2: In Queue */}
+                      <div className="relative z-10 flex flex-col items-center">
+                        <div className="w-5 h-5 rounded-full bg-emerald-500 text-slate-950 flex items-center justify-center shadow-md">
+                          <Check className="w-3 h-3 stroke-[3]" />
+                        </div>
+                        <span className="text-[8px] font-bold text-emerald-400 mt-1">In Queue</span>
+                      </div>
+
+                      {/* Step 3: Preparing */}
+                      <div className="relative z-10 flex flex-col items-center">
+                        <div className="w-5 h-5 rounded-full bg-slate-800 border-2 border-slate-600 flex items-center justify-center" />
+                        <span className="text-[8px] font-medium text-slate-400 mt-1">Preparing</span>
+                      </div>
+
+                      {/* Step 4: Your Table */}
+                      <div className="relative z-10 flex flex-col items-center">
+                        <div className="w-5 h-5 rounded-full bg-slate-800 border-2 border-slate-600 flex items-center justify-center" />
+                        <span className="text-[8px] font-medium text-slate-400 mt-1">Your Table</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* View Live Status Button */}
+                  <button
+                    onClick={onOpenQueue}
+                    className="mt-4 w-full py-2.5 rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white font-bold text-xs shadow-lg shadow-purple-600/30 transition-all cursor-pointer"
+                  >
+                    View Live Status
+                  </button>
+                </div>
+
+                {/* Pre-Order Status Card */}
+                <div className="rounded-2xl bg-white/[0.05] border border-white/10 p-3 flex items-center justify-between gap-3">
+                  <div className="flex items-center gap-2.5">
+                    <div className="relative w-10 h-10 rounded-xl overflow-hidden bg-slate-800 border border-white/10 flex-shrink-0">
+                      <Image
+                        src="/images/biryani-plate.jpg"
+                        alt="Pre-Ordered Biryani"
+                        fill
+                        className="object-cover"
+                      />
+                    </div>
+                    <div>
+                      <p className="text-[9px] text-slate-400 font-medium">Your Pre-Order</p>
+                      <p className="text-xs font-bold text-white">Chicken Biryani x 2</p>
+                    </div>
+                  </div>
+                  <span className="text-[10px] font-bold text-amber-300 bg-amber-500/20 border border-amber-500/40 px-2.5 py-1 rounded-lg">
+                    Preparing
+                  </span>
+                </div>
+
               </div>
-            </ScrollReveal>
+            </div>
+
           </div>
 
         </div>
+
+        {/* ── Popular Near You (Horizontal Pandal Cards) ── */}
+        <ScrollReveal direction="up" delay={350}>
+          <div className="mt-14 max-w-6xl mx-auto rounded-3xl bg-[#091124]/85 border border-white/10 p-5 sm:p-6 backdrop-blur-xl shadow-2xl">
+            <div className="flex items-center justify-between mb-4">
+              <div className="flex items-center gap-2.5">
+                <div className="w-8 h-8 rounded-full bg-purple-600/20 border border-purple-500/40 flex items-center justify-center text-purple-400">
+                  <Landmark className="w-4 h-4" />
+                </div>
+                <h3 className="text-sm sm:text-base font-black tracking-tight text-white">
+                  Popular Near You
+                </h3>
+              </div>
+              <button
+                onClick={() => {
+                  const el = document.getElementById("pandals");
+                  el?.scrollIntoView({ behavior: "smooth" });
+                }}
+                aria-label="View all popular pandals"
+                className="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 border border-white/15 text-white flex items-center justify-center transition-colors cursor-pointer"
+              >
+                <ArrowRight className="w-4 h-4" />
+              </button>
+            </div>
+
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
+              {POPULAR_PANDALS.map((pandal) => (
+                <div
+                  key={pandal.name}
+                  onClick={() => {
+                    const el = document.getElementById("pandals");
+                    el?.scrollIntoView({ behavior: "smooth" });
+                  }}
+                  className="group relative rounded-2xl overflow-hidden bg-slate-900 border border-white/10 hover:border-cyan-400/50 transition-all cursor-pointer shadow-md hover:-translate-y-0.5"
+                >
+                  <div className="relative h-24 sm:h-28 w-full overflow-hidden bg-slate-950">
+                    <Image
+                      src={pandal.image}
+                      alt={pandal.name}
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-black/20" />
+                  </div>
+                  <div className="p-2.5">
+                    <div className="flex items-center gap-1 text-[11px] font-bold text-white truncate">
+                      <MapPin className="w-3 h-3 text-purple-400 flex-shrink-0" />
+                      <span className="truncate">{pandal.name}</span>
+                    </div>
+                    <p className="text-[10px] text-slate-400 pl-4 mt-0.5">{pandal.distance}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </ScrollReveal>
+
+        {/* ── Bottom Motto, Howrah Bridge Panorama & Scroll Indicator ── */}
+        <div className="mt-14 text-center space-y-4">
+          <p className="font-mono text-[11px] font-bold tracking-widest text-slate-300 uppercase">
+            GOOD FOOD. &nbsp;A BRIGHTER KOLKATA. &nbsp;TOGETHER &nbsp;♡
+          </p>
+
+          <div className="relative w-full max-w-5xl mx-auto h-36 sm:h-48 rounded-2xl overflow-hidden border border-white/10 shadow-2xl bg-[#040814]">
+            <Image
+              src="/images/hero-crops/howrah-bridge.png"
+              alt="Illuminated Howrah Bridge reflecting over the Hooghly River at night"
+              fill
+              className="object-cover object-center select-none pointer-events-none"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#060B18] via-transparent to-[#060B18]/30 opacity-70" />
+          </div>
+
+          {/* Scroll to Explore indicator */}
+          <div className="pt-2 flex flex-col items-center gap-1.5 opacity-80 hover:opacity-100 transition-opacity">
+            <div className="w-5 h-8 rounded-full border-2 border-slate-400 flex items-start justify-center p-1">
+              <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-bounce" />
+            </div>
+            <span className="text-[9px] font-bold tracking-widest uppercase text-slate-400">
+              SCROLL TO EXPLORE
+            </span>
+          </div>
+        </div>
+
       </div>
     </section>
   );

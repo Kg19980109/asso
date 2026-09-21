@@ -48,6 +48,30 @@ export function Header({ onOpenDownload, onOpenQueue, onOpenPartner }: HeaderPro
           </span>
         </Link>
 
+        {/* Pill switcher for Diners / Restaurants matching design mockup */}
+        <div className="flex items-center gap-1.5 p-1 rounded-full bg-white/[0.06] border border-white/15 backdrop-blur-md">
+          <Link
+            href="#for-diners"
+            className="px-3.5 sm:px-4 py-1.5 rounded-full bg-[#18122B] text-white text-xs font-bold border border-purple-400/40 shadow-sm transition-all"
+          >
+            For Diners
+          </Link>
+          <span className="text-slate-600 text-xs select-none">|</span>
+          <button
+            type="button"
+            onClick={() => {
+              if (onOpenPartner) onOpenPartner();
+              else {
+                const el = document.getElementById("for-restaurants");
+                el?.scrollIntoView({ behavior: "smooth" });
+              }
+            }}
+            className="px-3 sm:px-3.5 py-1.5 rounded-full text-slate-300 hover:text-white text-xs font-semibold transition-colors cursor-pointer"
+          >
+            For Restaurants
+          </button>
+        </div>
+
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-7">
           <Link
