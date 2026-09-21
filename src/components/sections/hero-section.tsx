@@ -309,10 +309,10 @@ export function HeroSection({ onOpenConnect, onOpenQueue }: HeroSectionProps) {
                   </div>
                   <div>
                     <h4 className="text-xs sm:text-sm font-bold text-white leading-tight">
-                      Oh! Calcutta
+                      Calcutta Grand Dining
                     </h4>
                     <p className="text-[9.5px] text-stone-400">
-                      Silver Spring, EM Bypass
+                      Park Street, Kolkata
                     </p>
                   </div>
                 </div>

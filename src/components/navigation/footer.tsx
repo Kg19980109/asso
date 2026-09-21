@@ -2,12 +2,92 @@
 
 import * as React from "react";
 import Link from "next/link";
+import { Mail, Phone, Headphones, MapPin, MessageCircle } from "lucide-react";
 import { AssoLogo } from "@/components/brand/asso-logo";
 
 export function Footer() {
   return (
     <footer className="bg-[#050A18] text-white py-14 border-t border-white/10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        {/* Contact Banner Card */}
+        <div className="mb-10 p-5 sm:p-6 rounded-2xl bg-gradient-to-r from-purple-950/40 via-[#0A132C] to-cyan-950/30 border border-white/10 shadow-xl">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-center">
+            
+            {/* Helpline / Phone */}
+            <div className="flex items-start space-x-3.5">
+              <div className="w-10 h-10 rounded-xl bg-purple-500/15 border border-purple-400/30 flex items-center justify-center text-purple-400 flex-shrink-0">
+                <Phone className="w-5 h-5" />
+              </div>
+              <div>
+                <p className="text-[11px] font-bold uppercase tracking-wider text-slate-400">
+                  Call / WhatsApp Helpline
+                </p>
+                <div className="flex flex-col mt-0.5 space-y-0.5">
+                  <a
+                    href="tel:+917003383676"
+                    className="text-sm font-semibold text-white hover:text-cyan-300 transition-colors"
+                  >
+                    +91 70033 83676
+                  </a>
+                  <a
+                    href="tel:+918017683428"
+                    className="text-sm font-semibold text-white hover:text-cyan-300 transition-colors"
+                  >
+                    +91 80176 83428
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            {/* Email Support */}
+            <div className="flex items-start space-x-3.5">
+              <div className="w-10 h-10 rounded-xl bg-cyan-500/15 border border-cyan-400/30 flex items-center justify-center text-cyan-400 flex-shrink-0">
+                <Mail className="w-5 h-5" />
+              </div>
+              <div>
+                <p className="text-[11px] font-bold uppercase tracking-wider text-slate-400">
+                  Email Assistance
+                </p>
+                <div className="flex flex-col mt-0.5 space-y-0.5">
+                  <a
+                    href="mailto:support@asso.business"
+                    className="text-xs sm:text-sm font-medium text-white hover:text-cyan-300 transition-colors"
+                  >
+                    <span className="text-slate-400 text-[11px]">Contact: </span>support@asso.business
+                  </a>
+                  <a
+                    href="mailto:ass.helpdesk@gmail.com"
+                    className="text-xs sm:text-sm font-medium text-white hover:text-cyan-300 transition-colors"
+                  >
+                    <span className="text-slate-400 text-[11px]">Support: </span>ass.helpdesk@gmail.com
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            {/* Location & Response Time */}
+            <div className="flex items-start space-x-3.5">
+              <div className="w-10 h-10 rounded-xl bg-emerald-500/15 border border-emerald-400/30 flex items-center justify-center text-emerald-400 flex-shrink-0">
+                <Headphones className="w-5 h-5" />
+              </div>
+              <div>
+                <p className="text-[11px] font-bold uppercase tracking-wider text-slate-400">
+                  Quick Turnaround Desk
+                </p>
+                <p className="text-xs sm:text-sm font-medium text-white mt-0.5">
+                  Typical response in &lt; 15 minutes
+                </p>
+                <p className="text-[11px] text-slate-400 flex items-center gap-1 mt-0.5">
+                  <MapPin className="w-3 h-3 text-rose-400" /> Kolkata, West Bengal
+                </p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        {/* Links Grid */}
         <div className="grid grid-cols-2 md:grid-cols-5 gap-8 pb-10 border-b border-white/10">
 
           {/* Column 1: Brand */}
@@ -45,16 +125,33 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Column 4: Support */}
+          {/* Column 4: Contact & Help */}
           <div className="space-y-2.5">
             <h4 className="text-[11px] font-bold uppercase tracking-widest text-slate-300">
-              Support
+              Support &amp; Contact
             </h4>
             <ul className="space-y-1.5 text-xs text-slate-400">
-              <li><Link href="#help" className="hover:text-white transition-colors">Help Center</Link></li>
+              <li>
+                <a href="mailto:support@asso.business" className="hover:text-cyan-300 transition-colors">
+                  support@asso.business
+                </a>
+              </li>
+              <li>
+                <a href="mailto:ass.helpdesk@gmail.com" className="hover:text-cyan-300 transition-colors">
+                  ass.helpdesk@gmail.com
+                </a>
+              </li>
+              <li>
+                <a href="tel:+917003383676" className="hover:text-cyan-300 transition-colors">
+                  +91 70033 83676
+                </a>
+              </li>
+              <li>
+                <a href="tel:+918017683428" className="hover:text-cyan-300 transition-colors">
+                  +91 80176 83428
+                </a>
+              </li>
               <li><Link href="#faq" className="hover:text-white transition-colors">FAQ</Link></li>
-              <li><Link href="#privacy" className="hover:text-white transition-colors">Privacy Policy</Link></li>
-              <li><Link href="#terms" className="hover:text-white transition-colors">Terms of Service</Link></li>
             </ul>
           </div>
 
