@@ -9,397 +9,328 @@ interface HeroSectionProps {
   onOpenQueue?: () => void;
 }
 
-const steps = [
-  {
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} className="w-5 h-5">
-        <rect x="3" y="3" width="7" height="7" rx="1" />
-        <rect x="14" y="3" width="7" height="7" rx="1" />
-        <rect x="3" y="14" width="7" height="7" rx="1" />
-        <path d="M14 14h.01M14 17h.01M17 14h.01M20 14h.01M20 17h.01M17 20h.01M20 20h.01" strokeWidth={2} strokeLinecap="round" />
-      </svg>
-    ),
-    label: "Scan &",
-    label2: "Join Queue",
-  },
-  {
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} className="w-5 h-5">
-        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z" />
-        <path d="M8 10h8M8 14h4" strokeLinecap="round" />
-        <path d="M15 6l3 3-3 3" strokeLinecap="round" strokeLinejoin="round" />
-      </svg>
-    ),
-    label: "Pre-Order",
-    label2: "Your Food",
-  },
-  {
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} className="w-5 h-5">
-        <circle cx="12" cy="12" r="2" />
-        <path d="M12 2v3M12 19v3M2 12h3M19 12h3" strokeLinecap="round" />
-        <path d="M5.64 5.64l2.12 2.12M16.24 16.24l2.12 2.12M5.64 18.36l2.12-2.12M16.24 7.76l2.12-2.12" strokeLinecap="round" />
-      </svg>
-    ),
-    label: "Explore",
-    label2: "Nearby Pandals",
-  },
-  {
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} className="w-5 h-5">
-        <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
-        <path d="M13.73 21a2 2 0 0 1-3.46 0" />
-      </svg>
-    ),
-    label: "Get Notified",
-    label2: "When Your Table Is Ready",
-  },
-];
+function PhoneMockup({ onOpenQueue }: { onOpenQueue?: () => void }) {
+  return (
+    <div className="relative w-[200px] sm:w-[220px] lg:w-[250px] xl:w-[270px] flex-shrink-0">
+      {/* Phone shell */}
+      <div className="relative rounded-[32px] bg-[#0d0d1a] border border-white/20 shadow-[0_30px_80px_rgba(0,0,0,0.8)] overflow-hidden">
+        {/* Status bar */}
+        <div className="flex items-center justify-between px-4 pt-3 pb-1">
+          <span className="text-[8px] text-white/60 font-medium">9:41 AM</span>
+          <div className="w-12 h-1.5 bg-white/20 rounded-full" />
+          <div className="flex gap-1 items-center">
+            <div className="w-2 h-1.5 bg-white/60 rounded-[1px]" />
+            <div className="w-2 h-1.5 bg-white/60 rounded-[1px]" />
+          </div>
+        </div>
+
+        {/* App header bar */}
+        <div className="flex items-center justify-between px-3 py-2 bg-[#0a0a1f]">
+          <div className="flex items-center gap-1.5">
+            <div className="w-5 h-5 rounded-md bg-gradient-to-br from-purple-600 to-cyan-500 flex items-center justify-center">
+              <span className="text-[6px] font-black text-white">AS</span>
+            </div>
+            <span className="text-[9px] font-bold text-white">ASSO</span>
+          </div>
+          <span className="text-[7px] text-white/40">now</span>
+        </div>
+
+        {/* Notification card */}
+        <div className="mx-2 mb-1 p-2.5 rounded-xl bg-[#111128] border border-purple-500/20">
+          <p className="text-[7.5px] font-semibold text-green-400 mb-0.5">Good news! 🎉</p>
+          <p className="text-[7px] text-white/70 leading-snug">
+            Your table is almost ready. Please come in 10 minutes.
+          </p>
+        </div>
+
+        {/* Divider */}
+        <div className="mx-3 border-t border-white/8 my-1" />
+
+        {/* Restaurant row */}
+        <div className="px-3 py-1.5 flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <div className="w-6 h-6 rounded-full bg-gradient-to-br from-orange-500 to-red-600 flex items-center justify-center">
+              <span className="text-[7px] font-bold text-white">OC</span>
+            </div>
+            <span className="text-[9px] font-semibold text-white">Oh! Calcutta</span>
+          </div>
+          <span className="text-[7px] font-bold text-green-400 bg-green-400/15 border border-green-400/30 px-1.5 py-0.5 rounded-full">
+            LIVE
+          </span>
+        </div>
+
+        {/* Queue number hero */}
+        <div className="px-3 pb-1">
+          <p className="text-[7px] text-white/40 tracking-wider uppercase font-medium">Your Queue Number</p>
+          <p className="text-5xl font-black text-white leading-none tracking-tight">#27</p>
+          <p className="text-[7px] text-white/50 mt-0.5">4 Guests &nbsp;•&nbsp; Est. Wait: 1 hr</p>
+        </div>
+
+        {/* Progress bar */}
+        <div className="px-3 pb-2">
+          <div className="relative h-1 bg-white/10 rounded-full mt-2">
+            <div className="absolute inset-y-0 left-0 w-[60%] bg-gradient-to-r from-green-400 to-cyan-400 rounded-full" />
+            <div className="absolute top-1/2 left-[60%] -translate-y-1/2 -translate-x-1/2 w-2.5 h-2.5 bg-cyan-400 rounded-full border-2 border-[#0d0d1a] shadow-[0_0_6px_rgba(34,211,238,0.8)]" />
+          </div>
+          <div className="flex justify-between mt-1.5">
+            {["Joined", "In Queue", "Preparing", "Your Table"].map((s) => (
+              <span key={s} className="text-[6px] text-white/40 leading-tight text-center">{s}</span>
+            ))}
+          </div>
+        </div>
+
+        {/* View Live Status button */}
+        <div className="px-3 pb-2">
+          <button
+            onClick={onOpenQueue}
+            className="w-full py-2 rounded-xl bg-gradient-to-r from-purple-600 to-violet-600 text-white text-[8px] font-bold tracking-wide hover:brightness-110 transition-all"
+          >
+            View Live Status
+          </button>
+        </div>
+
+        {/* Pre-order row */}
+        <div className="mx-3 mb-3 p-2 rounded-xl bg-[#111128] flex items-center gap-2">
+          <div className="w-6 h-6 rounded-lg bg-orange-500/20 flex items-center justify-center flex-shrink-0">
+            <span className="text-[9px]">🍛</span>
+          </div>
+          <div className="flex-1 min-w-0">
+            <p className="text-[7px] font-semibold text-white/80 truncate">Your Pre-Order</p>
+            <p className="text-[6.5px] text-white/40">Chicken Biryani x 2</p>
+          </div>
+          <span className="text-[6.5px] font-bold text-amber-400 bg-amber-400/15 border border-amber-400/30 px-1.5 py-0.5 rounded-full flex-shrink-0">
+            Preparing
+          </span>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 export function HeroSection({ onOpenConnect, onOpenQueue }: HeroSectionProps) {
-  const scrollTo = (id: string) => {
+  const scrollTo = (id: string) =>
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
-  };
+
+  const steps = [
+    { icon: "⊞", label: "Scan &", sub: "Join Queue" },
+    { icon: "🍴", label: "Pre-Order", sub: "Your Food" },
+    { icon: "🚶", label: "Explore", sub: "Nearby Pandals" },
+    { icon: "🔔", label: "Get Notified", sub: "When Your Table Is Ready" },
+  ];
 
   return (
     <section
       id="for-diners"
-      className="relative min-h-screen pt-16 sm:pt-20 bg-[#060B18] text-white overflow-hidden"
+      className="relative bg-[#060B18] text-white overflow-hidden"
     >
-      {/* Bokeh particles */}
       <FestiveParticles />
 
-      {/* ── MOBILE layout: full-bleed background photo, content stacked ── */}
-      <div className="lg:hidden relative min-h-screen flex flex-col">
-        {/* Full-bleed background: pandal photo fading to dark */}
+      {/* ═══════════════════════════════════════════
+          HERO TOP — Full-bleed photo background
+          ═══════════════════════════════════════════ */}
+      <div className="relative min-h-screen pt-16 sm:pt-20">
+
+        {/* ── Full-bleed background: couple + pandal photo ── */}
         <div className="absolute inset-0 z-0">
           <Image
             src="/images/hero-puja.jpg"
             alt=""
             fill
             priority
-            className="object-cover object-center"
+            className="object-cover object-top"
             sizes="100vw"
           />
-          {/* Strong gradient overlays to blend into dark theme */}
-          <div className="absolute inset-0 bg-gradient-to-b from-[#060B18]/60 via-[#060B18]/20 to-[#060B18]/90" />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#060B18]/80 via-transparent to-[#060B18]/30" />
+          {/* Heavy left gradient so text is readable */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#060B18] via-[#060B18]/75 to-[#060B18]/10" />
+          {/* Top fade from nav */}
+          <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-[#060B18] to-transparent" />
+          {/* Bottom fade into marquee section */}
+          <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-[#060B18] to-transparent" />
+          {/* Ambient glow behind text */}
+          <div className="absolute top-1/4 left-0 w-[480px] h-[480px] bg-[radial-gradient(closest-side,rgba(139,92,246,0.20),transparent)] pointer-events-none" />
         </div>
 
-        {/* Floating handwritten sticker — top right */}
+        {/* ── "Same Waiting Time. More Puja." floating sticker ── */}
         <div
-          className="absolute top-[10%] right-4 z-20 text-right pointer-events-none select-none"
-          style={{ fontFamily: "cursive" }}
+          className="absolute z-20 top-[14%] sm:top-[12%] right-4 sm:right-6 lg:right-[8%] xl:right-[12%] text-right pointer-events-none select-none"
+          style={{ fontFamily: "'Dancing Script', cursive, Georgia, serif" }}
         >
-          <p className="text-white text-[15px] font-bold leading-tight drop-shadow-lg">
-            Same
-          </p>
-          <p className="text-white text-[15px] font-bold leading-tight drop-shadow-lg italic">
-            Waiting Time.
-          </p>
-          <p className="text-[#ff6fe8] text-[17px] font-bold leading-tight drop-shadow-lg italic">
-            More Puja.
-          </p>
-          {/* Underline flourish */}
-          <svg className="ml-auto mt-0.5" width="80" height="8" viewBox="0 0 80 8">
-            <path d="M2 6 Q40 0 78 4" stroke="#ff6fe8" strokeWidth="2.5" fill="none" strokeLinecap="round" />
+          <p className="text-white text-[18px] sm:text-[22px] font-bold leading-snug drop-shadow-xl">Same</p>
+          <p className="text-white text-[18px] sm:text-[22px] font-bold italic leading-snug drop-shadow-xl">Waiting Time.</p>
+          <p className="text-[#f472b6] text-[20px] sm:text-[24px] font-bold italic leading-snug drop-shadow-xl">More Puja.</p>
+          <svg className="ml-auto mt-1" width="100" height="10" viewBox="0 0 100 10">
+            <path d="M2 8 Q50 1 98 5" stroke="#f472b6" strokeWidth="2.5" fill="none" strokeLinecap="round" />
           </svg>
         </div>
 
-        {/* Content block */}
-        <div className="relative z-10 flex flex-col flex-1 px-5 pt-12 pb-8">
-          {/* Eyebrow */}
-          <p className="text-xs font-semibold tracking-[0.18em] text-cyan-400 uppercase mb-3">
-            Kolkata&apos;s Smart Dining Companion
-          </p>
+        {/* ── Content layer ── */}
+        <div className="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-10 xl:px-12 h-full flex items-center">
+          <div className="w-full flex flex-col lg:flex-row lg:items-center gap-8 xl:gap-12 py-12 lg:py-16 xl:py-20">
 
-          {/* Headline */}
-          <h1 className="font-extrabold leading-[1.08] mb-3">
-            <span className="block text-[2.6rem] text-white drop-shadow-lg">Dine Without</span>
-            <span className="block text-[2.6rem] text-white drop-shadow-lg">The Wait.</span>
-            <span className="block text-[2.8rem] bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent drop-shadow-lg">
-              Explore More.
-            </span>
-          </h1>
+            {/* LEFT: text content */}
+            <div className="flex-1 min-w-0">
+              {/* Eyebrow */}
+              <p className="text-[10px] sm:text-xs font-semibold tracking-[0.2em] text-cyan-400 uppercase mb-3 sm:mb-4">
+                Kolkata&apos;s Smart Dining Companion
+              </p>
 
-          {/* Subtext */}
-          <p className="text-sm text-white/80 leading-relaxed mb-6 max-w-[280px]">
-            Join restaurant queues from your phone, pre-order your food, and explore nearby
-            pandals while we notify you when your table is ready.
-          </p>
-
-          {/* 4-step icons */}
-          <div className="flex gap-4 mb-7">
-            {steps.map((s) => (
-              <div key={s.label} className="flex flex-col items-center gap-1.5">
-                <div className="w-10 h-10 rounded-full border border-white/25 bg-white/10 backdrop-blur-sm flex items-center justify-center text-cyan-300">
-                  {s.icon}
-                </div>
-                <span className="text-[9px] text-white/70 text-center leading-tight">
-                  {s.label}
-                  <br />
-                  {s.label2}
+              {/* H1 */}
+              <h1 className="font-extrabold leading-[1.06] mb-4 sm:mb-5">
+                <span className="block text-4xl sm:text-5xl xl:text-[3.6rem] text-white drop-shadow-lg">Dine Without</span>
+                <span className="block text-4xl sm:text-5xl xl:text-[3.6rem] text-white drop-shadow-lg">The Wait.</span>
+                <span className="block text-4xl sm:text-5xl xl:text-[3.6rem] bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent drop-shadow-lg">
+                  Explore More.
                 </span>
+              </h1>
+
+              {/* Subtitle */}
+              <p className="text-sm sm:text-base text-white/75 leading-relaxed mb-6 sm:mb-8 max-w-[340px] lg:max-w-[360px]">
+                Join restaurant queues from your phone, pre-order your food, and
+                explore nearby pandals while we notify you when your table is ready.
+              </p>
+
+              {/* 4-step icons */}
+              <div className="flex gap-4 sm:gap-6 mb-7 sm:mb-8">
+                {steps.map((s) => (
+                  <div key={s.label} className="flex flex-col items-center gap-1.5">
+                    <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-full border border-cyan-400/40 bg-white/8 backdrop-blur-sm flex items-center justify-center text-base sm:text-lg">
+                      {s.icon}
+                    </div>
+                    <span className="text-[8px] sm:text-[9px] text-white/60 text-center leading-tight max-w-[50px]">
+                      {s.label}
+                      <br />
+                      {s.sub}
+                    </span>
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
 
-          {/* CTAs */}
-          <button
-            onClick={onOpenQueue}
-            className="w-full flex items-center justify-center gap-2 py-3.5 rounded-full bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold text-sm shadow-lg shadow-purple-800/40 hover:brightness-110 active:scale-95 transition-all mb-3"
-          >
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} className="w-4 h-4">
-              <rect x="3" y="3" width="7" height="7" rx="1" />
-              <rect x="14" y="3" width="7" height="7" rx="1" />
-              <rect x="3" y="14" width="7" height="7" rx="1" />
-            </svg>
-            Join Live Queue Demo →
-          </button>
-          <button
-            onClick={() => scrollTo("pandals")}
-            className="w-full flex items-center justify-center gap-2 py-3.5 rounded-full border border-white/25 bg-white/8 backdrop-blur-sm text-white font-semibold text-sm hover:bg-white/15 active:scale-95 transition-all mb-5"
-          >
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} className="w-4 h-4">
-              <circle cx="11" cy="11" r="8" />
-              <path d="m21 21-4.35-4.35" strokeLinecap="round" />
-            </svg>
-            Find Restaurants Near You
-          </button>
-
-          {/* Trust marks */}
-          <div className="flex gap-4 flex-wrap">
-            {["No App Download", "100% Free for Diners", "Quick & Easy"].map((t) => (
-              <span key={t} className="flex items-center gap-1.5 text-[10px] text-white/60">
-                <svg viewBox="0 0 16 16" fill="none" className="w-3.5 h-3.5 text-green-400 flex-shrink-0">
-                  <circle cx="8" cy="8" r="7" stroke="currentColor" strokeWidth="1.5" />
-                  <path d="M5 8l2 2 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-                {t}
-              </span>
-            ))}
-          </div>
-        </div>
-
-        {/* Bottom section: Marquee neon sign + phone mockup */}
-        <div className="relative z-10 mt-auto">
-          {/* Neon marquee sign */}
-          <div className="relative mx-5 mb-4 rounded-2xl overflow-hidden">
-            <div className="absolute inset-0">
-              <Image src="/images/hero-puja.jpg" alt="" fill sizes="90vw" className="object-cover object-bottom opacity-70" />
-              <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-black/40" />
-            </div>
-            <div className="relative z-10 p-4 flex items-center justify-between">
-              <div
-                className="text-amber-400 font-black text-xl leading-none tracking-widest uppercase"
-                style={{ textShadow: "0 0 20px rgba(251,191,36,0.8), 0 0 40px rgba(251,191,36,0.4)" }}
-              >
-                SKIP<br />DINE<br />EXPLORE<br />REPEAT
+              {/* CTAs */}
+              <div className="flex flex-col sm:flex-row gap-3 mb-5 max-w-[380px] sm:max-w-[400px]">
+                <button
+                  onClick={onOpenQueue}
+                  className="flex-1 flex items-center justify-center gap-2 py-3.5 sm:py-4 px-5 rounded-full bg-gradient-to-r from-purple-600 via-violet-600 to-pink-600 text-white font-semibold text-sm shadow-lg shadow-purple-900/50 hover:brightness-110 active:scale-95 transition-all"
+                >
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} className="w-4 h-4 flex-shrink-0">
+                    <rect x="3" y="3" width="7" height="7" rx="1" />
+                    <rect x="14" y="3" width="7" height="7" rx="1" />
+                    <rect x="3" y="14" width="7" height="7" rx="1" />
+                    <path d="M14 14h7v7h-7z" />
+                  </svg>
+                  Join Live Queue Demo →
+                </button>
+                <button
+                  onClick={() => scrollTo("pandals")}
+                  className="flex-1 flex items-center justify-center gap-2 py-3.5 sm:py-4 px-5 rounded-full border border-white/25 bg-white/6 backdrop-blur-sm text-white font-semibold text-sm hover:bg-white/15 active:scale-95 transition-all"
+                >
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} className="w-4 h-4 flex-shrink-0">
+                    <circle cx="11" cy="11" r="8" />
+                    <path d="m21 21-4.35-4.35" strokeLinecap="round" />
+                  </svg>
+                  Find Restaurants Near You
+                </button>
               </div>
-              <div
-                className="text-right"
-                style={{ fontFamily: "cursive" }}
-              >
-                <p className="text-white text-base font-bold leading-snug italic drop-shadow">
-                  Pandal Hopping
-                </p>
-                <p className="text-cyan-300 text-base font-bold leading-snug italic drop-shadow">
-                  Tastes Better
-                </p>
-                <p className="text-white text-base font-bold leading-snug italic drop-shadow">
-                  With ASSO
-                </p>
+
+              {/* Trust marks */}
+              <div className="flex gap-4 flex-wrap">
+                {["No App Download", "100% Free for Diners", "Quick & Easy"].map((t) => (
+                  <span key={t} className="flex items-center gap-1.5 text-[10px] sm:text-[11px] text-white/50">
+                    <svg viewBox="0 0 16 16" fill="none" className="w-3.5 h-3.5 text-green-400 flex-shrink-0">
+                      <circle cx="8" cy="8" r="7" stroke="currentColor" strokeWidth="1.5" />
+                      <path d="M5 8l2 2 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                    {t}
+                  </span>
+                ))}
               </div>
             </div>
-          </div>
 
-          {/* Phone mockup */}
-          <div className="relative mx-auto w-[65vw] max-w-[260px] drop-shadow-2xl pb-8">
-            <Image
-              src="/images/hero-exact-showcase.png"
-              alt="ASSO App — Live Queue Screen"
-              width={260}
-              height={560}
-              priority
-              className="w-full h-auto rounded-[28px] ring-1 ring-white/10"
-            />
+            {/* RIGHT: Phone mockup */}
+            <div className="flex justify-center lg:justify-end lg:pr-4">
+              <PhoneMockup onOpenQueue={onOpenQueue} />
+            </div>
+
           </div>
         </div>
       </div>
 
-      {/* ── DESKTOP layout: two-column, full-width ── */}
-      <div className="hidden lg:flex relative min-h-screen items-center">
-
-        {/* Right side: photo + gradient bleeds to dark bg */}
-        <div className="absolute inset-0 z-0">
-          {/* Pandal / couple photo fills the right ~60% */}
-          <div className="absolute inset-y-0 right-0 w-[62%]">
-            <Image
-              src="/images/hero-puja.jpg"
-              alt=""
-              fill
-              priority
-              className="object-cover object-top"
-              sizes="62vw"
-            />
-            {/* Fade left edge into dark bg */}
-            <div className="absolute inset-y-0 left-0 w-[50%] bg-gradient-to-r from-[#060B18] to-transparent" />
-            {/* Fade top */}
-            <div className="absolute inset-x-0 top-0 h-[15%] bg-gradient-to-b from-[#060B18] to-transparent" />
-            {/* Fade bottom */}
-            <div className="absolute inset-x-0 bottom-0 h-[30%] bg-gradient-to-t from-[#060B18] to-transparent" />
-            {/* Darken right edge slightly */}
-            <div className="absolute inset-y-0 right-0 w-[20%] bg-gradient-to-l from-[#060B18]/60 to-transparent" />
-          </div>
-          {/* Left side base color */}
-          <div className="absolute inset-y-0 left-0 w-[45%] bg-[#060B18]" />
-          {/* Ambient purple glow behind left content */}
-          <div className="absolute top-1/4 left-0 w-[500px] h-[500px] bg-[radial-gradient(closest-side,rgba(139,92,246,0.18),transparent)] pointer-events-none" />
-          <div className="absolute bottom-1/4 left-[10%] w-[400px] h-[400px] bg-[radial-gradient(closest-side,rgba(56,189,248,0.12),transparent)] pointer-events-none" />
+      {/* ═══════════════════════════════════════════
+          HERO BOTTOM — Neon marquee + handwritten
+          ═══════════════════════════════════════════ */}
+      <div className="relative bg-[#060B18]">
+        {/* Background: crowd / pandal street scene */}
+        <div className="absolute inset-0 overflow-hidden opacity-60">
+          <Image
+            src="/images/hero-puja.jpg"
+            alt=""
+            fill
+            sizes="100vw"
+            className="object-cover object-bottom"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#060B18]/95 via-[#060B18]/60 to-[#060B18]/80" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#060B18]/70 to-transparent" />
         </div>
 
-        {/* Left column — text content */}
-        <div className="relative z-10 flex flex-col justify-center w-[46%] xl:w-[44%] px-10 xl:px-16 2xl:px-24 py-24">
-          {/* Eyebrow */}
-          <p className="text-xs font-semibold tracking-[0.2em] text-cyan-400 uppercase mb-4">
-            Kolkata&apos;s Smart Dining Companion
-          </p>
-
-          {/* Headline */}
-          <h1 className="font-extrabold leading-[1.07] mb-5">
-            <span className="block text-5xl xl:text-6xl text-white">Dine Without</span>
-            <span className="block text-5xl xl:text-6xl text-white">The Wait.</span>
-            <span className="block text-5xl xl:text-6xl bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
-              Explore More.
-            </span>
-          </h1>
-
-          {/* Subtext */}
-          <p className="text-base text-white/75 leading-relaxed mb-8 max-w-[380px]">
-            Join restaurant queues from your phone, pre-order your food, and explore
-            nearby pandals while we notify you when your table is ready.
-          </p>
-
-          {/* 4-step icons */}
-          <div className="flex gap-6 mb-9">
-            {steps.map((s) => (
-              <div key={s.label} className="flex flex-col items-center gap-2">
-                <div className="w-11 h-11 rounded-full border border-white/20 bg-white/8 backdrop-blur-sm flex items-center justify-center text-cyan-300">
-                  {s.icon}
-                </div>
-                <span className="text-[10px] text-white/65 text-center leading-tight">
-                  {s.label}
-                  <br />
-                  {s.label2}
-                </span>
+        {/* Content */}
+        <div className="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-10 py-10 sm:py-14">
+          <div className="flex items-center gap-8 sm:gap-12">
+            {/* Neon sign */}
+            <div className="flex-shrink-0">
+              <div
+                className="text-amber-400 font-black text-2xl sm:text-3xl leading-tight tracking-[0.15em] uppercase"
+                style={{
+                  textShadow:
+                    "0 0 10px rgba(251,191,36,0.9), 0 0 25px rgba(251,191,36,0.6), 0 0 50px rgba(251,191,36,0.3)",
+                }}
+              >
+                SKIP
+                <br />
+                DINE
+                <br />
+                EXPLORE
+                <br />
+                REPEAT
               </div>
-            ))}
-          </div>
+              {/* heart */}
+              <div
+                className="text-amber-400 text-xl mt-1"
+                style={{ textShadow: "0 0 10px rgba(251,191,36,0.9)" }}
+              >
+                ♥
+              </div>
+            </div>
 
-          {/* CTAs */}
-          <div className="flex flex-col sm:flex-row gap-3 mb-7 max-w-[420px]">
-            <button
-              onClick={onOpenQueue}
-              className="flex-1 flex items-center justify-center gap-2 py-4 px-6 rounded-full bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold text-sm shadow-lg shadow-purple-800/40 hover:brightness-110 active:scale-95 transition-all"
+            {/* Handwritten text */}
+            <div
+              className="flex-1"
+              style={{ fontFamily: "'Dancing Script', cursive, Georgia, serif" }}
             >
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} className="w-4 h-4">
-                <rect x="3" y="3" width="7" height="7" rx="1" />
-                <rect x="14" y="3" width="7" height="7" rx="1" />
-                <rect x="3" y="14" width="7" height="7" rx="1" />
+              <p className="text-white text-2xl sm:text-3xl xl:text-4xl font-bold italic leading-snug drop-shadow-xl">
+                Pandal Hopping
+              </p>
+              <p className="text-white text-2xl sm:text-3xl xl:text-4xl font-bold italic leading-snug drop-shadow-xl">
+                Tastes Better
+              </p>
+              <p className="text-cyan-300 text-2xl sm:text-3xl xl:text-4xl font-bold italic leading-snug drop-shadow-xl">
+                With ASSO
+              </p>
+              {/* Underline flourish */}
+              <svg className="mt-1" width="180" height="12" viewBox="0 0 180 12">
+                <path d="M2 10 Q90 2 178 7" stroke="#67e8f9" strokeWidth="2.5" fill="none" strokeLinecap="round" />
               </svg>
-              Join Live Queue Demo →
-            </button>
-            <button
-              onClick={() => scrollTo("pandals")}
-              className="flex-1 flex items-center justify-center gap-2 py-4 px-6 rounded-full border border-white/25 bg-white/6 backdrop-blur-sm text-white font-semibold text-sm hover:bg-white/15 active:scale-95 transition-all"
-            >
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} className="w-4 h-4">
-                <circle cx="11" cy="11" r="8" />
-                <path d="m21 21-4.35-4.35" strokeLinecap="round" />
-              </svg>
-              Find Restaurants Near You
-            </button>
-          </div>
-
-          {/* Trust marks */}
-          <div className="flex gap-5 flex-wrap">
-            {["No App Download", "100% Free for Diners", "Quick & Easy"].map((t) => (
-              <span key={t} className="flex items-center gap-1.5 text-xs text-white/55">
-                <svg viewBox="0 0 16 16" fill="none" className="w-3.5 h-3.5 text-green-400 flex-shrink-0">
-                  <circle cx="8" cy="8" r="7" stroke="currentColor" strokeWidth="1.5" />
-                  <path d="M5 8l2 2 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-                {t}
-              </span>
-            ))}
-          </div>
-        </div>
-
-        {/* Right column — phone mockup floats over the photo */}
-        <div className="relative z-10 flex-1 flex items-end justify-center pb-8 pt-24 pr-8 xl:pr-16">
-          {/* Floating "Same Waiting Time. More Puja." sticker — top right of the photo */}
-          <div
-            className="absolute top-[18%] right-[5%] xl:right-[8%] text-right pointer-events-none select-none z-20"
-            style={{ fontFamily: "cursive" }}
-          >
-            <p className="text-white text-[22px] font-black leading-tight drop-shadow-xl">Same</p>
-            <p className="text-white text-[22px] font-black leading-tight italic drop-shadow-xl">Waiting Time.</p>
-            <p className="text-[#ff6fe8] text-[24px] font-black leading-tight italic drop-shadow-xl">More Puja.</p>
-            <svg className="ml-auto mt-1" width="110" height="10" viewBox="0 0 110 10">
-              <path d="M2 8 Q55 1 108 5" stroke="#ff6fe8" strokeWidth="2.5" fill="none" strokeLinecap="round" />
-            </svg>
-          </div>
-
-          {/* Phone mockup */}
-          <div className="relative w-[200px] xl:w-[240px] 2xl:w-[270px] drop-shadow-[0_40px_60px_rgba(0,0,0,0.7)]">
-            <Image
-              src="/images/hero-exact-showcase.png"
-              alt="ASSO App — Live Queue Screen"
-              width={270}
-              height={580}
-              priority
-              className="w-full h-auto rounded-[32px] ring-1 ring-white/10"
-            />
-          </div>
-
-          {/* Neon marquee sign — bottom left of the right column */}
-          <div
-            className="absolute bottom-[8%] left-[2%] rounded-2xl overflow-hidden min-w-[180px] xl:min-w-[220px]"
-          >
-            <div className="relative">
-              <div className="absolute inset-0">
-                <Image src="/images/hero-puja.jpg" alt="" fill sizes="260px" className="object-cover object-bottom opacity-80" />
-                <div className="absolute inset-0 bg-black/50" />
-              </div>
-              <div className="relative z-10 px-5 py-4 flex items-center gap-6">
-                <div
-                  className="text-amber-400 font-black text-lg leading-tight tracking-widest uppercase"
-                  style={{ textShadow: "0 0 16px rgba(251,191,36,0.9), 0 0 32px rgba(251,191,36,0.5)" }}
-                >
-                  SKIP<br />DINE<br />EXPLORE<br />REPEAT
-                </div>
-                <div style={{ fontFamily: "cursive" }}>
-                  <p className="text-white text-sm font-bold italic leading-snug">Pandal Hopping</p>
-                  <p className="text-cyan-300 text-sm font-bold italic leading-snug">Tastes Better</p>
-                  <p className="text-white text-sm font-bold italic leading-snug">With ASSO</p>
-                </div>
-              </div>
             </div>
           </div>
         </div>
       </div>
 
       {/* Scroll indicator */}
-      <button
-        onClick={() => scrollTo("how-it-works")}
-        className="hidden lg:flex absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex-col items-center gap-2 text-white/40 hover:text-white/70 transition-colors"
-      >
-        <svg viewBox="0 0 24 42" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-5 h-8">
+      <div className="relative z-10 bg-[#060B18] pb-6 flex flex-col items-center gap-2 text-white/30">
+        <svg viewBox="0 0 24 42" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-5 h-8 animate-bounce">
           <rect x="2" y="2" width="20" height="38" rx="10" />
-          <circle cx="12" cy="12" r="2" fill="currentColor" className="animate-bounce" />
+          <circle cx="12" cy="12" r="2.5" fill="currentColor" />
         </svg>
-        <span className="text-[10px] tracking-widest uppercase">Scroll to Explore</span>
-      </button>
+        <span className="text-[9px] tracking-[0.25em] uppercase">Scroll to Explore</span>
+      </div>
     </section>
   );
 }
