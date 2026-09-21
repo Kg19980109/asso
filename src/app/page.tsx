@@ -9,11 +9,8 @@ import { FestiveStatsBanner } from "@/components/sections/festive-stats-banner";
 import { RestaurantChaosSection } from "@/components/sections/restaurant-chaos-section";
 import { ForRestaurantsSection } from "@/components/sections/for-restaurants-section";
 import { QueueSimulatorSection } from "@/components/sections/queue-simulator-section";
-import { HassleFreeSetupSection } from "@/components/sections/hasslefree-setup-section";
-import { ComparisonMatrixSection } from "@/components/sections/comparison-matrix-section";
-import { TestimonialsSection } from "@/components/sections/testimonials-section";
-import { PujaProblemSection } from "@/components/sections/puja-problem-section";
 import { HowItWorksSection } from "@/components/sections/how-it-works-section";
+import { PujaProblemSection } from "@/components/sections/puja-problem-section";
 import { BetterExperienceSection } from "@/components/sections/better-experience-section";
 import { PandalsAndPreorderSection } from "@/components/sections/pandals-and-preorder-section";
 import { FaqSection } from "@/components/sections/faq-section";
@@ -39,60 +36,52 @@ export default function HomePage() {
       {/* 60fps Glowing Scroll Progress Bar */}
       <ScrollProgressBar />
 
-      {/* Navigation Header — now includes "For Restaurants" CTA */}
+      {/* Navigation Header */}
       <Header
         onOpenQueue={() => setQueueModalOpen(true)}
         onOpenPartner={() => setPartnerModalOpen(true)}
       />
 
-      {/* ─────────────────────────────────────────────────────────────────────
+      {/* ─────────────────────────────────────────────────────
           MAIN LANDING SECTIONS
-          Conversion journey:
-            HERO → TRUST/STATS → RESTAURANT PROBLEM → RESTAURANT SOLUTION →
-            INTERACTIVE DEMO → SETUP → COMPARISON → TESTIMONIALS →
-            CONSUMER EXPERIENCE → FAQ → FINAL CTA
-         ───────────────────────────────────────────────────────────────────── */}
+          HERO → STATS → RESTAURANT PROBLEM → RESTAURANT SOLUTION
+          → ASSO IN 10 SECONDS → HOW ASSO WORKS
+          → CONSUMER EXPERIENCE → FAQ → FINAL CTA
+         ───────────────────────────────────────────────────── */}
       <main className="flex-1">
 
-        {/* 1. HERO — dual persona (Diner / Restaurant toggle) */}
+        {/* 1. HERO */}
         <HeroSection
           onOpenConnect={() => setPartnerModalOpen(true)}
           onOpenQueue={() => setQueueModalOpen(true)}
         />
 
-        {/* 2. TRUST / STATS — illustrative pilot targets */}
+        {/* 2. TRUST / STATS */}
         <FestiveStatsBanner />
 
-        {/* 3. RESTAURANT PROBLEM — pain framing for restaurant owners */}
+        {/* 3. RESTAURANT PROBLEM */}
         <RestaurantChaosSection onOpenPartner={() => setPartnerModalOpen(true)} />
 
-        {/* 4. RESTAURANT SOLUTION — The ASSO Way + live dashboard mockup */}
+        {/* 4. RESTAURANT SOLUTION */}
         <ForRestaurantsSection onOpenPartner={() => setPartnerModalOpen(true)} />
 
-        {/* 5. INTERACTIVE DEMO — queue simulator for restaurant owners to experience the product */}
+        {/* 5. ASSO IN 10 SECONDS — interactive simulator */}
         <QueueSimulatorSection onOpenPartner={() => setPartnerModalOpen(true)} />
 
-        {/* 6. SETUP — how easy onboarding is (4 steps, no hardware) */}
-        <HassleFreeSetupSection onOpenPartner={() => setPartnerModalOpen(true)} />
-
-        {/* 7. COMPARISON — Old way vs. ASSO way */}
-        <ComparisonMatrixSection onOpenPartner={() => setPartnerModalOpen(true)} />
-
-        {/* 8. SOCIAL PROOF — pilot diner testimonials */}
-        <TestimonialsSection />
-
-        {/* 9. CONSUMER EXPERIENCE — diner journey (pandal hopping, pre-order) */}
-        <PujaProblemSection onOpenQueue={() => setQueueModalOpen(true)} />
+        {/* 6. HOW ASSO WORKS — step-by-step diner journey */}
         <HowItWorksSection
           onOpenQueue={() => setQueueModalOpen(true)}
         />
+
+        {/* 7. CONSUMER EXPERIENCE — pandal hopping & pre-order */}
+        <PujaProblemSection onOpenQueue={() => setQueueModalOpen(true)} />
         <BetterExperienceSection />
         <PandalsAndPreorderSection onOpenQueue={() => setQueueModalOpen(true)} />
 
-        {/* 10. FAQ — tabbed (Diners / Restaurants) */}
+        {/* 8. FAQ */}
         <FaqSection onOpenPartner={() => setPartnerModalOpen(true)} />
 
-        {/* 11. FINAL CTA — unified restaurant message */}
+        {/* 9. FINAL CTA */}
         <FinalCtaSection
           onOpenQueue={() => setQueueModalOpen(true)}
           onOpenPartner={() => setPartnerModalOpen(true)}
@@ -102,7 +91,7 @@ export default function HomePage() {
       {/* Footer */}
       <Footer />
 
-      {/* Interactive Global Modals */}
+      {/* Global Modals */}
       <LiveQueueModal
         isOpen={queueModalOpen}
         onClose={() => setQueueModalOpen(false)}
