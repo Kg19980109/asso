@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import fs from "fs/promises";
-import path from "path";
+import { createLead } from "@/lib/leads";
 
 interface LeadPayload {
   restaurantName: string;
@@ -11,13 +10,6 @@ interface LeadPayload {
   outlets?: string;
   dailyWalkins?: string;
   notes?: string;
-}
-
-interface StoredLead extends LeadPayload {
-  id: string;
-  createdAt: string;
-  ip: string;
-  userAgent: string | null;
 }
 
 // In-memory sliding window rate limiter (max 5 submissions per 10 minutes per IP)
@@ -76,6 +68,19 @@ function sanitizeText(input: unknown, maxLength: number): string {
     .trim()
     .slice(0, maxLength)
     .replace(/[<>]/g, ""); // Basic strip of HTML bracket tags
+}
+
+/**
+ * Public visitors cannot retrieve leads.
+ */
+export async function GET() {
+  return NextResponse.json(
+    {
+      success: false,
+      error: "Method not allowed. Lead retrieval is restricted to authorized operators.",
+    },
+    { status: 405 }
+  );
 }
 
 export async function POST(req: NextRequest) {
@@ -187,84 +192,32 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // 5. Build authoritative lead record
-    const leadId = `lead_${Date.now()}_${Math.random().toString(36).substring(2, 8)}`;
-    const leadRecord: StoredLead = {
-      id: leadId,
-      restaurantName,
-      ownerName,
-      phone: normalizedPhone,
-      email: rawEmail || undefined,
-      cityArea,
-      outlets: sanitizedOutlets,
-      dailyWalkins: sanitizedWalkins || undefined,
-      notes: notes || undefined,
-      createdAt: new Date().toISOString(),
-      ip: clientIp,
-      userAgent: req.headers.get("user-agent"),
-    };
-
-    // 6. Persistence: Local persistent file storage (guaranteed reliable fallback)
-    try {
-      const dataDir = path.join(process.cwd(), "data");
-      const filePath = path.join(dataDir, "partner-leads.json");
-
-      await fs.mkdir(dataDir, { recursive: true });
-
-      let existingLeads: StoredLead[] = [];
-      try {
-        const fileContent = await fs.readFile(filePath, "utf-8");
-        existingLeads = JSON.parse(fileContent);
-        if (!Array.isArray(existingLeads)) existingLeads = [];
-      } catch {
-        existingLeads = [];
+    // 5. Build authoritative lead record with complete operational state
+    const leadRecord = await createLead(
+      {
+        restaurantName,
+        ownerName,
+        phone: normalizedPhone,
+        email: rawEmail || undefined,
+        cityArea,
+        outlets: sanitizedOutlets,
+        dailyWalkins: sanitizedWalkins || undefined,
+        notes: notes || undefined,
+      },
+      {
+        ip: clientIp,
+        userAgent: req.headers.get("user-agent"),
       }
-
-      existingLeads.push(leadRecord);
-      await fs.writeFile(filePath, JSON.stringify(existingLeads, null, 2), "utf-8");
-    } catch {
-      // Local write fallback error is contained; we still proceed
-    }
-
-    // 7. Optional Supabase database sync if credentials exist
-    const supabaseUrl = process.env.SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL;
-    const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_ANON_KEY;
-
-    if (supabaseUrl && supabaseKey) {
-      try {
-        await fetch(`${supabaseUrl}/rest/v1/partner_leads`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            apikey: supabaseKey,
-            Authorization: `Bearer ${supabaseKey}`,
-            Prefer: "return=minimal",
-          },
-          body: JSON.stringify({
-            restaurant_name: leadRecord.restaurantName,
-            owner_name: leadRecord.ownerName,
-            phone: leadRecord.phone,
-            email: leadRecord.email,
-            city_area: leadRecord.cityArea,
-            outlets: leadRecord.outlets,
-            daily_walkins: leadRecord.dailyWalkins,
-            notes: leadRecord.notes,
-            created_at: leadRecord.createdAt,
-          }),
-        });
-      } catch {
-        // Silently tolerate if Supabase is offline or table not yet created
-      }
-    }
+    );
 
     // Register into duplicate cache
-    duplicateCache.set(dupKey, { id: leadId, timestamp: now });
+    duplicateCache.set(dupKey, { id: leadRecord.id, timestamp: now });
 
     // 8. Return authoritative success response
     return NextResponse.json(
       {
         success: true,
-        leadId,
+        leadId: leadRecord.id,
         message: "Thank you. Your request has been recorded.",
       },
       { status: 200 }
