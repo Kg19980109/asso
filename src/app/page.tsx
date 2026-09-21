@@ -42,7 +42,10 @@ export default function HomePage() {
 
       {/* Main Landing Sections */}
       <main className="flex-1">
-        <HeroSection onOpenConnect={() => setPartnerModalOpen(true)} />
+        <HeroSection
+          onOpenConnect={() => setPartnerModalOpen(true)}
+          onOpenQueue={() => setQueueModalOpen(true)}
+        />
         <PujaProblemSection onOpenQueue={() => setQueueModalOpen(true)} />
         <HowItWorksSection
           onOpenQueue={() => setQueueModalOpen(true)}
