@@ -57,10 +57,11 @@ export function Footer() {
                     <span className="text-slate-400 text-[11px]">Contact: </span>support@asso.business
                   </a>
                   <a
-                    href="mailto:ass.helpdesk@gmail.com"
-                    className="text-xs sm:text-sm font-medium text-white hover:text-cyan-300 transition-colors"
+                    href="mailto:asso.helpdesk@gmail.com"
+                    className="text-xs sm:text-sm font-medium text-white hover:text-cyan-300 transition-colors flex items-center gap-1.5"
                   >
-                    <span className="text-slate-400 text-[11px]">Support: </span>ass.helpdesk@gmail.com
+                    <span className="text-slate-400 text-[11px]">Support: </span>
+                    <span>asso.helpdesk@gmail.com</span>
                   </a>
                 </div>
               </div>
@@ -137,8 +138,8 @@ export function Footer() {
                 </a>
               </li>
               <li>
-                <a href="mailto:ass.helpdesk@gmail.com" className="hover:text-cyan-300 transition-colors">
-                  ass.helpdesk@gmail.com
+                <a href="mailto:asso.helpdesk@gmail.com" className="hover:text-cyan-300 transition-colors">
+                  asso.helpdesk@gmail.com
                 </a>
               </li>
               <li>
