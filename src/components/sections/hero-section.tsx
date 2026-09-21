@@ -95,13 +95,17 @@ export function HeroSection({ onOpenConnect, onOpenQueue }: HeroSectionProps) {
             sizes="100vw"
           />
           {/* Strong left darkening — text reads clearly, photo shines on right */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#060B18] from-30% via-[#060B18]/70 via-55% to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#060B18] from-[35%] via-[#060B18]/60 via-[58%] to-transparent" />
           {/* Top fade (under header) */}
           <div className="absolute inset-x-0 top-0 h-36 bg-gradient-to-b from-[#060B18] to-transparent" />
           {/* Bottom fade into offering cards */}
           <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-[#060B18] to-transparent" />
+          {/* Mobile: stronger center darkening so text pops */}
+          <div className="absolute inset-0 sm:hidden bg-gradient-to-b from-[#060B18]/50 via-transparent to-[#060B18]/70" />
+          {/* Festive gold glow at bottom on mobile */}
+          <div className="absolute bottom-0 inset-x-0 h-40 sm:hidden bg-gradient-to-t from-amber-900/20 to-transparent" />
           {/* Purple ambient glow behind text */}
-          <div className="absolute top-1/4 -left-20 w-[550px] h-[550px] rounded-full bg-purple-600/[0.12] blur-3xl pointer-events-none" />
+          <div className="absolute top-1/4 -left-20 w-[550px] h-[550px] rounded-full bg-purple-600/[0.15] blur-3xl pointer-events-none" />
           <div className="absolute bottom-1/3 left-0 w-[400px] h-[400px] rounded-full bg-cyan-500/[0.08] blur-3xl pointer-events-none" />
         </div>
 
@@ -132,13 +136,13 @@ export function HeroSection({ onOpenConnect, onOpenQueue }: HeroSectionProps) {
 
             {/* H1 */}
             <h1 className="font-extrabold leading-[1.05] mb-5 sm:mb-6">
-              <span className="block text-[2.6rem] sm:text-[3.2rem] xl:text-[3.8rem] text-white [text-shadow:0_4px_40px_rgba(0,0,0,0.6)]">
+              <span className="block text-[2.6rem] sm:text-[3.2rem] xl:text-[3.8rem] text-white [text-shadow:0_0_40px_rgba(139,92,246,0.4),0_4px_40px_rgba(0,0,0,0.6)]">
                 Dine Without
               </span>
-              <span className="block text-[2.6rem] sm:text-[3.2rem] xl:text-[3.8rem] text-white [text-shadow:0_4px_40px_rgba(0,0,0,0.6)]">
+              <span className="block text-[2.6rem] sm:text-[3.2rem] xl:text-[3.8rem] text-white [text-shadow:0_0_40px_rgba(139,92,246,0.4),0_4px_40px_rgba(0,0,0,0.6)]">
                 The Wait.
               </span>
-              <span className="block text-[2.6rem] sm:text-[3.2rem] xl:text-[3.8rem] bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+              <span className="block text-[2.6rem] sm:text-[3.2rem] xl:text-[3.8rem] bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent [filter:drop-shadow(0_0_20px_rgba(139,92,246,0.5))]">
                 Explore More.
               </span>
             </h1>
@@ -153,7 +157,7 @@ export function HeroSection({ onOpenConnect, onOpenQueue }: HeroSectionProps) {
             <div className="flex flex-col sm:flex-row gap-3 mb-7 max-w-[430px]">
               <button
                 onClick={onOpenQueue}
-                className="flex-1 flex items-center justify-center gap-2.5 py-4 px-7 rounded-full font-bold text-sm text-white bg-gradient-to-r from-purple-600 via-violet-600 to-pink-600 shadow-[0_0_40px_rgba(139,92,246,0.5)] hover:shadow-[0_0_55px_rgba(139,92,246,0.7)] hover:brightness-110 active:scale-[0.97] transition-all duration-200"
+                className="flex-1 flex items-center justify-center gap-2.5 py-4 px-7 rounded-full font-bold text-sm text-white bg-gradient-to-r from-purple-600 via-violet-600 to-pink-600 shadow-[0_0_40px_rgba(139,92,246,0.55)] hover:shadow-[0_0_60px_rgba(139,92,246,0.75)] hover:brightness-110 active:scale-[0.97] transition-all duration-200"
               >
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} className="w-4 h-4 flex-shrink-0">
                   <rect x="3" y="3" width="7" height="7" rx="1" /><rect x="14" y="3" width="7" height="7" rx="1" />
@@ -163,7 +167,7 @@ export function HeroSection({ onOpenConnect, onOpenQueue }: HeroSectionProps) {
               </button>
               <button
                 onClick={() => scrollTo("pandals")}
-                className="flex-1 flex items-center justify-center gap-2.5 py-4 px-7 rounded-full font-semibold text-sm text-white border border-white/20 bg-white/[0.06] backdrop-blur-lg hover:bg-white/[0.13] hover:border-white/40 active:scale-[0.97] transition-all duration-200"
+                className="flex-1 flex items-center justify-center gap-2.5 py-4 px-7 rounded-full font-semibold text-sm text-white border border-white/25 bg-white/[0.08] backdrop-blur-lg hover:bg-white/[0.16] hover:border-white/40 active:scale-[0.97] transition-all duration-200"
               >
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} className="w-4 h-4 flex-shrink-0">
                   <circle cx="11" cy="11" r="8" /><path d="m21 21-4.35-4.35" strokeLinecap="round" />

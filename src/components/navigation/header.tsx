@@ -28,7 +28,7 @@ export function Header({ onOpenDownload, onOpenQueue, onOpenPartner }: HeaderPro
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
           ? "bg-[#060B18]/95 backdrop-blur-xl border-b border-white/15 shadow-xl shadow-black/40 py-2.5"
-          : "max-sm:hidden bg-[#060B18]/30 backdrop-blur-xs border-b border-transparent py-3"
+          : "bg-[#060B18]/30 backdrop-blur-xs border-b border-transparent py-3"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
@@ -48,29 +48,7 @@ export function Header({ onOpenDownload, onOpenQueue, onOpenPartner }: HeaderPro
           </span>
         </Link>
 
-        {/* Pill switcher for Diners / Restaurants matching design mockup */}
-        <div className="flex items-center gap-1.5 p-1 rounded-full bg-white/[0.06] border border-white/15 backdrop-blur-md">
-          <Link
-            href="#for-diners"
-            className="px-3.5 sm:px-4 py-1.5 rounded-full bg-[#18122B] text-white text-xs font-bold border border-purple-400/40 shadow-sm transition-all"
-          >
-            For Diners
-          </Link>
-          <span className="text-slate-600 text-xs select-none">|</span>
-          <button
-            type="button"
-            onClick={() => {
-              if (onOpenPartner) onOpenPartner();
-              else {
-                const el = document.getElementById("for-restaurants");
-                el?.scrollIntoView({ behavior: "smooth" });
-              }
-            }}
-            className="px-3 sm:px-3.5 py-1.5 rounded-full text-slate-300 hover:text-white text-xs font-semibold transition-colors cursor-pointer"
-          >
-            For Restaurants
-          </button>
-        </div>
+
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-7">
@@ -117,15 +95,7 @@ export function Header({ onOpenDownload, onOpenQueue, onOpenPartner }: HeaderPro
               <span>Get Started</span>
             </button>
           )}
-          {onOpenQueue && (
-            <button
-              onClick={onOpenQueue}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-[#7C3AED] to-[#8B5CF6] hover:from-[#6D28D9] hover:to-[#7C3AED] text-white font-bold text-xs shadow-lg shadow-purple-500/30 transition-all hover:scale-105 active:scale-95 cursor-pointer"
-            >
-              <Sparkles className="w-3.5 h-3.5 text-amber-300" />
-              <span>Join Queue</span>
-            </button>
-          )}
+
         </div>
 
         {/* Mobile Menu Button */}
@@ -190,18 +160,7 @@ export function Header({ onOpenDownload, onOpenQueue, onOpenPartner }: HeaderPro
                 <span>Get Started for Your Restaurant</span>
               </button>
             )}
-            {onOpenQueue && (
-              <button
-                onClick={() => {
-                  setMobileMenuOpen(false);
-                  onOpenQueue();
-                }}
-                className="flex items-center justify-center gap-2 w-full py-2.5 rounded-full bg-gradient-to-r from-[#7C3AED] to-[#8B5CF6] text-white font-bold text-xs shadow-lg shadow-purple-500/30 cursor-pointer"
-              >
-                <Sparkles className="w-4 h-4 text-amber-300" />
-                <span>Join Live Queue</span>
-              </button>
-            )}
+
           </div>
         </div>
       )}
