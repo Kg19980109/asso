@@ -22,29 +22,34 @@ const caveat = Caveat({
 });
 
 export const metadata: Metadata = {
-  title: "ASSO — Business Management & Q | Skip the Queue. Enjoy More.",
+  title: "ASSO — Restaurant Queue Management | Kolkata's Smart Dining Platform",
   description:
-    "This Puja, Don't Just Wait. Explore More. Join the queue, pre-order your food and explore pandals while we get your table and food ready!",
-  applicationName: "ASSO — Business Management & Q",
+    "ASSO helps Kolkata restaurants manage walk-in queues digitally — no hardware, live in minutes. Guests join via QR, explore pandals, and return to a ready table. Free pilot for early partners.",
+  applicationName: "ASSO — Restaurant Queue Management",
   icons: {
     icon: "/asso-icon.svg",
     apple: "/asso-icon.svg",
   },
   keywords: [
     "ASSO",
-    "restaurant queue",
+    "restaurant queue management",
+    "digital queue system",
     "Kolkata restaurants",
     "Durga Puja dining",
+    "virtual queue",
+    "table management",
+    "restaurant tech Kolkata",
     "food pre-ordering",
     "smart table queue",
   ],
   openGraph: {
-    title: "ASSO — Skip the Queue. Enjoy More.",
+    title: "ASSO — Restaurant Queue Management for Kolkata",
     description:
-      "This Puja, Don't Just Wait. Explore More. Join the queue, pre-order your food and explore pandals with ASSO.",
+      "Turn walk-in chaos into organised digital queues. ASSO helps Kolkata restaurants manage queues, pre-orders and table turns — no hardware required. Free pilot for Puja 2026.",
     type: "website",
     locale: "en_US",
     siteName: "ASSO",
+    url: "https://asso.business",
   },
 };
 

@@ -148,7 +148,7 @@ export function HeroSection({ onOpenConnect, onOpenQueue }: HeroSectionProps) {
                   <span className="block">Control The Rush.</span>
                   <span className="block text-slate-100">Zero Door Chaos.</span>
                   <span className="block bg-gradient-to-r from-amber-300 via-orange-400 to-rose-400 bg-clip-text text-transparent drop-shadow-[0_4px_30px_rgba(245,158,11,0.3)]">
-                    35% More Revenue.
+                    35% More Table Turns.
                   </span>
                 </h1>
               )}
@@ -161,9 +161,12 @@ export function HeroSection({ onOpenConnect, onOpenQueue }: HeroSectionProps) {
                   Join restaurant queues from your phone, pre-order signature food, and visit nearby pandals. Walk in right when your table is hot and ready.
                 </p>
               ) : (
-                <p className="text-sm sm:text-base lg:text-lg text-slate-300 leading-relaxed max-w-xl mx-auto lg:mx-0 font-normal">
-                  Turn packed Kolkata pavements into smooth virtual queues and faster table turns. Zero hardware to buy, zero POS integration needed. Live in 15 minutes.
-                </p>
+                <>
+                  <p className="text-sm sm:text-base lg:text-lg text-slate-300 leading-relaxed max-w-xl mx-auto lg:mx-0 font-normal">
+                    Turn packed Kolkata pavements into smooth virtual queues and faster table turns. Zero hardware to buy, zero POS integration needed. Live in 15 minutes.
+                  </p>
+                  <p className="text-[11px] text-slate-500 mt-1">*Target metric from pilot projections — measure your own results in the free pilot.</p>
+                </>
               )}
             </ScrollReveal>
 
@@ -191,14 +194,19 @@ export function HeroSection({ onOpenConnect, onOpenQueue }: HeroSectionProps) {
                   </>
                 ) : (
                   <>
-                    <button
-                      onClick={onOpenConnect}
-                      className="relative group inline-flex items-center gap-2.5 px-8 py-4 rounded-full bg-gradient-to-r from-amber-400 via-orange-500 to-rose-500 text-slate-950 font-black text-sm shadow-xl shadow-amber-500/25 transition-all duration-200 hover:scale-105 active:scale-95 cursor-pointer overflow-hidden"
-                    >
-                      <Sparkles className="w-4 h-4 text-slate-950" />
-                      <span>Get Free Outlet Pilot</span>
-                      <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                    </button>
+                    <div className="w-full sm:w-auto">
+                      <button
+                        onClick={onOpenConnect}
+                        className="w-full sm:w-auto relative group inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-full bg-gradient-to-r from-amber-400 via-orange-500 to-rose-500 text-slate-950 font-black text-sm shadow-xl shadow-amber-500/25 transition-all duration-200 hover:scale-105 active:scale-95 cursor-pointer overflow-hidden"
+                      >
+                        <Sparkles className="w-4 h-4 text-slate-950" />
+                        <span>Get Started for Your Restaurant</span>
+                        <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                      </button>
+                      <p className="text-[11px] text-slate-400 mt-2 text-center lg:text-left">
+                        No hardware required • Set up in minutes • Free pilot
+                      </p>
+                    </div>
 
                     <a
                       href="#for-restaurants"
@@ -215,62 +223,125 @@ export function HeroSection({ onOpenConnect, onOpenQueue }: HeroSectionProps) {
             {/* Quick Value Metrics Ribbon */}
             <ScrollReveal direction="up" delay={250}>
               <div className="pt-3">
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-2.5 max-w-xl mx-auto lg:mx-0">
-                  {/* Metric 1 */}
-                  <div className="flex items-center gap-2.5 px-3 py-2.5 rounded-xl bg-white/[0.04] border border-white/10 backdrop-blur-md shadow-sm">
-                    <div className="w-8 h-8 rounded-lg bg-blue-500/20 border border-blue-400/40 flex items-center justify-center text-blue-400 flex-shrink-0">
-                      <Clock className="w-4 h-4" />
+                {activePersona === "diner" ? (
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-2.5 max-w-xl mx-auto lg:mx-0">
+                    {/* Metric 1 */}
+                    <div className="flex items-center gap-2.5 px-3 py-2.5 rounded-xl bg-white/[0.04] border border-white/10 backdrop-blur-md shadow-sm">
+                      <div className="w-8 h-8 rounded-lg bg-blue-500/20 border border-blue-400/40 flex items-center justify-center text-blue-400 flex-shrink-0">
+                        <Clock className="w-4 h-4" />
+                      </div>
+                      <div className="text-left">
+                        <p className="text-xs font-bold text-white leading-tight">0 min</p>
+                        <p className="text-[10px] text-slate-400">At Doorstep</p>
+                      </div>
                     </div>
-                    <div className="text-left">
-                      <p className="text-xs font-bold text-white leading-tight">0 min</p>
-                      <p className="text-[10px] text-slate-400">At Doorstep</p>
-                    </div>
-                  </div>
 
-                  {/* Metric 2 */}
-                  <div className="flex items-center gap-2.5 px-3 py-2.5 rounded-xl bg-white/[0.04] border border-white/10 backdrop-blur-md shadow-sm">
-                    <div className="w-8 h-8 rounded-lg bg-purple-500/20 border border-purple-400/40 flex items-center justify-center text-purple-300 flex-shrink-0">
-                      <Landmark className="w-4 h-4" />
+                    {/* Metric 2 */}
+                    <div className="flex items-center gap-2.5 px-3 py-2.5 rounded-xl bg-white/[0.04] border border-white/10 backdrop-blur-md shadow-sm">
+                      <div className="w-8 h-8 rounded-lg bg-purple-500/20 border border-purple-400/40 flex items-center justify-center text-purple-300 flex-shrink-0">
+                        <Landmark className="w-4 h-4" />
+                      </div>
+                      <div className="text-left">
+                        <p className="text-xs font-bold text-white leading-tight">Hop More</p>
+                        <p className="text-[10px] text-slate-400">Pandals Nearby</p>
+                      </div>
                     </div>
-                    <div className="text-left">
-                      <p className="text-xs font-bold text-white leading-tight">Hop More</p>
-                      <p className="text-[10px] text-slate-400">Pandals Nearby</p>
-                    </div>
-                  </div>
 
-                  {/* Metric 3 */}
-                  <div className="flex items-center gap-2.5 px-3 py-2.5 rounded-xl bg-white/[0.04] border border-white/10 backdrop-blur-md shadow-sm">
-                    <div className="w-8 h-8 rounded-lg bg-orange-500/20 border border-orange-400/40 flex items-center justify-center text-orange-400 flex-shrink-0">
-                      <UtensilsCrossed className="w-4 h-4" />
+                    {/* Metric 3 */}
+                    <div className="flex items-center gap-2.5 px-3 py-2.5 rounded-xl bg-white/[0.04] border border-white/10 backdrop-blur-md shadow-sm">
+                      <div className="w-8 h-8 rounded-lg bg-orange-500/20 border border-orange-400/40 flex items-center justify-center text-orange-400 flex-shrink-0">
+                        <UtensilsCrossed className="w-4 h-4" />
+                      </div>
+                      <div className="text-left">
+                        <p className="text-xs font-bold text-white leading-tight">Pre-Order</p>
+                        <p className="text-[10px] text-slate-400">Food Ready</p>
+                      </div>
                     </div>
-                    <div className="text-left">
-                      <p className="text-xs font-bold text-white leading-tight">Pre-Order</p>
-                      <p className="text-[10px] text-slate-400">Food Ready</p>
-                    </div>
-                  </div>
 
-                  {/* Metric 4 */}
-                  <div className="flex items-center gap-2.5 px-3 py-2.5 rounded-xl bg-white/[0.04] border border-white/10 backdrop-blur-md shadow-sm">
-                    <div className="w-8 h-8 rounded-lg bg-emerald-500/20 border border-emerald-400/40 flex items-center justify-center text-emerald-400 flex-shrink-0">
-                      <QrCode className="w-4 h-4" />
-                    </div>
-                    <div className="text-left">
-                      <p className="text-xs font-bold text-white leading-tight">No App</p>
-                      <p className="text-[10px] text-slate-400">Scan &amp; Go</p>
+                    {/* Metric 4 */}
+                    <div className="flex items-center gap-2.5 px-3 py-2.5 rounded-xl bg-white/[0.04] border border-white/10 backdrop-blur-md shadow-sm">
+                      <div className="w-8 h-8 rounded-lg bg-emerald-500/20 border border-emerald-400/40 flex items-center justify-center text-emerald-400 flex-shrink-0">
+                        <QrCode className="w-4 h-4" />
+                      </div>
+                      <div className="text-left">
+                        <p className="text-xs font-bold text-white leading-tight">No App</p>
+                        <p className="text-[10px] text-slate-400">Scan &amp; Go</p>
+                      </div>
                     </div>
                   </div>
-                </div>
+                ) : (
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-2.5 max-w-xl mx-auto lg:mx-0">
+                    {/* Metric 1 - Restaurant */}
+                    <div className="flex items-center gap-2.5 px-3 py-2.5 rounded-xl bg-white/[0.04] border border-white/10 backdrop-blur-md shadow-sm">
+                      <div className="w-8 h-8 rounded-lg bg-blue-500/20 border border-blue-400/40 flex items-center justify-center text-blue-400 flex-shrink-0">
+                        <Users className="w-4 h-4" />
+                      </div>
+                      <div className="text-left">
+                        <p className="text-xs font-bold text-white leading-tight">Virtual Queue</p>
+                        <p className="text-[10px] text-slate-400">Zero Door Chaos</p>
+                      </div>
+                    </div>
+
+                    {/* Metric 2 - Restaurant */}
+                    <div className="flex items-center gap-2.5 px-3 py-2.5 rounded-xl bg-white/[0.04] border border-white/10 backdrop-blur-md shadow-sm">
+                      <div className="w-8 h-8 rounded-lg bg-amber-500/20 border border-amber-400/40 flex items-center justify-center text-amber-300 flex-shrink-0">
+                        <TrendingUp className="w-4 h-4" />
+                      </div>
+                      <div className="text-left">
+                        <p className="text-xs font-bold text-white leading-tight">Fast Turns</p>
+                        <p className="text-[10px] text-slate-400">+35% Table Turns*</p>
+                      </div>
+                    </div>
+
+                    {/* Metric 3 - Restaurant */}
+                    <div className="flex items-center gap-2.5 px-3 py-2.5 rounded-xl bg-white/[0.04] border border-white/10 backdrop-blur-md shadow-sm">
+                      <div className="w-8 h-8 rounded-lg bg-purple-500/20 border border-purple-400/40 flex items-center justify-center text-purple-300 flex-shrink-0">
+                        <Bell className="w-4 h-4" />
+                      </div>
+                      <div className="text-left">
+                        <p className="text-xs font-bold text-white leading-tight">Ready Alerts</p>
+                        <p className="text-[10px] text-slate-400">SMS &amp; Live Web</p>
+                      </div>
+                    </div>
+
+                    {/* Metric 4 - Restaurant */}
+                    <div className="flex items-center gap-2.5 px-3 py-2.5 rounded-xl bg-white/[0.04] border border-white/10 backdrop-blur-md shadow-sm">
+                      <div className="w-8 h-8 rounded-lg bg-emerald-500/20 border border-emerald-400/40 flex items-center justify-center text-emerald-400 flex-shrink-0">
+                        <Clock className="w-4 h-4" />
+                      </div>
+                      <div className="text-left">
+                        <p className="text-xs font-bold text-white leading-tight">15-Min Setup</p>
+                        <p className="text-[10px] text-slate-400">Zero Hardware</p>
+                      </div>
+                    </div>
+                  </div>
+                )}
 
                 {/* Trust Guarantee / Script Note */}
                 <div className="mt-4 flex items-center justify-center lg:justify-start gap-4 text-xs text-slate-400">
-                  <span className="flex items-center gap-1.5 text-emerald-400 font-semibold">
-                    <CheckCircle2 className="w-3.5 h-3.5" />
-                    100% Free for Diners
-                  </span>
-                  <span className="text-slate-600">•</span>
-                  <span className="font-script text-lg text-amber-200/90 hidden sm:inline">
-                    &ldquo;Cholo ro kota pandal ghure asi... ♡&rdquo;
-                  </span>
+                  {activePersona === "diner" ? (
+                    <>
+                      <span className="flex items-center gap-1.5 text-emerald-400 font-semibold">
+                        <CheckCircle2 className="w-3.5 h-3.5" />
+                        100% Free for Diners
+                      </span>
+                      <span className="text-slate-600">•</span>
+                      <span className="font-script text-lg text-amber-200/90 hidden sm:inline">
+                        &ldquo;Cholo ro kota pandal ghure asi... ♡&rdquo;
+                      </span>
+                    </>
+                  ) : (
+                    <>
+                      <span className="flex items-center gap-1.5 text-emerald-400 font-semibold">
+                        <CheckCircle2 className="w-3.5 h-3.5" />
+                        Free Pilot for Kolkata Restaurants
+                      </span>
+                      <span className="text-slate-600">•</span>
+                      <span className="text-slate-400 hidden sm:inline">
+                        Zero POS changes needed • Run on existing devices
+                      </span>
+                    </>
+                  )}
                 </div>
               </div>
             </ScrollReveal>

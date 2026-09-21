@@ -1,8 +1,7 @@
 "use client";
 
 import * as React from "react";
-import Link from "next/link";
-import { Plus, Minus, ArrowRight, Search, Sparkles } from "lucide-react";
+import { Plus, Minus, ArrowRight, Sparkles, Store, Utensils } from "lucide-react";
 import { ScrollReveal } from "@/components/animations/scroll-reveal";
 
 interface FAQItem {
@@ -10,94 +9,103 @@ interface FAQItem {
   a: string;
 }
 
-const DINER_FAQS: { left: FAQItem[]; right: FAQItem[] } = {
+interface FaqSectionProps {
+  onOpenPartner?: () => void;
+}
+
+const RESTAURANT_FAQS: { left: FAQItem[]; right: FAQItem[] } = {
   left: [
     {
-      q: "Do I need to download the app?",
-      a: "No! You can simply scan the ASSO QR standee with any smartphone camera and join the queue directly in your browser. The app is optional for power users who want faster saved preferences and instant push alerts.",
+      q: "What is ASSO and how does it work for restaurants?",
+      a: "ASSO is a digital queue and table management system for busy restaurants. Diners scan a QR standee at your entrance to join your virtual waitlist from their phones. Your host staff manages the queue from our simple web console, receives smart table recommendations, and notifies guests with one tap when their table is ready.",
     },
     {
-      q: "Can I leave the restaurant after joining the queue?",
-      a: "Yes! That's the entire purpose of ASSO. Your spot is held virtually. You can visit pandals, shop, or grab street food while your table gets ready.",
+      q: "Do we need new hardware or POS integration?",
+      a: "No. Zero hardware to purchase and zero mandatory POS changes. The ASSO Host Console runs in any standard web browser on smartphones, tablets, or laptops your staff already owns.",
     },
     {
-      q: "How will I know when my table is ready?",
-      a: "You'll receive an active SMS and push notification when your table is 10 minutes away, and another final alert when your table is ready for seating.",
+      q: "How fast can our restaurant get started?",
+      a: "Setup takes under 20 minutes. We help configure your dining floor plan, seating preferences, and provide digital or printed QR standees for your entrance.",
+    },
+    {
+      q: "Can we choose how tables are assigned or shared?",
+      a: "Yes. ASSO supports two clear seating configurations: Simple mode keeps tables strictly exclusive to each private party, while Strict mode optimizes seat capacity when your restaurant allows shared seating during peak rush.",
+    },
+    {
+      q: "How does pricing and onboarding work?",
+      a: "Joining our Kolkata pilot is 100% free with zero setup fees. We set up your dashboard and entrance standees directly with your team. Ongoing commercial plans and tailored volume options are discussed transparently during onboarding based on your outlet size.",
     },
   ],
   right: [
     {
-      q: "Can I pre-order food?",
-      a: "Yes! Many partner restaurants allow you to pre-order signature dishes like Biryani, Fish Fry, and Kebabs so they are served piping hot right when you sit down.",
+      q: "Can customers wait outside without crowding our entrance?",
+      a: "Yes! That is the core advantage of ASSO. Guests are free to explore nearby shops, pandals, or street food. Their spot is held virtually on their mobile screen, eliminating crowded doorways.",
     },
     {
-      q: "Can I see my live queue position?",
+      q: "How do customers know when their table is ready?",
+      a: "Diners receive automated SMS notifications and real-time live browser alerts when their table is almost ready, followed by a final call alert so they return promptly.",
+    },
+    {
+      q: "Can ASSO recommend open tables to staff?",
+      a: "Yes. The host console monitors real-time party sizes and table occupancy, suggesting the optimal open table as soon as dining parties finish.",
+    },
+    {
+      q: "What happens during peak festival rushes?",
+      a: "ASSO is engineered specifically to handle high-concurrency peak dining crowds during Durga Puja, festive seasons, and busy weekends without crashing or dropping waitlist spots.",
+    },
+    {
+      q: "Can guests pre-order signature food while waiting?",
+      a: "Yes. If your restaurant enables pre-ordering, waiting guests can choose signature dishes from your digital menu so your kitchen can fire them early and serve immediately upon seating.",
+    },
+  ],
+};
+
+const DINER_FAQS: { left: FAQItem[]; right: FAQItem[] } = {
+  left: [
+    {
+      q: "Do I need to download an app to join the queue?",
+      a: "No! Simply scan the ASSO QR standee with any smartphone camera and join the queue directly in your mobile browser. No app install required.",
+    },
+    {
+      q: "Can I leave the restaurant while waiting?",
+      a: "Yes! That's the entire purpose of ASSO. Your spot is held virtually. You can visit pandals, shop, or relax nearby while your table gets ready.",
+    },
+    {
+      q: "How will I know when my table is ready?",
+      a: "You'll receive an active SMS and browser alert when your table is 5–10 minutes away, and another final alert when your table is ready for seating.",
+    },
+  ],
+  right: [
+    {
+      q: "Can I pre-order food while in the queue?",
+      a: "Yes! Participating partner restaurants allow you to pre-order signature dishes so they are prepared and served hot right when you sit down.",
+    },
+    {
+      q: "Can I see my live queue spot in real time?",
       a: "Yes. Your mobile screen updates in real time showing your exact queue number (#27), estimated wait time, and queue progress.",
     },
     {
-      q: "Is ASSO free to use?",
+      q: "Is ASSO free to use for diners?",
       a: "Yes, ASSO is 100% free for diners. No hidden booking charges or convenience fees.",
     },
   ],
 };
 
-const RESTAURANT_FAQS: { left: FAQItem[]; right: FAQItem[] } = {
-  left: [
-    {
-      q: "How do restaurant staff manage queues?",
-      a: "Host staff use the ASSO Host Console on any tablet, phone, or laptop to view waiting parties, call next guests, and manage table turnover with a single tap.",
-    },
-    {
-      q: "How fast can my restaurant go live?",
-      a: "Setup takes under 24 hours. Our Kolkata team delivers your custom standees and configures your digital host console.",
-    },
-    {
-      q: "Does ASSO work during peak festive rushes?",
-      a: "Yes, ASSO is engineered specifically to handle high-concurrency peak dining crowds during Durga Puja and weekend rushes.",
-    },
-  ],
-  right: [
-    {
-      q: "Can we configure grace periods for late guests?",
-      a: "Yes. You can configure custom grace periods (e.g. 5–10 minutes) and automated re-notifying according to your seating policy.",
-    },
-    {
-      q: "Do we need special hardware?",
-      a: "No. Any existing tablet, computer, or smartphone with an internet connection works seamlessly.",
-    },
-    {
-      q: "How do pre-orders reach our kitchen?",
-      a: "Pre-orders show up directly on your host dashboard and can be printed or integrated with your existing kitchen order workflow.",
-    },
-  ],
-};
+export function FaqSection({ onOpenPartner }: FaqSectionProps) {
+  const [tab, setTab] = React.useState<"restaurants" | "diners">("restaurants");
+  const [openQ, setOpenQ] = React.useState<string | null>("What is ASSO and how does it work for restaurants?");
 
-export function FaqSection() {
-  const [tab, setTab] = React.useState<"diners" | "restaurants">("diners");
-  const [openQ, setOpenQ] = React.useState<string | null>("Do I need to download the app?");
-  const [searchQuery, setSearchQuery] = React.useState("");
-
-  const currentFaqs = tab === "diners" ? DINER_FAQS : RESTAURANT_FAQS;
+  const currentFaqs = tab === "restaurants" ? RESTAURANT_FAQS : DINER_FAQS;
 
   const toggle = (q: string) => {
     setOpenQ(openQ === q ? null : q);
   };
 
-  const filterList = (items: FAQItem[]) =>
-    items.filter(
-      (item) =>
-        item.q.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        item.a.toLowerCase().includes(searchQuery.toLowerCase())
-    );
-
-  const leftFiltered = filterList(currentFaqs.left);
-  const rightFiltered = filterList(currentFaqs.right);
-
   return (
     <section id="faq" className="py-20 sm:py-28 bg-[#FBFBFB] text-stone-900 border-b border-stone-200 relative overflow-hidden content-auto">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
-        {/* Header & Right Cursive Note */}
+        {/* Header & Right Help Note */}
         <ScrollReveal direction="up">
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
             <div>
@@ -112,24 +120,26 @@ export function FaqSection() {
               {/* Tabs */}
               <div className="flex items-center gap-2 mt-5">
                 <button
-                  onClick={() => { setTab("diners"); setOpenQ(null); }}
-                  className={`px-5 py-2.5 rounded-full text-xs font-bold transition-all cursor-pointer ${
-                    tab === "diners"
-                      ? "bg-[#2563EB] text-white shadow-md shadow-blue-500/25"
-                      : "bg-white text-stone-600 border border-stone-200 hover:bg-stone-50"
-                  }`}
-                >
-                  For Diners
-                </button>
-                <button
                   onClick={() => { setTab("restaurants"); setOpenQ(null); }}
-                  className={`px-5 py-2.5 rounded-full text-xs font-bold transition-all cursor-pointer ${
+                  className={`inline-flex items-center gap-1.5 px-5 py-2.5 rounded-full text-xs font-bold transition-all cursor-pointer ${
                     tab === "restaurants"
                       ? "bg-[#2563EB] text-white shadow-md shadow-blue-500/25"
                       : "bg-white text-stone-600 border border-stone-200 hover:bg-stone-50"
                   }`}
                 >
-                  For Restaurants
+                  <Store className="w-3.5 h-3.5" />
+                  <span>For Restaurants</span>
+                </button>
+                <button
+                  onClick={() => { setTab("diners"); setOpenQ(null); }}
+                  className={`inline-flex items-center gap-1.5 px-5 py-2.5 rounded-full text-xs font-bold transition-all cursor-pointer ${
+                    tab === "diners"
+                      ? "bg-[#2563EB] text-white shadow-md shadow-blue-500/25"
+                      : "bg-white text-stone-600 border border-stone-200 hover:bg-stone-50"
+                  }`}
+                >
+                  <Utensils className="w-3.5 h-3.5" />
+                  <span>For Diners</span>
                 </button>
               </div>
             </div>
@@ -140,13 +150,15 @@ export function FaqSection() {
                 Still have questions?<br />
                 We&apos;re here to help! ♡
               </span>
-              <Link
-                href="#download"
-                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-white hover:bg-stone-50 border border-stone-300 text-xs font-bold text-stone-900 shadow-xs transition-colors"
-              >
-                <span>View All FAQs</span>
-                <ArrowRight className="w-3.5 h-3.5" />
-              </Link>
+              {onOpenPartner && (
+                <button
+                  onClick={onOpenPartner}
+                  className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-white hover:bg-stone-50 border border-stone-300 text-xs font-bold text-stone-900 shadow-xs transition-colors cursor-pointer"
+                >
+                  <span>Talk to ASSO</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </button>
+              )}
             </div>
           </div>
         </ScrollReveal>
@@ -156,15 +168,14 @@ export function FaqSection() {
 
           {/* Column 1 */}
           <div className="space-y-3">
-            {leftFiltered.map((item, i) => {
+            {currentFaqs.left.map((item, i) => {
               const isOpen = openQ === item.q;
               return (
-                <ScrollReveal key={item.q} direction="up" delay={i * 50}>
-                  <div
-                    className="bg-white rounded-2xl border border-stone-200 shadow-xs overflow-hidden transition-all hover:border-blue-300"
-                  >
+                <ScrollReveal key={item.q} direction="up" delay={i * 40}>
+                  <div className="bg-white rounded-2xl border border-stone-200 shadow-xs overflow-hidden transition-all hover:border-blue-300">
                     <button
                       onClick={() => toggle(item.q)}
+                      aria-expanded={isOpen}
                       className="w-full p-4 sm:p-5 flex items-center justify-between gap-3 text-left font-bold text-xs sm:text-sm text-stone-900 cursor-pointer"
                     >
                       <span>{item.q}</span>
@@ -186,15 +197,14 @@ export function FaqSection() {
 
           {/* Column 2 */}
           <div className="space-y-3">
-            {rightFiltered.map((item, i) => {
+            {currentFaqs.right.map((item, i) => {
               const isOpen = openQ === item.q;
               return (
-                <ScrollReveal key={item.q} direction="up" delay={i * 50 + 40}>
-                  <div
-                    className="bg-white rounded-2xl border border-stone-200 shadow-xs overflow-hidden transition-all hover:border-blue-300"
-                  >
+                <ScrollReveal key={item.q} direction="up" delay={i * 40 + 20}>
+                  <div className="bg-white rounded-2xl border border-stone-200 shadow-xs overflow-hidden transition-all hover:border-blue-300">
                     <button
                       onClick={() => toggle(item.q)}
+                      aria-expanded={isOpen}
                       className="w-full p-4 sm:p-5 flex items-center justify-between gap-3 text-left font-bold text-xs sm:text-sm text-stone-900 cursor-pointer"
                     >
                       <span>{item.q}</span>

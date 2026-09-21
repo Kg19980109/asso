@@ -43,13 +43,13 @@ export function TestimonialsSection() {
           <div className="text-center max-w-3xl mx-auto mb-14">
             <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-amber-100 border border-amber-200 text-amber-800 text-xs font-bold mb-3 shadow-xs">
               <Heart className="w-3.5 h-3.5 text-rose-500 fill-rose-500" />
-              <span>Loved by 45,000+ Kolkata Diners</span>
+              <span>Early Pilot — Diner Stories</span>
             </div>
             <h2 className="text-3xl sm:text-5xl font-black tracking-tight text-stone-900">
               What Diners Say
             </h2>
             <p className="text-stone-600 text-sm sm:text-base mt-2">
-              Real stories from real Puja food lovers across Kolkata.
+              Stories from our early pilot diners across Kolkata.
             </p>
           </div>
         </ScrollReveal>
@@ -97,7 +97,7 @@ export function TestimonialsSection() {
 
                 <div className="pt-3 mt-3 border-t border-stone-100 flex items-center justify-between text-[11px]">
                   <span className="font-bold text-orange-600">— {t.name}</span>
-                  <span className="text-[10px] text-stone-400">Verified Diner</span>
+                  <span className="text-[10px] text-stone-400">Pilot Diner</span>
                 </div>
               </div>
             </ScrollReveal>

@@ -31,44 +31,44 @@ const FEATURES = [
   {
     icon: Users,
     title: "Digital Queue Management",
-    desc: "Let customers join the queue via QR. No more crowd at your entrance.",
+    desc: "Let customers join the queue via QR. No more crowd or door chaos at your entrance.",
     iconColor: "text-emerald-600",
     bg: "bg-emerald-100",
   },
   {
     icon: Clock,
     title: "Live Queue & Table Status",
-    desc: "See real-time queue, table availability and wait times.",
+    desc: "See real-time wait times, table availability, and automated SMS alerts.",
     iconColor: "text-purple-600",
     bg: "bg-purple-100",
   },
   {
+    icon: Table2,
+    title: "Flexible Seating Modes",
+    desc: "Simple mode (exclusive tables for each party) or Strict mode (seat optimization during rush).",
+    iconColor: "text-indigo-600",
+    bg: "bg-indigo-100",
+  },
+  {
     icon: ConciergeBell,
     title: "Pre-Orders Made Easy",
-    desc: "Customers can order while waiting. Food ready when they arrive.",
+    desc: "Customers can order while waiting. Food ready piping hot when they sit.",
     iconColor: "text-blue-600",
     bg: "bg-blue-100",
   },
   {
     icon: BarChart3,
     title: "Better Table Turnover",
-    desc: "Reduce idle time and serve more customers.",
+    desc: "Reduce idle table minutes between parties and turn tables faster during peak rush.",
     iconColor: "text-orange-600",
     bg: "bg-orange-100",
   },
   {
-    icon: Heart,
-    title: "Happier Customers",
-    desc: "Shorter perceived wait time, better dining experience, more reviews.",
-    iconColor: "text-rose-600",
-    bg: "bg-rose-100",
-  },
-  {
     icon: Settings,
-    title: "Less Work for Your Staff",
-    desc: "One dashboard to manage everything. Focus on what matters — great food.",
-    iconColor: "text-indigo-600",
-    bg: "bg-indigo-100",
+    title: "Zero Hardware & Quick Onboarding",
+    desc: "Host staff runs it on any phone or tablet in 15 minutes. No POS changes needed.",
+    iconColor: "text-emerald-600",
+    bg: "bg-emerald-100",
   },
 ];
 
@@ -174,11 +174,11 @@ export function ForRestaurantsSection({ onOpenPartner }: ForRestaurantsSectionPr
                   onClick={onOpenPartner}
                   className="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-2xl bg-gradient-to-r from-[#2563EB] to-[#7C3AED] hover:from-[#1D4ED8] hover:to-[#6D28D9] text-white font-black text-xs shadow-xl shadow-indigo-500/25 transition-all hover:scale-[1.02] active:scale-95 cursor-pointer"
                 >
-                  <span>Get ASSO for Your Restaurant</span>
+                  <span>Get Started for Your Restaurant</span>
                   <ArrowRight className="w-4 h-4" />
                 </button>
                 <p className="text-[11px] text-stone-500 font-medium mt-2 text-center">
-                  Set up. Serve more. Grow faster.
+                  No hardware required • Set up in minutes
                 </p>
               </div>
             </ScrollReveal>

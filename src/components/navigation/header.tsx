@@ -2,15 +2,16 @@
 
 import * as React from "react";
 import Link from "next/link";
-import { Menu, X, Sparkles, Flame } from "lucide-react";
+import { Menu, X, Sparkles, Flame, Store } from "lucide-react";
 import { AssoLogo } from "@/components/brand/asso-logo";
 
 interface HeaderProps {
   onOpenDownload?: () => void;
   onOpenQueue?: () => void;
+  onOpenPartner?: () => void;
 }
 
-export function Header({ onOpenDownload, onOpenQueue }: HeaderProps) {
+export function Header({ onOpenDownload, onOpenQueue, onOpenPartner }: HeaderProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
   const [scrolled, setScrolled] = React.useState(false);
 
@@ -81,12 +82,21 @@ export function Header({ onOpenDownload, onOpenQueue }: HeaderProps) {
           </Link>
         </nav>
 
-        {/* Right CTA Button - Primary Join Queue */}
-        <div className="hidden md:flex items-center">
+        {/* Right CTA Cluster */}
+        <div className="hidden md:flex items-center gap-2.5">
+          {onOpenPartner && (
+            <button
+              onClick={onOpenPartner}
+              className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-white/[0.08] hover:bg-white/[0.14] border border-amber-400/30 text-amber-300 font-bold text-xs backdrop-blur-md transition-all hover:scale-105 active:scale-95 cursor-pointer"
+            >
+              <Store className="w-3.5 h-3.5" />
+              <span>Get Started</span>
+            </button>
+          )}
           {onOpenQueue && (
             <button
               onClick={onOpenQueue}
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-[#7C3AED] to-[#8B5CF6] hover:from-[#6D28D9] hover:to-[#7C3AED] text-white font-bold text-xs shadow-lg shadow-purple-500/30 transition-all hover:scale-105 active:scale-95 cursor-pointer"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-[#7C3AED] to-[#8B5CF6] hover:from-[#6D28D9] hover:to-[#7C3AED] text-white font-bold text-xs shadow-lg shadow-purple-500/30 transition-all hover:scale-105 active:scale-95 cursor-pointer"
             >
               <Sparkles className="w-3.5 h-3.5 text-amber-300" />
               <span>Join Queue</span>
@@ -143,7 +153,19 @@ export function Header({ onOpenDownload, onOpenQueue }: HeaderProps) {
             FAQ
           </Link>
 
-          <div className="pt-2">
+          <div className="pt-2 flex flex-col gap-2">
+            {onOpenPartner && (
+              <button
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  onOpenPartner();
+                }}
+                className="flex items-center justify-center gap-2 w-full py-2.5 rounded-full bg-gradient-to-r from-amber-500 to-orange-500 text-slate-950 font-bold text-xs shadow-lg shadow-amber-500/30 cursor-pointer"
+              >
+                <Store className="w-4 h-4" />
+                <span>Get Started for Your Restaurant</span>
+              </button>
+            )}
             {onOpenQueue && (
               <button
                 onClick={() => {

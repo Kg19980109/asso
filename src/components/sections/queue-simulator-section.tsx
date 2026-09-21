@@ -12,7 +12,11 @@ import {
   ArrowRight,
 } from "lucide-react";
 
-export function QueueSimulatorSection() {
+interface QueueSimulatorSectionProps {
+  onOpenPartner?: () => void;
+}
+
+export function QueueSimulatorSection({ onOpenPartner }: QueueSimulatorSectionProps) {
   const [restaurant, setRestaurant] = React.useState("6 Ballygunge Place");
   const [partySize, setPartySize] = React.useState(4);
   const [preorder, setPreorder] = React.useState(true);
@@ -229,7 +233,24 @@ export function QueueSimulatorSection() {
                 </div>
               </div>
             </div>
+          </div>
+        </div>
 
+        {/* Restaurant Conversion Prompt */}
+        <div className="mt-8 text-center">
+          <div className="inline-flex flex-col sm:flex-row items-center gap-3 px-5 py-3 rounded-2xl bg-white/[0.04] border border-white/10 backdrop-blur-md max-w-xl mx-auto">
+            <span className="text-xs text-slate-300">
+              Run a busy Kolkata restaurant? Bring this live virtual waitlist to your doorway.
+            </span>
+            {onOpenPartner && (
+              <button
+                onClick={onOpenPartner}
+                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-gradient-to-r from-amber-400 to-orange-500 text-slate-950 font-bold text-xs shadow-sm hover:scale-105 active:scale-95 transition-all cursor-pointer whitespace-nowrap"
+              >
+                <span>Get Started</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </button>
+            )}
           </div>
         </div>
 

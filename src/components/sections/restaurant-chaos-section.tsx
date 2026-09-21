@@ -8,6 +8,7 @@ import {
   Frown,
   Link2Off,
   TrendingDown,
+  ArrowRight,
 } from "lucide-react";
 import { ScrollReveal } from "@/components/animations/scroll-reveal";
 
@@ -78,7 +79,7 @@ function BrushBadge({ className }: { className: string }) {
   );
 }
 
-export function RestaurantChaosSection() {
+export function RestaurantChaosSection({ onOpenPartner }: { onOpenPartner?: () => void }) {
   return (
     <section
       id="restaurant-chaos"
@@ -145,6 +146,19 @@ export function RestaurantChaosSection() {
               );
             })}
           </div>
+
+          {/* CTA — give restaurant owners a direct path after seeing the pain */}
+          <ScrollReveal direction="up" delay={180}>
+            <div className="mt-7">
+              <button
+                onClick={onOpenPartner}
+                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-gradient-to-r from-[#2563EB] to-[#7C3AED] hover:from-[#1D4ED8] hover:to-[#6D28D9] text-white font-black text-xs shadow-xl shadow-indigo-500/25 transition-all hover:scale-105 active:scale-95 cursor-pointer"
+              >
+                <span>See How ASSO Fixes This</span>
+                <ArrowRight className="w-4 h-4" />
+              </button>
+            </div>
+          </ScrollReveal>
 
           <ScrollReveal direction="up" delay={120}>
             <p className="font-script text-2xl sm:text-3xl font-bold text-amber-200 mt-8 -rotate-2">

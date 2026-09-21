@@ -23,19 +23,19 @@ interface HassleFreeSetupSectionProps {
 
 const STEPS = [
   {
-    icon: QrCode,
+    icon: Smartphone,
     step: "Step 1",
-    title: "Stick the QR standee",
-    desc: "We give you printed standees for your entrance — or print your own in 2 minutes. That's the whole installation.",
+    title: "Configure tables & seating mode",
+    desc: "Set up your floor plan and choose Simple mode (exclusive tables) or Strict mode (seat optimization) in 10 minutes.",
     color: "text-blue-600",
     bg: "bg-blue-50",
     ring: "border-blue-200",
   },
   {
-    icon: Smartphone,
+    icon: QrCode,
     step: "Step 2",
-    title: "Open the host console",
-    desc: "On any phone, tablet or laptop your staff already has. No app install, no new device to buy.",
+    title: "Display entrance QR standee",
+    desc: "Place standees at your entrance. Diners scan with any phone camera to join your virtual queue without crowding.",
     color: "text-purple-600",
     bg: "bg-purple-50",
     ring: "border-purple-200",
@@ -43,8 +43,8 @@ const STEPS = [
   {
     icon: MousePointerClick,
     step: "Step 3",
-    title: "Tap to call the next party",
-    desc: "Guest gets an SMS automatically and walks back. Late? Grace-period reminders go out on their own.",
+    title: "Smart table recommendations",
+    desc: "The host console tracks queue progression and matches party sizes with available tables to turn tables faster.",
     color: "text-emerald-600",
     bg: "bg-emerald-50",
     ring: "border-emerald-200",
@@ -52,8 +52,8 @@ const STEPS = [
   {
     icon: ChefHat,
     step: "Step 4",
-    title: "Kitchen gets pre-orders early",
-    desc: "Guests order while they wait nearby. Your kitchen fires dishes before they even sit down.",
+    title: "One-tap call & ready seating",
+    desc: "Tap to notify guests via automated SMS alerts. Diners return promptly with optional pre-orders ready.",
     color: "text-orange-600",
     bg: "bg-orange-50",
     ring: "border-orange-200",
@@ -140,11 +140,11 @@ export function HassleFreeSetupSection({ onOpenPartner }: HassleFreeSetupSection
               onClick={onOpenPartner}
               className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-gradient-to-r from-[#6366F1] to-[#8B5CF6] hover:from-[#4F46E5] hover:to-[#7C3AED] text-white font-bold text-xs shadow-xl shadow-indigo-500/25 transition-all hover:scale-105 active:scale-95 cursor-pointer"
             >
-              <span>Get Free Demo for Your Outlet</span>
+              <span>Get Started for Your Restaurant</span>
               <ArrowRight className="w-4 h-4" />
             </button>
             <p className="text-[11px] text-stone-500 mt-3">
-              Free pilot for early Kolkata partners • We set everything up with you
+              No hardware required • Free pilot for Kolkata restaurants • Set up in minutes
             </p>
           </div>
         </ScrollReveal>

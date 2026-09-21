@@ -85,6 +85,11 @@ export function FestiveStatsBanner() {
           })}
         </div>
 
+        {/* Disclaimer — aspirational pilot-season targets */}
+        <p className="text-center text-[11px] text-slate-500 mt-6">
+          Illustrative targets for the Puja 2026 pilot season.
+        </p>
+
       </div>
     </section>
   );
