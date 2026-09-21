@@ -29,7 +29,7 @@ interface RestaurantHub {
 
 const HUBS: RestaurantHub[] = [
   {
-    name: "Peter Cat & Mocambo",
+    name: "The Heritage Pavilion & Bistro",
     zone: "park-street",
     zoneLabel: "Park Street",
     cuisines: "Continental • Mughlai Heritage",
@@ -41,7 +41,7 @@ const HUBS: RestaurantHub[] = [
     image: "/images/park-street.jpg",
   },
   {
-    name: "6 Ballygunge Place",
+    name: "Ballygunge Heritage Kitchen",
     zone: "south",
     zoneLabel: "Ballygunge, South",
     cuisines: "Authentic Bengali Fine Dine",
@@ -53,7 +53,7 @@ const HUBS: RestaurantHub[] = [
     image: "/images/bengali-food.jpg",
   },
   {
-    name: "Oudh 1590",
+    name: "Awadh Darbar",
     zone: "south",
     zoneLabel: "Deshapriya Park",
     cuisines: "Period Dining • Awadhi Cuisine",
@@ -65,7 +65,7 @@ const HUBS: RestaurantHub[] = [
     image: "/images/park-street.jpg",
   },
   {
-    name: "Golbari & Mitra Cafe",
+    name: "North Kolkata Heritage Cabin",
     zone: "north",
     zoneLabel: "Shyambazar, North",
     cuisines: "Colonial Bengali Street Heritage",
@@ -77,7 +77,7 @@ const HUBS: RestaurantHub[] = [
     image: "/images/bengali-food.jpg",
   },
   {
-    name: "Arsalan",
+    name: "Royal Kolkata Biryani House",
     zone: "park-street",
     zoneLabel: "Park Circus",
     cuisines: "Kolkata Biryani Masters",
@@ -89,7 +89,7 @@ const HUBS: RestaurantHub[] = [
     image: "/images/bengali-food.jpg",
   },
   {
-    name: "Bhojohori Manna",
+    name: "Bhojon Bilash Dining",
     zone: "south",
     zoneLabel: "Hindustan Park",
     cuisines: "Traditional Homestyle Bengali",

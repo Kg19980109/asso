@@ -194,7 +194,7 @@ export function RestaurantPartnerModal({ isOpen, onClose }: RestaurantPartnerMod
                     value={restaurantName}
                     onChange={(e) => setRestaurantName(e.target.value)}
                     onBlur={() => handleBlur("restaurantName")}
-                    placeholder="e.g. Aminia / Peter Cat"
+                    placeholder="e.g. Royal Biryani House / The Heritage Pavilion"
                     aria-invalid={touched.restaurantName && !isRestaurantNameValid}
                     aria-describedby={touched.restaurantName && !isRestaurantNameValid ? "restaurant-name-error" : undefined}
                     className={`w-full h-10 px-3.5 rounded-xl bg-white/10 border text-xs text-white placeholder-slate-400 focus:outline-none transition-colors ${

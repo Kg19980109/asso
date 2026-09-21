@@ -199,7 +199,7 @@ export function ForRestaurantsSection({ onOpenPartner }: ForRestaurantsSectionPr
                     <span className="text-slate-500 text-xs">|</span>
                     <span className="text-xs font-bold text-slate-200 flex items-center gap-1.5">
                       <Store className="w-3.5 h-3.5 text-amber-400" />
-                      Oh! Calcutta Restaurant
+                      Calcutta Grand Dining
                     </span>
                     <span className="flex items-center gap-1 text-[10px] font-bold text-emerald-300 bg-emerald-500/15 border border-emerald-500/30 px-2 py-0.5 rounded-full">
                       <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />

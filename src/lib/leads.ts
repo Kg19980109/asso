@@ -2,6 +2,7 @@ import fs from "fs/promises";
 import path from "path";
 import {
   LeadStatus,
+  LeadPriority,
   VALID_STATUSES,
   InternalNote,
   ContactHistoryEntry,
@@ -14,13 +15,66 @@ export * from "@/types/leads";
 
 const DATA_DIR = path.join(process.cwd(), "data");
 const LEADS_FILE = path.join(DATA_DIR, "partner-leads.json");
+const LEADS_BACKUP_FILE = path.join(DATA_DIR, "partner-leads.json.bak");
+
+// In-memory write mutex queue to prevent race conditions during concurrent write operations
+let writeMutex = Promise.resolve();
+
+function enqueueWrite<T>(op: () => Promise<T>): Promise<T> {
+  const next = writeMutex.then(op, op);
+  writeMutex = next.then(() => {}, () => {});
+  return next;
+}
+
+/**
+ * Calculates authoritative operational priority for a lead based on status and follow-up timeline.
+ */
+export function calculateLeadPriority(lead: {
+  status: LeadStatus;
+  nextFollowUpAt?: string | null;
+  lastContactedAt?: string | null;
+}): LeadPriority {
+  if (lead.status === "LOST" || lead.status === "CONVERTED") {
+    return "CLOSED";
+  }
+
+  if (lead.nextFollowUpAt) {
+    const followUpTime = new Date(lead.nextFollowUpAt).getTime();
+    if (!isNaN(followUpTime)) {
+      const now = new Date();
+      const todayStart = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 0, 0, 0).getTime();
+      const todayEnd = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 23, 59, 59, 999).getTime();
+
+      if (followUpTime < todayStart) {
+        return "OVERDUE";
+      }
+      if (followUpTime <= todayEnd) {
+        return "TODAY";
+      }
+    }
+  }
+
+  if (lead.status === "DEMO_SCHEDULED") {
+    return "UPCOMING_DEMO";
+  }
+
+  if (lead.status === "NEW" && !lead.lastContactedAt) {
+    return "NEW_UNCONTACTED";
+  }
+
+  return "ACTIVE";
+}
 
 /**
  * Normalizes any legacy lead records that may lack operational fields.
  */
 function normalizeRecord(raw: any): LeadRecord {
   const createdAt = raw.createdAt || new Date().toISOString();
-  return {
+  const status: LeadStatus = VALID_STATUSES.includes(raw.status) ? raw.status : "NEW";
+  const nextFollowUpAt = raw.nextFollowUpAt ?? null;
+  const lastContactedAt = raw.lastContactedAt ?? null;
+
+  const record: LeadRecord = {
     id: String(raw.id || `lead_${Date.now()}`),
     restaurantName: String(raw.restaurantName || "Unnamed Restaurant"),
     ownerName: String(raw.ownerName || "Unknown Owner"),
@@ -32,10 +86,10 @@ function normalizeRecord(raw: any): LeadRecord {
     notes: raw.notes ? String(raw.notes) : undefined,
     createdAt,
     updatedAt: raw.updatedAt || createdAt,
-    status: VALID_STATUSES.includes(raw.status) ? raw.status : "NEW",
+    status,
     assignedTo: raw.assignedTo ?? null,
-    lastContactedAt: raw.lastContactedAt ?? null,
-    nextFollowUpAt: raw.nextFollowUpAt ?? null,
+    lastContactedAt,
+    nextFollowUpAt,
     internalNotes: Array.isArray(raw.internalNotes) ? raw.internalNotes : [],
     contactHistory: Array.isArray(raw.contactHistory)
       ? raw.contactHistory
@@ -47,13 +101,20 @@ function normalizeRecord(raw: any): LeadRecord {
             note: "Enquiry received via website",
           },
         ],
+    pilotChecklist: Array.isArray(raw.pilotChecklist) ? raw.pilotChecklist : [],
+    convertedAt: raw.convertedAt ?? null,
+    lostReason: raw.lostReason ?? null,
     ip: raw.ip ? String(raw.ip) : undefined,
     userAgent: raw.userAgent ? String(raw.userAgent) : null,
   };
+
+  record.priority = calculateLeadPriority(record);
+  return record;
 }
 
 /**
  * Safely reads all lead records from disk storage.
+ * Automatically attempts recovery from backup if primary storage is malformed.
  */
 export async function readAllLeads(): Promise<LeadRecord[]> {
   try {
@@ -66,19 +127,45 @@ export async function readAllLeads(): Promise<LeadRecord[]> {
     if (err?.code === "ENOENT") {
       return [];
     }
+
+    // Attempt backup recovery if main file is unparseable or corrupted
+    try {
+      const backupContent = await fs.readFile(LEADS_BACKUP_FILE, "utf-8");
+      const parsedBackup = JSON.parse(backupContent);
+      if (Array.isArray(parsedBackup)) {
+        console.warn("Recovered lead storage from backup file.");
+        return parsedBackup.map(normalizeRecord);
+      }
+    } catch {
+      // Both files failed or missing
+    }
+
     console.error("Error reading partner leads:", err);
     return [];
   }
 }
 
 /**
- * Safely writes all lead records atomically to disk storage.
+ * Safely writes all lead records atomically with backup rotation and concurrency serialization.
  */
 async function writeAllLeads(leads: LeadRecord[]): Promise<void> {
-  await fs.mkdir(DATA_DIR, { recursive: true });
-  const tempPath = `${LEADS_FILE}.${Date.now()}.${Math.random().toString(36).slice(2, 6)}.tmp`;
-  await fs.writeFile(tempPath, JSON.stringify(leads, null, 2), "utf-8");
-  await fs.rename(tempPath, LEADS_FILE);
+  return enqueueWrite(async () => {
+    await fs.mkdir(DATA_DIR, { recursive: true });
+
+    // 1. Create a backup of existing leads before writing new state
+    try {
+      await fs.copyFile(LEADS_FILE, LEADS_BACKUP_FILE);
+    } catch {
+      // Ignore if source file doesn't exist yet
+    }
+
+    // 2. Write to temporary file first
+    const tempPath = `${LEADS_FILE}.${Date.now()}.${Math.random().toString(36).slice(2, 6)}.tmp`;
+    await fs.writeFile(tempPath, JSON.stringify(leads, null, 2), "utf-8");
+
+    // 3. Atomically rename temp file to target file
+    await fs.rename(tempPath, LEADS_FILE);
+  });
 }
 
 /**
@@ -114,7 +201,7 @@ async function syncToSupabase(lead: LeadRecord): Promise<void> {
         updated_at: lead.updatedAt,
       }),
     });
-  } catch (err) {
+  } catch {
     // Non-blocking fallback
   }
 }
@@ -154,6 +241,7 @@ export async function createLead(
     createdAt: now,
     updatedAt: now,
     status: "NEW",
+    priority: "NEW_UNCONTACTED",
     assignedTo: null,
     lastContactedAt: null,
     nextFollowUpAt: null,
@@ -166,6 +254,9 @@ export async function createLead(
         note: "Initial website enquiry registered",
       },
     ],
+    pilotChecklist: [],
+    convertedAt: null,
+    lostReason: null,
     ip: meta.ip,
     userAgent: meta.userAgent,
   };
@@ -201,6 +292,8 @@ export async function updateLead(
     contactAction?: string;
     contactNote?: string;
     operatorName?: string;
+    pilotChecklist?: string[];
+    lostReason?: string | null;
   }
 ): Promise<LeadRecord | null> {
   const leads = await readAllLeads();
@@ -218,6 +311,25 @@ export async function updateLead(
     }
     current.status = updates.status;
     statusChanged = true;
+
+    if (updates.status === "CONVERTED" && !current.convertedAt) {
+      current.convertedAt = now;
+    }
+
+    if (updates.status === "LOST") {
+      current.lostReason = updates.lostReason || "Other";
+      current.nextFollowUpAt = null;
+    } else if (previousStatus === "LOST") {
+      current.lostReason = null;
+    }
+  }
+
+  if (updates.lostReason !== undefined && current.status === "LOST") {
+    current.lostReason = updates.lostReason;
+  }
+
+  if (updates.pilotChecklist !== undefined) {
+    current.pilotChecklist = updates.pilotChecklist;
   }
 
   if (updates.nextFollowUpAt !== undefined) {
@@ -240,11 +352,20 @@ export async function updateLead(
 
   // Record contact history if contactAction is provided or status changed
   if (updates.contactAction || statusChanged) {
-    const actionText = updates.contactAction
-      ? updates.contactAction
-      : statusChanged
-      ? `Status changed from ${previousStatus} to ${current.status}`
-      : "Contact recorded";
+    let actionText = updates.contactAction;
+    if (!actionText && statusChanged) {
+      if (previousStatus === "LOST") {
+        actionText = `Lead reactivated from LOST to ${current.status}`;
+      } else if (current.status === "LOST") {
+        actionText = `Marked as LOST: ${current.lostReason || "Other"}`;
+      } else if (previousStatus === "CONVERTED") {
+        actionText = `Partner status transitioned from CONVERTED to ${current.status}`;
+      } else {
+        actionText = `Status changed from ${previousStatus} to ${current.status}`;
+      }
+    } else if (!actionText) {
+      actionText = "Contact recorded";
+    }
 
     const historyEntry: ContactHistoryEntry = {
       id: `ch_${Date.now()}_${Math.random().toString(36).substring(2, 6)}`,
@@ -260,6 +381,7 @@ export async function updateLead(
   }
 
   current.updatedAt = now;
+  current.priority = calculateLeadPriority(current);
   leads[index] = current;
 
   await writeAllLeads(leads);
@@ -310,16 +432,9 @@ export async function getLeadMetrics(leadsList?: LeadRecord[]): Promise<LeadMetr
       }
     }
 
-    // Overdue follow-up check: status is active (not CONVERTED / LOST) and follow-up is in the past
-    if (
-      lead.status !== "CONVERTED" &&
-      lead.status !== "LOST" &&
-      lead.nextFollowUpAt
-    ) {
-      const followUpTime = new Date(lead.nextFollowUpAt).getTime();
-      if (!isNaN(followUpTime) && followUpTime < now.getTime()) {
-        overdueFollowUps++;
-      }
+    // Overdue follow-up check
+    if (calculateLeadPriority(lead) === "OVERDUE") {
+      overdueFollowUps++;
     }
   }
 
@@ -331,6 +446,15 @@ export async function getLeadMetrics(leadsList?: LeadRecord[]): Promise<LeadMetr
     overdueFollowUps,
   };
 }
+
+const PRIORITY_ORDER: Record<LeadPriority, number> = {
+  OVERDUE: 1,
+  TODAY: 2,
+  UPCOMING_DEMO: 3,
+  NEW_UNCONTACTED: 4,
+  ACTIVE: 5,
+  CLOSED: 6,
+};
 
 /**
  * Searches, filters, and sorts leads based on provided parameters.
@@ -385,14 +509,31 @@ export async function getFilteredLeads(params: LeadFilterParams): Promise<{
     filtered = filtered.filter((l) => l.outlets === params.outlets);
   }
 
-  // 6. Sort
+  // 6. Follow-up Filter (Feature B & F)
+  if (params.followUpFilter && params.followUpFilter !== "ALL") {
+    filtered = filtered.filter((l) => {
+      const p = calculateLeadPriority(l);
+      if (params.followUpFilter === "OVERDUE") return p === "OVERDUE";
+      if (params.followUpFilter === "TODAY") return p === "TODAY";
+      if (params.followUpFilter === "SCHEDULED") return l.nextFollowUpAt !== null && p !== "OVERDUE" && p !== "TODAY";
+      if (params.followUpFilter === "NONE") return !l.nextFollowUpAt;
+      return true;
+    });
+  }
+
+  // 7. Sort
   const sort = params.sort || "newest";
   filtered.sort((a, b) => {
+    if (sort === "priority") {
+      const pA = PRIORITY_ORDER[a.priority || calculateLeadPriority(a)];
+      const pB = PRIORITY_ORDER[b.priority || calculateLeadPriority(b)];
+      if (pA !== pB) return pA - pB;
+      return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
+    }
     if (sort === "oldest") {
       return new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime();
     }
     if (sort === "followup_due") {
-      // Items with follow-up due earliest come first; nulls last
       if (!a.nextFollowUpAt && !b.nextFollowUpAt) return 0;
       if (!a.nextFollowUpAt) return 1;
       if (!b.nextFollowUpAt) return -1;

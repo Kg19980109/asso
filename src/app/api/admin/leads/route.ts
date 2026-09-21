@@ -19,6 +19,7 @@ export async function GET(req: NextRequest) {
       city: searchParams.get("city") || undefined,
       walkins: searchParams.get("walkins") || undefined,
       outlets: searchParams.get("outlets") || undefined,
+      followUpFilter: (searchParams.get("followUpFilter") as any) || undefined,
       sort: (searchParams.get("sort") as any) || "newest",
     };
 

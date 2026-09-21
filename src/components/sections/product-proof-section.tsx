@@ -34,7 +34,7 @@ function GuestPhoneMock() {
           {/* Header */}
           <div className="px-5 pt-4 pb-3 border-b border-stone-100 bg-gradient-to-r from-teal-50/50 to-amber-50/50">
             <p className="text-[10px] text-teal-700 font-bold uppercase tracking-widest">Active Queue</p>
-            <h3 className="text-base font-black text-stone-900 mt-0.5">6 Ballygunge Place</h3>
+            <h3 className="text-base font-black text-stone-900 mt-0.5">Ballygunge Heritage Kitchen</h3>
             <p className="text-[11px] text-stone-500">Ballygunge, Kolkata</p>
           </div>
           {/* Queue ticket */}
@@ -115,7 +115,7 @@ function HostDashboardMock() {
         <div className="flex items-center justify-between pb-3 border-b border-stone-100">
           <div>
             <p className="text-sm font-black text-stone-900">Host Console</p>
-            <p className="text-xs text-stone-500">6 Ballygunge Place</p>
+            <p className="text-xs text-stone-500">Ballygunge Heritage Kitchen</p>
           </div>
           <div className="flex items-center gap-1.5 text-xs font-bold text-emerald-700 bg-emerald-50 border border-emerald-200 px-2.5 py-1 rounded-full">
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />

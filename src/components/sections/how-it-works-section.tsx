@@ -622,7 +622,7 @@ export function HowItWorksSection({ onOpenQueue, onOpenDownload }: HowItWorksSec
                         Your table is almost ready! 🔔
                       </p>
                       <p className="text-[9px] text-stone-600 mt-0.5 leading-snug">
-                        Come to <strong>Oh! Calcutta Restaurant</strong> in 10 mins. Your food is ready! See you soon! ❤️
+                        Come to <strong>Calcutta Grand Dining</strong> in 10 mins. Your food is ready! See you soon! ❤️
                       </p>
                     </div>
 
@@ -673,7 +673,7 @@ export function HowItWorksSection({ onOpenQueue, onOpenDownload }: HowItWorksSec
 
                     {/* Top Status */}
                     <div className="relative z-10 flex items-center justify-between text-[9px] font-bold text-amber-200 pb-2 px-1">
-                      <span>Oh! Calcutta Restaurant</span>
+                      <span>Calcutta Grand Dining</span>
                       <div className="flex items-center gap-1">
                         <Wifi className="w-2.5 h-2.5" />
                         <Battery className="w-3 h-3" />

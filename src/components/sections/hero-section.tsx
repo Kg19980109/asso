@@ -29,7 +29,7 @@ export function HeroSection({ onOpenConnect, onOpenQueue }: HeroSectionProps) {
 
   const RESTAURANT_PREVIEWS = [
     {
-      name: "6 Ballygunge Place",
+      name: "Ballygunge Heritage Kitchen",
       area: "Ballygunge, Kolkata",
       ticket: "#27",
       ofTotal: "of 34",
@@ -40,7 +40,7 @@ export function HeroSection({ onOpenConnect, onOpenQueue }: HeroSectionProps) {
       dish: "2x Mutton Kosha, 1x Daab Chingri",
     },
     {
-      name: "Peter Cat",
+      name: "The Heritage Pavilion",
       area: "Park Street, Kolkata",
       ticket: "#42",
       ofTotal: "of 50",
@@ -51,7 +51,7 @@ export function HeroSection({ onOpenConnect, onOpenQueue }: HeroSectionProps) {
       dish: "2x Chelo Kebab Platter",
     },
     {
-      name: "Arsalan",
+      name: "Royal Kolkata Biryani House",
       area: "Park Circus, Kolkata",
       ticket: "#18",
       ofTotal: "of 28",

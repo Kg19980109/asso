@@ -6,20 +6,20 @@ import { Sparkles, UtensilsCrossed, Users, CheckCircle2, X } from "lucide-react"
 const LIVE_EVENTS = [
   {
     icon: Users,
-    text: "Sayak & 3 friends joined queue #28 at Oh! Calcutta",
+    text: "Sayak & 3 friends joined queue #28 at Calcutta Grand Dining",
     loc: "Silver Spring • 2m ago",
     color: "text-blue-400",
   },
   {
     icon: UtensilsCrossed,
     text: "Pre-order placed: 2x Kolkata Biryani + Fish Fry",
-    loc: "Arsalan, Park Circus • 4m ago",
+    loc: "Royal Biryani House, Park Circus • 4m ago",
     color: "text-amber-400",
   },
   {
     icon: CheckCircle2,
     text: "Table #12 seated for Priya Roy & party",
-    loc: "Peter Cat, Park Street • Just now",
+    loc: "The Heritage Pavilion, Park Street • Just now",
     color: "text-emerald-400",
   },
   {

@@ -89,10 +89,12 @@ export async function PATCH(
       status: body.status as LeadStatus | undefined,
       nextFollowUpAt: body.nextFollowUpAt,
       assignedTo: body.assignedTo,
-      newNote: body.newNote,
+      newNote: body.newNote || body.note,
       contactAction: body.contactAction,
-      contactNote: body.contactNote,
-      operatorName: body.operatorName,
+      contactNote: body.contactNote || body.note,
+      operatorName: body.operatorName || body.operator,
+      pilotChecklist: Array.isArray(body.pilotChecklist) ? body.pilotChecklist : undefined,
+      lostReason: body.lostReason,
     });
 
     if (!updated) {

@@ -8,7 +8,7 @@ const TESTIMONIALS = [
   {
     name: "Ananya D.",
     location: "Salt Lake, Kolkata",
-    text: "We explored 2 pandals while waiting for our table at Oh! Calcutta. Such a smart and easy experience!",
+    text: "We explored 2 pandals while waiting for our table at Calcutta Grand Dining. Such a smart and easy experience!",
     avatar: "AD",
     avatarBg: "bg-gradient-to-tr from-pink-500 to-rose-400",
     date: "Ashtami Night",

@@ -40,7 +40,7 @@ export function HeroVisual() {
           <div className="px-5 pt-4 pb-3 flex items-center justify-between border-b border-stone-100 bg-gradient-to-r from-orange-50/60 to-amber-50/60">
             <div>
               <p className="text-[10px] font-black tracking-widest text-orange-600 uppercase">Live Queue</p>
-              <h2 className="text-sm font-bold text-stone-900 mt-0.5">6 Ballygunge Place</h2>
+              <h2 className="text-sm font-bold text-stone-900 mt-0.5">Ballygunge Heritage Kitchen</h2>
             </div>
             <div className="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-emerald-800 bg-emerald-100 border border-emerald-300 px-2.5 py-1 rounded-full">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />

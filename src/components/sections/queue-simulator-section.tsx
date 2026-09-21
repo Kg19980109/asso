@@ -17,7 +17,7 @@ interface QueueSimulatorSectionProps {
 }
 
 export function QueueSimulatorSection({ onOpenPartner }: QueueSimulatorSectionProps) {
-  const [restaurant, setRestaurant] = React.useState("6 Ballygunge Place");
+  const [restaurant, setRestaurant] = React.useState("Ballygunge Heritage Kitchen");
   const [partySize, setPartySize] = React.useState(4);
   const [preorder, setPreorder] = React.useState(true);
   const [status, setStatus] = React.useState<"idle" | "joined" | "notified">("idle");
@@ -91,10 +91,10 @@ export function QueueSimulatorSection({ onOpenPartner }: QueueSimulatorSectionPr
                     disabled={status !== "idle"}
                     className="w-full h-11 px-3.5 rounded-xl bg-white/10 border border-white/20 text-white text-sm focus:outline-none focus:border-blue-400 cursor-pointer disabled:opacity-50"
                   >
-                    <option value="6 Ballygunge Place" className="bg-slate-900">6 Ballygunge Place (Ballygunge)</option>
-                    <option value="Peter Cat" className="bg-slate-900">Peter Cat (Park Street)</option>
-                    <option value="Oudh 1590" className="bg-slate-900">Oudh 1590 (Deshapriya Park)</option>
-                    <option value="Arsalan" className="bg-slate-900">Arsalan (Park Circus)</option>
+                    <option value="Ballygunge Heritage Kitchen" className="bg-slate-900">Ballygunge Heritage Kitchen (Ballygunge)</option>
+                    <option value="The Heritage Pavilion" className="bg-slate-900">The Heritage Pavilion (Park Street)</option>
+                    <option value="Awadh Darbar" className="bg-slate-900">Awadh Darbar (Deshapriya Park)</option>
+                    <option value="Royal Kolkata Biryani House" className="bg-slate-900">Royal Kolkata Biryani House (Park Circus)</option>
                   </select>
                 </div>
 

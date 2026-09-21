@@ -209,7 +209,7 @@ export function PartnerConversionSection() {
                             name="restaurantName"
                             type="text"
                             required
-                            placeholder="e.g. 6 Ballygunge Place / Peter Cat"
+                            placeholder="e.g. Ballygunge Heritage Kitchen / The Heritage Pavilion"
                             value={formData.restaurantName}
                             onChange={handleChange}
                             className="w-full h-12 px-4 rounded-2xl bg-stone-50 border border-stone-200 text-stone-900 placeholder:text-stone-400 text-sm focus:outline-none focus:border-orange-500 focus:bg-white focus:ring-2 focus:ring-orange-200 transition-all font-medium"
