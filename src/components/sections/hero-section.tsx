@@ -9,6 +9,8 @@ import {
   Bell,
   MapPin,
   ArrowRight,
+  ArrowDown,
+  Mail,
   CheckCircle2,
   Sparkles,
 } from "lucide-react";
@@ -17,6 +19,7 @@ import { FestiveParticles } from "@/components/ui/festive-particles";
 interface HeroSectionProps {
   onOpenConnect?: () => void;
   onOpenQueue?: () => void;
+  onOpenContact?: () => void;
 }
 
 const FEATURE_BADGES = [
@@ -58,7 +61,7 @@ const FEATURE_BADGES = [
   },
 ];
 
-export function HeroSection({ onOpenConnect, onOpenQueue }: HeroSectionProps) {
+export function HeroSection({ onOpenConnect, onOpenQueue, onOpenContact }: HeroSectionProps) {
   const scrollTo = (id: string) => {
     const el = document.getElementById(id);
     if (el) {
@@ -191,27 +194,27 @@ export function HeroSection({ onOpenConnect, onOpenQueue }: HeroSectionProps) {
 
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-3 max-w-[520px] mb-4">
-              {/* Primary Gradient Pill Button */}
+              {/* Primary Gradient Pill Button: Contact Us */}
               <button
                 type="button"
-                onClick={onOpenQueue}
+                onClick={onOpenContact}
                 className="group relative flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-full font-bold text-xs sm:text-sm text-white bg-gradient-to-r from-[#D946EF] via-[#8B5CF6] to-[#3B82F6] shadow-[0_0_30px_rgba(217,70,239,0.45)] hover:shadow-[0_0_45px_rgba(217,70,239,0.7)] hover:brightness-110 active:scale-[0.98] transition-all duration-200"
               >
                 <div className="p-1 rounded-full bg-white/20">
-                  <QrCode className="w-3.5 h-3.5 text-white" />
+                  <Mail className="w-3.5 h-3.5 text-white" />
                 </div>
-                <span>Join Live Queue Demo</span>
+                <span>Contact Us</span>
                 <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
               </button>
 
-              {/* Secondary Glass Pill Button */}
+              {/* Secondary Glass Pill Button: How ASSO Works */}
               <button
                 type="button"
-                onClick={() => scrollTo("pandals")}
+                onClick={() => scrollTo("how-it-works")}
                 className="flex items-center justify-center gap-2 px-5 py-3.5 rounded-full font-semibold text-xs sm:text-sm text-stone-100 bg-[#0A1024]/80 hover:bg-[#121B38] border border-white/15 hover:border-cyan-400/40 shadow-lg shadow-black/40 backdrop-blur-xl active:scale-[0.98] transition-all duration-200"
               >
-                <MapPin className="w-3.5 h-3.5 text-cyan-400" />
-                <span>Find Restaurants Near You</span>
+                <ArrowDown className="w-3.5 h-3.5 text-cyan-400" />
+                <span>How ASSO Works</span>
               </button>
             </div>
 

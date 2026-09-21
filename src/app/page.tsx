@@ -30,10 +30,15 @@ const WhatsAppFloatingToggle = dynamic(
   () => import("@/components/ui/whatsapp-floating-toggle").then((m) => m.WhatsAppFloatingToggle),
   { ssr: false }
 );
+const ContactUsModal = dynamic(
+  () => import("@/components/ui/contact-us-modal").then((m) => m.ContactUsModal),
+  { ssr: false }
+);
 
 export default function HomePage() {
   const [queueModalOpen, setQueueModalOpen] = React.useState(false);
   const [partnerModalOpen, setPartnerModalOpen] = React.useState(false);
+  const [contactModalOpen, setContactModalOpen] = React.useState(false);
 
   return (
     <div className="min-h-screen flex flex-col bg-[#060B18] selection:bg-purple-500 selection:text-white">
@@ -58,6 +63,7 @@ export default function HomePage() {
         <HeroSection
           onOpenConnect={() => setPartnerModalOpen(true)}
           onOpenQueue={() => setQueueModalOpen(true)}
+          onOpenContact={() => setContactModalOpen(true)}
         />
 
         {/* 2. TRUST / STATS */}
@@ -100,6 +106,10 @@ export default function HomePage() {
       <RestaurantPartnerModal
         isOpen={partnerModalOpen}
         onClose={() => setPartnerModalOpen(false)}
+      />
+      <ContactUsModal
+        isOpen={contactModalOpen}
+        onClose={() => setContactModalOpen(false)}
       />
 
       {/* Floating WhatsApp Support Toggle */}
