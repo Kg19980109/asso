@@ -7,6 +7,7 @@ import {
   CheckCircle2,
   ArrowRight,
   Loader2,
+  AlertCircle,
 } from "lucide-react";
 
 interface RestaurantPartnerModalProps {
@@ -26,6 +27,7 @@ export function RestaurantPartnerModal({ isOpen, onClose }: RestaurantPartnerMod
 
   const [touched, setTouched] = React.useState<{ [key: string]: boolean }>({});
   const [isSubmitting, setIsSubmitting] = React.useState(false);
+  const [serverError, setServerError] = React.useState<string | null>(null);
   const [submitted, setSubmitted] = React.useState(false);
 
   // Close on Escape key and prevent background scroll
@@ -66,6 +68,8 @@ export function RestaurantPartnerModal({ isOpen, onClose }: RestaurantPartnerMod
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setServerError(null);
+
     if (!isFormValid) {
       setTouched({
         restaurantName: true,
@@ -78,14 +82,43 @@ export function RestaurantPartnerModal({ isOpen, onClose }: RestaurantPartnerMod
     }
 
     setIsSubmitting(true);
-    // Simulate brief submission state
-    await new Promise((resolve) => setTimeout(resolve, 600));
-    setIsSubmitting(false);
-    setSubmitted(true);
+    try {
+      const res = await fetch("/api/partner-lead", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          restaurantName,
+          ownerName,
+          phone,
+          email: email || undefined,
+          cityArea,
+          outlets,
+          dailyWalkins: dailyWalkins || undefined,
+          notes: notes || undefined,
+        }),
+      });
+
+      const data = await res.json().catch(() => null);
+
+      if (res.ok && data?.success) {
+        setSubmitted(true);
+      } else {
+        setServerError(
+          data?.error || "We couldn't submit your request right now. Please try again."
+        );
+      }
+    } catch {
+      setServerError("Network error. Please check your internet connection and try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleResetAndClose = () => {
     setSubmitted(false);
+    setServerError(null);
     setRestaurantName("");
     setOwnerName("");
     setPhone("");
@@ -137,6 +170,17 @@ export function RestaurantPartnerModal({ isOpen, onClose }: RestaurantPartnerMod
 
             {/* Registration Form */}
             <form onSubmit={handleSubmit} className="mt-5 space-y-3.5">
+              {/* Server-Side Error Alert */}
+              {serverError && (
+                <div
+                  role="alert"
+                  className="p-3 rounded-xl bg-rose-500/20 border border-rose-500/40 text-rose-300 text-xs flex items-center gap-2 animate-in fade-in duration-200"
+                >
+                  <AlertCircle className="w-4 h-4 text-rose-400 flex-shrink-0" />
+                  <span>{serverError}</span>
+                </div>
+              )}
+
               {/* Row 1: Restaurant Name & Area */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
